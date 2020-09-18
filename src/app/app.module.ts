@@ -15,6 +15,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { LostPasswordComponent } from './pages/lost-password/lost-password.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { AuthComponent } from './pages/auth/auth.component';
     SidebarComponent,
     ServicesComponent,
     LostPasswordComponent,
-    AuthComponent
+    AuthComponent,
+    BreadcrumbComponent,
+    DialogComponent,
+    HomeComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

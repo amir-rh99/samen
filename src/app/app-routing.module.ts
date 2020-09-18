@@ -6,6 +6,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LostPasswordComponent } from './pages/lost-password/lost-password.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
@@ -30,10 +31,21 @@ const routes: Routes = [
       }
     ]
   },
-  
   {
     path: 'home',
-    component: ServicesComponent
+    component: AuthComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+        children: [
+          {
+            path: '',
+            component: ServicesComponent
+          }
+        ]
+      }
+    ]
   }
 ]
 
