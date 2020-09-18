@@ -1,0 +1,155 @@
+.register-form {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    padding: 1rem 2rem;
+}
+
+.register-form__title {
+    font-size: 1.2rem;
+    color: #5a7391;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+input.register-form__text-input {
+    text-align: left;
+    padding-right: 145px;
+    padding-left: 16px;
+    direction: ltr;
+}
+
+input.register-form__text-input::placeholder {
+    text-align: right;
+}
+
+.form-control {
+    padding: 22px;
+    background-color: #f5f8fa;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.register-form__lost-pass-btn {
+    font-size: 14px;
+    text-decoration: none;
+    color: #337ab7;
+}
+
+.register-form__lost-pass-btn:hover {
+    color: #23527c;
+}
+
+.register-form__remember-me {
+    font-size: 18px;
+    margin: 4px 8px;
+}
+
+.register-form .btn {
+    margin: 32px 0 0 8px;
+    width: 150px;
+    font-size: 14px;
+    height: 45px;
+}
+
+.register-form .btn-warning {
+    color: white;
+    background-color: #ff8a00;
+}
+
+.register-form .btn-warning:hover {
+    outline: none;
+    border: none;
+}
+
+.register-form__warning-dialog {
+    color: #a94442;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.inline-label {
+    text-align: center;
+    color: #5f5f5f;
+    
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+
+    width: 129px;
+    height: 45px;
+    padding: 10px;
+
+    font-size: 16px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form__text-input:focus + .inline-label {
+    background-color: #00bff3;
+    color: #fff;;
+}
+
+.register-form__text-input.invalid:focus + .inline-label {
+    background-color: #a94442;
+    color: #fff;;
+}
+
+.register-form__text-input.invalid {
+    border: 1px solid #a94442;
+}
+
+.register-form__text-input.invalid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+
+@media screen and (max-width: 768px) {
+    .register-form {
+        padding: 8px;
+    }
+
+    .inline-label {
+        width: 75px;
+        font-size: 12px;
+        padding: 13px;
+    }
+    
+    input.register-form__text-input {
+        padding-right: 80px;
+    }
+
+    input.register-form__text-input::placeholder {
+        font-size: 0.8rem;
+    }
+
+}
+
+ /* .form-control.ng-valid {
+     border: 1px solid #28a745;
+ }
+
+ .form-control.ng-valid:focus {
+     box-shadow: 0 0 0 0.2rem rgba(40,167,69,.25);
+ }
+
+ .invalid {
+     border: 1px solid #dc3545;
+ }
+
+ .invalid:focus {
+     box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+ } */
+

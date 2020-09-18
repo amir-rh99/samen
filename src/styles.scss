@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: iranSans;
+    src: url('../src/assets/fonts/iransans/ttf/IRANSansWeb\(FaNum\)_Medium.ttf') format('truetype');
+}
+
+body {
+    font-family: iranSans;
+    direction: rtl;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.main-section {
+    padding-top: 82px;
+    padding-bottom: 16px;
+    background-color: #eeeff0;
+    min-height: 450px;
+}

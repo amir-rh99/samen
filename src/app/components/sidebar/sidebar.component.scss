@@ -1,0 +1,52 @@
+.sidebar {
+    background-color: #fff;
+    padding: 30px 0 0 0;
+    margin-bottom: 24px;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 992px) {
+    .main-section {
+        padding-top: 65px;
+    }
+
+    .sidebar {
+        margin-bottom: 0px;
+        border-radius: 0;
+        -webkit-transition: left 0.4s ease;
+        transition: left 0.4s ease;
+        position: fixed;
+        left: -370px;
+        top: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        width: 280px;
+        z-index: 100;
+    }
+}
+
+
+.sidebar--open {
+    left: 0;
+}
+
+.about-me__avatar {
+    width: 130px;
+    margin-bottom: 18px;
+}
+
+.about-me__name {
+    color: #14b9d6;
+    font-size: 18px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.about-me__score {
+    color: #14b9d6;
+    font-size: 18px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 24px;
+}

@@ -1,0 +1,78 @@
+<section class="register-form">
+  <div>
+    <h2 class="register-form__title text-right my-3">ثبت نام</h2>
+    <hr>
+  </div>
+
+  <form class="text-right" (submit)="register($event)" [formGroup]="Register">
+
+    <div class="form-group">
+      <input type="text" id="fname" class="form-control
+                register-form__text-input" placeholder="نام" (blur)="checkEmpty(fname.id, fname.value)" #fname
+        [ngClass]="{invalid: error.fname}" formControlName="fname">
+
+      <label for="fname" class="inline-label">نام</label>
+      <p class="register-form__warning-dialog" *ngIf="error.fname">نام اجباریست</p>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="lname" class="form-control
+                register-form__text-input" placeholder="نام خانوادگی">
+
+      <label for="lname" class="inline-label">نام خانوادگی</label>
+
+    </div>
+
+    <div class="form-group">
+      <input type="tel" id="phone" class="form-control
+                register-form__text-input" placeholder="موبایل">
+
+      <label for="phone" class="inline-label">موبایل</label>
+
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="username" class="form-control register-form__text-input"
+        placeholder="با این نام وارد میشی.پس انگلیسیش بهتره" (blur)="checkEmpty(username.id, username.value)" #username
+        [ngClass]="{invalid: error.username}" formControlName="username">
+
+      <label for="username" class="inline-label">نام کاربری</label>
+      <p class="register-form__warning-dialog" *ngIf="error.username">نام کاربری اجباریست</p>
+      <p class="register-form__warning-dialog" *ngIf="error.usernameError && !error.username">{{error.usernameError}}
+      </p>
+
+    </div>
+
+
+    <div class="form-group">
+      <input type="email" id="email" class="form-control register-form__text-input" placeholder="مثلا name@company.com"
+        (blur)="checkEmpty(email.id, email.value)" #email [ngClass]="{invalid: error.email}" formControlName="email">
+
+      <label for="email" class="inline-label">ایمیل</label>
+      <p class="register-form__warning-dialog" *ngIf="error.email">ایمیل اجباریست</p>
+      <p class="register-form__warning-dialog" *ngIf="error.emailError && !error.email">{{error.emailError}}</p>
+
+
+    </div>
+
+    <div class="form-group">
+      <input type="password" #password id="password" class="form-control register-form__text-input"
+        placeholder="کلمه عبور، حداقل ۶ کاراکتر" (blur)="checkEmpty(password.id, password.value)" #password
+        [ngClass]="{invalid: error.password}" formControlName="password">
+
+      <label for="password" class="inline-label">رمز عبور</label>
+      <p class="register-form__warning-dialog" *ngIf="error.password">رمز عبور اجباریست</p>
+
+
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-warning mb-3 mb-md-0" [disabled]="Register.invalid">
+        ثبت نام
+      </button>
+
+    </div>
+
+  </form>
+
+</section>

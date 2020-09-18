@@ -1,0 +1,133 @@
+/* ---------------header--------------- */
+
+.header {
+    background-color: #f8f8f8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-shadow: 0 1px 30px #d1d2da;
+    z-index: 2;
+}
+
+.main-header__school-logo {
+    height: 50px;
+}
+
+.main-menu {
+    height: 100%;
+    flex-grow: 2;
+}
+
+/* .main-menu__item {
+    cursor: pointer;
+} */
+
+.notification {
+    position: absolute;
+    left: 0;
+    width: 18rem;
+    background-color: #fff;
+    border: 1px solid #cdc9c9;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.notification__header {
+    background-color: #eeeff0;
+    color: #9dacbb;
+    padding: 0.65rem;
+    text-align: center;
+}
+
+.notification__list {
+    text-align: center;
+    padding: 2rem;
+}
+
+.notification__list > img {
+    width: 2rem;
+    filter: invert(71%) sepia(14%) saturate(315%) hue-rotate(170deg) brightness(92%) contrast(93%);
+}
+
+.main-menu__link {
+    color: #9dacbc;
+    font-size: 14px;
+    padding: 21px 15px;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+}
+
+.main-menu__link:hover .main-menu__icon {
+    filter: invert(57%) sepia(93%) saturate(3095%) hue-rotate(159deg) brightness(92%) contrast(101%);
+}
+
+.main-menu__link--logout {
+    padding-left: 0;
+}
+
+.main-menu__icon {
+    width: 26px;
+    filter: invert(71%) sepia(14%) saturate(315%) hue-rotate(170deg) brightness(92%) contrast(93%);
+}
+
+.main-menu__icon--logout {
+    filter: invert(73%) sepia(17%) saturate(6628%) hue-rotate(314deg) brightness(109%) contrast(91%);
+}
+
+.main-menu__link:hover .main-menu__icon--logout {
+    filter: invert(73%) sepia(17%) saturate(6628%) hue-rotate(314deg) brightness(109%) contrast(91%);
+}
+
+.main-menu__link--avatar {
+    padding: 14px;
+}
+
+.main-menu__avatar {
+    width: 40px;
+}
+
+.main-menu__badge {
+    position: absolute;
+    top: 14px;
+    left: 3px;
+    background-color: #f36a5a;
+    color: #fff;
+    min-width: 10px;
+    padding: 4px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1
+}
+
+.main-menu:visited {
+    background-color: #f8f8f7;
+}
+
+.main-menu__signin-btn {
+    background-color: #ff8a00;
+    color: #fff;
+    padding: 8px 24px;
+    margin: 0 10px 0 0;
+}
+
+.main-menu__signin-btn:hover {
+    color: #fff;
+}
+
+.main-menu__active-btn {
+    background-color: #3cafff;
+    color: #fff;
+}
+
+.main-menu__active-btn:hover {
+    background-color: #3cafff;
+    color: #fff;
+}
+
+.main-menu__toggle-sidebar {
+    cursor: pointer;
+}

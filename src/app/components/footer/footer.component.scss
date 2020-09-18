@@ -1,0 +1,80 @@
+.footer {
+    height: auto;
+    background-color: #48525e;
+    color: #808892;
+    font-size: 15px;
+}
+
+.footer__school-logo {
+    width: 150px;
+}
+
+.footer .container-md {
+    padding: 15px 0;
+}
+
+.copy-right {
+    background-color: #3b4450;
+    color: #14b9d6;
+}
+
+.copy-right h5 {
+    margin: 0;
+    padding: 6px 0;
+    font-size: 12px;
+    color: #14b9d6;
+    font-weight: 700;
+}
+
+.footer h4 {
+    color: #14b9d6;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.footer p {
+    line-height: 30px;
+    margin: 0;
+}
+
+.footer .col-md-3 {
+    margin-bottom: 16px;
+}
+
+.footer .nav {
+    padding: 0;
+    margin: 0;
+}
+
+.footer .nav-item {
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+}
+
+.footer .nav-link {
+    padding: 0;
+    margin: 0;
+    color: #808892;
+}
+
+.social-icons__icon {
+    font-size: 32px;
+    color: #808892;
+    text-decoration: none;
+}
+
+.social-icons__link {
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.footer address {
+    line-height: 1.7rem;
+}
