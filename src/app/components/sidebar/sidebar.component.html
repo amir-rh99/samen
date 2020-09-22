@@ -1,5 +1,59 @@
 
-            <aside class="sidebar" id="sidebar">
+            <aside class="sidebar d-none d-lg-block" id="sidebar">
+                <section *ngIf="loggedIn">
+                    <div class="col-12 d-flex justify-content-center">
+                        <img src="../../../assets/images/avatar.png" alt="your avatar" class="about-me__avatar rounded-circle">
+                    </div>
+                
+                    <div class="text-center">
+                        <span class="about-me__name">
+                            majid
+                        </span>
+                    </div>
+                
+                    <div class="text-center">
+                        <span class="about-me__score">
+                            1500 امتیاز
+                        </span>
+                    </div>
+                </section>
+
+                <section *ngIf="!loggedIn" class="px-3">
+                    <div class="col-12 d-flex justify-content-center">
+                        <img src="../../../assets/images/prof_1.png" alt="your avatar" class="about-me__avatar rounded-circle">
+                    </div>
+                
+                    <div class="text-justify">
+                        <span class="mini_font text-secondary">
+                            نور مسیری را به سوی آینده ای معلوم پیش پای فرزندان شما روشن می کند
+                        </span>
+                    </div>
+                
+                    <div class="text-right py-3">
+                        <span class="mini_font text-secondary">
+                            اهداف آموزشی مجتمع آموزشی ثامن نور:
+                        </span>
+                        <ul class="mini_font text-secondary p-0 pr-3" style="line-height: 1.75em;">
+                            <li>هوشمندسازی</li>
+                            <li> توسعه کمی مدارس نور</li>
+                            <li>شیوه های نوین آموزشی اثربخش</li>
+                            <li> شکوفاسازی استعدادها و بروز توانمندیها</li>
+                            <li>ایجاد ارتباط موثر و دوسویه با اولیا جهت هم اندیشی و تبادل نظر</li>
+                            <li>ایجاد مدرسه ای شاد و با نشاط</li>
+                            <li>ایجاد مدرسه ای ایمن</li>
+                            <li>استفاده مدبرانه از منابع با رعایت اولویتها و ضرورتها</li>
+                        </ul>
+                    </div>
+                    <div class="text-center pb-3">
+                        <button routerLink="register" type="button" class="btn btn-warning login-form__submit-btn">
+                            ثبت نام
+                        </button>
+                    </div>
+                </section>
+     
+            </aside>
+
+            <aside class="sidebar d-block d-lg-none" id="sidebar">
                 <section>
                     <div class="col-12 d-flex justify-content-center">
                         <img src="../../../assets/images/avatar.png" alt="your avatar" class="about-me__avatar rounded-circle">

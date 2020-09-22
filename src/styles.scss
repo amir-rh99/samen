@@ -7,7 +7,9 @@ body {
     font-family: iranSans;
     direction: rtl;
 }
-
+.overFlow{
+    overflow: hidden;
+}
 *{
     box-sizing: border-box;
 }
@@ -17,4 +19,23 @@ body {
     padding-bottom: 16px;
     background-color: #eeeff0;
     min-height: 450px;
+}
+
+:root{
+    --xxmini_font: 0.6em;
+    --xmini_font: 0.7em;
+    --mini_font: 0.8em;
+    --normal_font: 0.9em;
+    --original_font: 1em;
+}
+
+.xxmini_font{
+    font-size: var(--xxmini_font);
+}
+.xmini_font{
+    font-size: var(--xmini_font);
+}
+.mini_font{
+    font-size: var(--mini_font);
+    font-weight: 600;
 }

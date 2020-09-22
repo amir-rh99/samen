@@ -21,6 +21,7 @@ export class LoginService {
     })
   }
 
+  
   registerUser(nickname, username, email, password){
     return this.http.post(`${this.crud.base_url}/users/register`,{
       "email" : email,
@@ -48,4 +49,11 @@ export class LoginService {
     })
   }
   
+  resetPassword(email){
+    return this.http.post(`${this.crud.base_url}/users/reset`,{
+      "string": email
+    },{
+      headers: this.crud.headers
+    })
+  }
 }

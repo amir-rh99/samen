@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  loggedIn;
 
   constructor() { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('id')){
+      this.loggedIn = true;
+    }
   }
 
 }

@@ -7,15 +7,20 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LostPasswordComponent } from './pages/lost-password/lost-password.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { AfterLoginGuard } from './services/after-login-guard.service';
 
 const routes: Routes = [
   {
     path: '' ,
-    component: LandingComponent
+    component: LandingComponent,
+    canActivate:[AfterLoginGuard]
   },
   {
     path: 'auth',
     component: AuthComponent,
+    canActivate:[AfterLoginGuard],
+
     children: [
       {
         path: 'login',
@@ -34,6 +39,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: AuthComponent,
+    canActivate:[AuthGuard],
     children: [
       {
         path: '',

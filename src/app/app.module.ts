@@ -19,6 +19,12 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { DialogComponent } from './components/dialog/dialog.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common'
+import { provideRoutes } from '@angular/router';
+import { MobileSidebarComponent } from './components/mobile-sidebar/mobile-sidebar.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -35,17 +41,24 @@ import { LoadingComponent } from './components/loading/loading.component';
     BreadcrumbComponent,
     DialogComponent,
     HomeComponent,
-    LoadingComponent
+    LoadingComponent,
+    MobileSidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-     ReactiveFormsModule
-
+     ReactiveFormsModule,
+     NgbModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    NavbarComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

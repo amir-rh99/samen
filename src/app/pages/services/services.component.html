@@ -31,10 +31,10 @@
                 <button *ngIf = "service.serviceStatus.length == 0" class="btn service-card__button">
                     انجامش میدم
                 </button>
-                <button *ngIf = "(service.serviceStatus.length == 1 && +service.serviceStatus[0].status == 1)" class="btn service-card__button">
-                    انجامش میدم
+                <button *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 1)" class="btn service-card__button">
+                    ادامه میدم
                 </button>
-                <button *ngIf = "(service.serviceStatus.length == 1 && +service.serviceStatus[0].status == 2)" class="btn service-card__button">
+                <button *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 2)" class="btn service-card__button">
                     مشاهده نتایج
                 </button>
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GetServicesService } from 'src/app/services/get-services.service';
 import { CRUDService } from 'src/app/services/crud.service';
 
+import { NavbarComponent } from '../../components/navbar/navbar.component'
+
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -14,9 +16,12 @@ export class ServicesComponent implements OnInit {
 
   constructor(
     private getservices: GetServicesService,
-    private crud: CRUDService
-  ) { }
+    private crud: CRUDService,
+    private logOut: NavbarComponent
+  ) {
+   }
   ngOnInit(): void {
+
     this.userId = localStorage.getItem('id');
     this.base_url = this.crud.base_url;
 
@@ -26,11 +31,20 @@ export class ServicesComponent implements OnInit {
       })
       this.services.forEach(service=>{
         if(service.slogan){
-          service.slogan = service.slogan.substr(0, 25)
+          service.slogan = service.slogan.substr(0, 20)
         }
       })
       console.log(this.services);
-    })
+    }
+    , err =>{
+      if(err.status === 401 || err.status === 404){
+        console.log("hiii");
+        
+        this.logOut.UnauthorizedLogOut()
+      }
+      
+    }
+    )
 
 
     

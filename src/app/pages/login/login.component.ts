@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +12,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   errorMessage;
-
+  @Output() loggedIn: EventEmitter<any> = new EventEmitter<any>();
   constructor(
     private loginService: LoginService,
-    private route: Router
+    private route: Router,  
+    private navbarService: NavbarServiceService
   ) { }
 
   ngOnInit(): void {
-  
+    
   }
 
   login(event){
@@ -30,7 +34,9 @@ export class LoginComponent implements OnInit {
         for(let data in login){
           localStorage.setItem(data, login[data])
         }
-        this.route.navigateByUrl('/home')
+        this.navbarService.setNavbarState(true);
+        // this.loginService.loggedIn.next(true);
+        this.route.navigateByUrl('/home');
       }
       
     }, err=>{
@@ -39,5 +45,9 @@ export class LoginComponent implements OnInit {
 
     
     
+  }
+
+  getEmitter(){
+    return this.loggedIn;
   }
 }

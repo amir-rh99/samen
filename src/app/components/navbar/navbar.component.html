@@ -1,27 +1,86 @@
-<header class="header">
-    <div class="container d-flex justify-content-md-between justify-content-start align-items-center">
-        <a href="#">
-            <img src="../../../assets/images/samen-logo.png" class="main-header__school-logo" alt="samen noor school logo">
-        </a>
-        
-        <nav class="main-menu align-self-stretch d-none d-lg-block">
-            <ul class="nav d-flex align-items-center justify-content-end">
-                <li class="nav-item main-menu__item">
-                    <a href="#" class="nav-link main-menu__link" routerLink = "/">خانه</a>
-                </li>
+<header (window:resize)="onResize($event)" class="header">
+  <div class="container d-flex justify-content-md-between justify-content-start align-items-center">
+    <a href="#">
+      <img src="../../../assets/images/samen-logo.png" class="main-header__school-logo" alt="samen noor school logo">
+    </a>
 
-                <li class="nav-item main-menu__item">
-                    <button class="btn main-menu__signin-btn" routerLink = "/auth/login">ورود</button>
-                </li>
-            </ul>
-        </nav>
+    <nav *ngIf="!loggedIn" class="main-menu align-self-stretch d-none d-lg-block">
+      <ul class="nav d-flex align-items-center justify-content-end">
+        <li class="nav-item main-menu__item">
+          <a href="#" class="nav-link main-menu__link" routerLink="/">خانه</a>
+        </li>
 
-        <div class="main-menu d-lg-none">
-            <a >
-                <img src="../../../assets/images/svg-icons/sidebar.svg" 
-                  style="filter: invert(82%) sepia(70%) saturate(2107%) hue-rotate(157deg) brightness(100%) contrast(86%);"
-                  alt="sidebar toggle icon">
-            </a>
-        </div>
+        <li class="nav-item main-menu__item">
+          <button class="btn main-menu__signin-btn" routerLink="/auth/login">ورود</button>
+        </li>
+      </ul>
+    </nav>
+
+    <nav *ngIf="loggedIn" class="main-menu align-self-stretch d-none d-lg-block">
+      <ul class="nav d-flex align-items-center justify-content-end">
+
+        <li class="nav-item main-menu__item">
+          <a class="nav-link main-menu__link" data-toggle="tooltip" data-placement="bottom" title="میز کار">
+            <img class="main-menu__icon" src="../../../assets/images/svg-icons/briefcase.svg" alt="logout icon">
+
+          </a>
+        </li>
+
+        <li class="nav-item main-menu__item position-relative" id="notif-button" role="button" id="dropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link main-menu__link " data-toggle="tooltip" data-placement="bottom" title="اعلانات">
+            <img class="main-menu__icon" src="../../../assets/images/svg-icons/globe.svg" alt="logout icon">
+            <span class="main-menu__badge rounded-circle" style="background-color: #14b9d6">0</span>
+          </a>
+
+          <div class="notification dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="notification__header">
+              هیچ خبر تازه‌ای نیست
+            </div>
+
+            <div class="notification__list">
+              <img src="../../../assets/images/svg-icons/globe.svg" alt="earth icon">
+            </div>
+          </div>
+        </li>
+
+
+        <li class="nav-item main-menu__item">
+          <a href="#" class="nav-link main-menu__link main-menu__link--avatar" data-toggle="tooltip"
+            data-placement="bottom" title="پروفایل">
+            <img class="main-menu__avatar rounded-circle" src="../../../assets/images/avatar.png" alt="your avatar">
+          </a>
+        </li>
+
+        <li (click)="logOut()" class="nav-item main-menu__item" data-toggle="tooltip" data-placement="bottom"
+          title="خروج">
+          <a class="nav-link main-menu__link main-menu__link--logout">
+            <img class="main-menu__icon main-menu__icon--logout" src="../../../assets/images/svg-icons/logout.svg"
+              alt="logout icon">
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div class="main-menu d-lg-none">
+      <a class=" open_btn" (click)="open_sidebar()">
+        <img src="../../../assets/images/svg-icons/sidebar.svg"
+          style="filter: invert(82%) sepia(70%) saturate(2107%) hue-rotate(157deg) brightness(100%) contrast(86%);"
+          alt="sidebar toggle icon">
+      </a>
     </div>
+    <div class="d-lg-none mobile_sidebar bg-white" [ngClass]="{'open_sidebar': toggle}" style="z-index: 100;">
+      <app-mobile-sidebar></app-mobile-sidebar>
+      <div class="mobile_menu row justify-content-end align-items-end pr-3">
+        <div class="col-12 text-right mobile_menu_item">
+          <a href="/home" class="text-decoration-none d-block  py-2">میز کار</a>
+        </div>
+        <div class="col-12 text-right mobile_menu_item">
+          <a href="#" class="text-decoration-none d-block py-2">اعلانات</a>
+        </div>
+      </div>
+    </div>
+    <div class="d-lg-none" [ngClass]="{sidebar_bg: toggle}" (click)="close_sidebar()"></div>
+  </div>
 </header>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms'
+import { FormBuilder, Validators, FormControl, EmailValidator, AbstractControl } from '@angular/forms'
 
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 
 @Component({
   selector: 'app-register',
@@ -22,17 +23,19 @@ export class RegisterComponent implements OnInit {
   constructor(
     private registerService: LoginService,
     private route: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private navbarService: NavbarServiceService
   ) { }
 
 
   ngOnInit(): void {
   }
-
+emailCheck = false;
+userCheck = false;
   Register = this.formBuilder.group({
     fname: ['',[Validators.required]],
     username: ['',[Validators.required]],
-    email: ['',[Validators.required]],
+    email: ['',[Validators.required, Validators.email],[this.emailCheck]],
     password: ['',[Validators.required]]
   })
 
@@ -49,14 +52,15 @@ export class RegisterComponent implements OnInit {
         for(let data in register){
           localStorage.setItem(data,register[data])
         }
-        this.route.navigateByUrl('/home')
+        this.navbarService.setNavbarState(true);
+        this.route.navigateByUrl('/home');
       }
     })
     
   }
 
   checkEmpty(id, value){
-    this.error.emailError = '';
+    // this.error.emailError = '';
     this.error[id] = false;
     if(value === ''){
       this.error[id] = true
@@ -65,7 +69,8 @@ export class RegisterComponent implements OnInit {
     if(id == 'email'){
       this.registerService.checkEmail(value).subscribe(Res=>{
         console.log(Res," su");
-        
+        this.error.emailError= '';
+        this.emailCheck = true;
       }, err =>{
         console.log(err.error.error);
         this.error.emailError = err.error.error ;
@@ -74,6 +79,7 @@ export class RegisterComponent implements OnInit {
 
     if(id == 'username'){
       this.registerService.checkUsername(value).subscribe(Res=>{
+        this.error.usernameError='';
         console.log(Res," su");
         
       }, err =>{
