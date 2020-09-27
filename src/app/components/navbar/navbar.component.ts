@@ -4,9 +4,14 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 import { NavbarServiceService } from 'src/app/services/navbar-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, RouterState } from '@angular/router';
+import * as $ from "jquery";
+
 
 import Swal from 'sweetalert2'
+
+import { GetServicesService } from 'src/app/services/get-services.service';
+import { CRUDService } from 'src/app/services/crud.service';
 
 
 @Component({
@@ -17,27 +22,35 @@ import Swal from 'sweetalert2'
 export class NavbarComponent implements OnInit {
   userHash;
   loggedIn;
+  testState;
+  base_url;
+
 
   constructor(
-    // private auth: AuthService,
-    // private loginService: LoginService,
-    // private loginComp: LoginComponent,
+    private activatedRoute: ActivatedRoute,
+
     private navbarService: NavbarServiceService,
-    private route: Router
+    private route: Router,
+    private crud: CRUDService
   ) {
     this.navbarService.navState$.subscribe((state)=>{
       this.loggedIn = state;
     })
-    // this.loginService.isloggedIn().subscribe(loggedIn=>{
-    //   this.loggedIn = loggedIn;
-    // })
+
+    this.navbarService.testState$.subscribe((state)=>{
+      this.testState = state;
+    })
+
   }
 
   ngOnInit(): void {
+    
+
+
+ this.base_url = this.crud.base_url;
     if(localStorage.getItem('hash')){
       this.loggedIn = true;
     }
-
   }
   logOut(){
 
@@ -48,14 +61,7 @@ export class NavbarComponent implements OnInit {
         this.navbarService.setNavbarState(false);
         this.loggedIn = false;
         this.route.navigateByUrl('auth/login');
-  
-  //  let items = ['hash', 'id', 'lastLogin', 'role', 'newLogin', 'day', 'nickname'];
-  //  items.forEach(item=>{
-  //    localStorage.removeItem(item);
-  //  })
-  //  this.navbarService.setNavbarState(false);
-  //  this.loggedIn = false;
-  //  this.route.navigateByUrl('auth/login');
+
   }
   
 toggle = false;
@@ -78,7 +84,6 @@ toggle = false;
     items.forEach(item=>{
       localStorage.removeItem(item);
     })
-
 
     this.navbarService.setNavbarState(false);
     this.loggedIn = false;

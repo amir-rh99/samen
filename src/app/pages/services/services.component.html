@@ -1,3 +1,6 @@
+<app-breadcrumb></app-breadcrumb>
+<app-dialog [content]="dialog"></app-dialog>
+
 <section class="services col-12">
 
     <h3 class="services__title">
@@ -18,7 +21,7 @@
                 </div>
     
                 <div class="image-wrapper text-center">
-                    <a href="#">
+                    <a routerLink="/{{service.route}}">
                         <img src="{{ base_url + service.icon}}"
                             class="service-card__image rounded-circle" alt="service-icon">
                     </a>
@@ -28,13 +31,13 @@
                     {{service.slogan}} ...
                 </p>
     
-                <button *ngIf = "service.serviceStatus.length == 0" class="btn service-card__button">
+                <button routerLink="../{{service.route}}" *ngIf = "service.serviceStatus.length == 0" class="btn service-card__button">
                     انجامش میدم
                 </button>
-                <button *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 1)" class="btn service-card__button">
+                <button routerLink="../{{service.route}}/step" *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 1)" class="btn service-card__button" >
                     ادامه میدم
                 </button>
-                <button *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 2)" class="btn service-card__button">
+                <button routerLink="../{{service.route}}/result" *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 2)" class="btn service-card__button">
                     مشاهده نتایج
                 </button>
 

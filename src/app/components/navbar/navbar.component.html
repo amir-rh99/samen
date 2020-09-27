@@ -26,23 +26,54 @@
           </a>
         </li>
 
-        <li class="nav-item main-menu__item position-relative" id="notif-button" role="button" id="dropdownMenuLink"
+        <app-notifications></app-notifications>
+        <!-- <li class="nav-item main-menu__item position-relative" id="notif-button" role="button" id="dropdownMenuLink"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <a class="nav-link main-menu__link " data-toggle="tooltip" data-placement="bottom" title="اعلانات">
             <img class="main-menu__icon" src="../../../assets/images/svg-icons/globe.svg" alt="logout icon">
-            <span class="main-menu__badge rounded-circle" style="background-color: #14b9d6">0</span>
+            <span class="main-menu__badge rounded-circle" style="background-color: #14b9d6">
+            {{unreadNotif}}
+            </span>
           </a>
 
           <div class="notification dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <div class="notification__header">
-              هیچ خبر تازه‌ای نیست
+            <div *ngIf="!userNotifs">
+              <div class="notification__header">
+                هیچ خبر تازه‌ای نیست
+              </div>
+  
+              <div class="notification__list">
+                <img src="../../../assets/images/svg-icons/globe.svg" alt="earth icon">
+              </div>
             </div>
-
-            <div class="notification__list">
-              <img src="../../../assets/images/svg-icons/globe.svg" alt="earth icon">
+            <div *ngIf="userNotifs" style="max-height: 175px; overflow-y: scroll; overflow-x: hidden;margin-bottom: 60px;">
+              <div *ngFor="let notif of userNotifs.data" style="border-bottom: 1px solid #ddd;">
+                <div class="row px-3 py-1">
+                  <div class="col-2">
+                    <img width="40px" src="{{base_url}}/users/{{notif.source_id}}/avatar" >
+                  </div>
+                  <div class="col-10 text-right">
+                    <div class="row">
+                      <div class="col-12 text-info">
+                        امیررضا
+                      </div>
+    
+                    </div>
+                    <div class="row">
+                      <div class="col-12 xmini_font text-secondary">
+                        بابت نظر خوبت امتیاز ززیادی گرفتی و میتونی بازم بگیری
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+              </div>
+              <div class="notification__header" style="position: fixed; bottom: 0; right: 0; left: 0">
+                مشاهده همه
+              </div>
             </div>
           </div>
-        </li>
+        </li> -->
 
 
         <li class="nav-item main-menu__item">
@@ -63,7 +94,7 @@
       </ul>
     </nav>
 
-    <div class="main-menu d-lg-none">
+    <div  class="main-menu d-lg-none">
       <a class=" open_btn" (click)="open_sidebar()">
         <img src="../../../assets/images/svg-icons/sidebar.svg"
           style="filter: invert(82%) sepia(70%) saturate(2107%) hue-rotate(157deg) brightness(100%) contrast(86%);"
@@ -78,6 +109,9 @@
         </div>
         <div class="col-12 text-right mobile_menu_item">
           <a href="#" class="text-decoration-none d-block py-2">اعلانات</a>
+        </div>
+        <div class="col-12 text-right mobile_menu_item">
+          <a (click)="logOut()" href="#" class="text-decoration-none d-block py-2">خروج</a>
         </div>
       </div>
     </div>

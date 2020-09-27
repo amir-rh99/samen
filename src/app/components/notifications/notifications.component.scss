@@ -1,0 +1,107 @@
+.main-menu__link {
+    color: #9dacbc;
+    font-size: 14px;
+    padding: 21px 15px;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+}
+
+.main-menu__link:hover .main-menu__icon {
+    filter: invert(57%) sepia(93%) saturate(3095%) hue-rotate(159deg) brightness(92%) contrast(101%);
+}
+
+.main-menu__icon {
+    width: 26px;
+    filter: invert(71%) sepia(14%) saturate(315%) hue-rotate(170deg) brightness(92%) contrast(93%);
+}
+
+
+.main-menu__badge {
+    position: absolute;
+    top: 14px;
+    left: 3px;
+    background-color: #f36a5a;
+    color: #fff;
+    min-width: 10px;
+    padding: 4px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1
+}
+
+.notification {
+    position: absolute;
+    left: 0;
+    width: 18rem;
+    background-color: #fff;
+    border: 1px solid #cdc9c9;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.notification__header {
+    background-color: #eeeff0;
+    color: #9dacbb;
+    padding: 0.65rem;
+    text-align: center;
+}
+
+.notification__list {
+    text-align: center;
+    padding: 2rem;
+}
+
+.notification__list > img {
+    width: 2rem;
+    filter: invert(71%) sepia(14%) saturate(315%) hue-rotate(170deg) brightness(92%) contrast(93%);
+}
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.692); 
+    border-radius: 10px;
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+//
+.mobile_menu_item{
+    color: black;
+    border-bottom: 1px solid #ddd;
+    transition: .4s;
+}
+.mobile_menu_item:hover{
+background-color:#ddd;
+}
+.mobile_menu_item:first-child{
+    border-top: 1px solid #ddd;
+
+}
+
+.notification__list {
+    text-align: center;
+    padding: 2rem;
+}
+
+.notification__list > img {
+    width: 2rem;
+    filter: invert(71%) sepia(14%) saturate(315%) hue-rotate(170deg) brightness(92%) contrast(93%);
+}
+

@@ -20,10 +20,15 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common'
-import { provideRoutes } from '@angular/router';
+import { provideRoutes, RouterState } from '@angular/router';
 import { MobileSidebarComponent } from './components/mobile-sidebar/mobile-sidebar.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { EnrollComponent } from './pages/enroll/enroll.component';
+import { TestRunnerComponent } from './pages/test-runner/test-runner.component';
+import { ResultComponent } from './pages/result/result.component';
+import { CommentsComponent } from './components/comments/comments.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 @NgModule({
@@ -42,7 +47,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     DialogComponent,
     HomeComponent,
     LoadingComponent,
-    MobileSidebarComponent
+    MobileSidebarComponent,
+    EnrollComponent,
+    TestRunnerComponent,
+    ResultComponent,
+    CommentsComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,15 +60,18 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
      ReactiveFormsModule,
-     NgbModule
+     NgbModule,
+     BrowserAnimationsModule
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    NavbarComponent
+    NavbarComponent,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

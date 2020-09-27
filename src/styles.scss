@@ -39,3 +39,233 @@ body {
     font-size: var(--mini_font);
     font-weight: 600;
 }
+
+
+
+
+///////////////////////////
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../src/assets/fonts/icomoon/icomoon.eot');
+    src:  url('../src/assets/fonts/icomoon/icomoon.eot') format('embedded-opentype'),
+      url('../src/assets/fonts/icomoon/icomoon.ttf') format('truetype'),
+      url('../src/assets/fonts/icomoon/icomoon.woff') format('woff'),
+      url('../src/assets/fonts/icomoon/icomoon.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    /* speak: never; */
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-cup:before {
+    content: "\e918";
+  }
+  .icon-download:before {
+    content: "\e919";
+  }
+  .icon-down-arrow:before {
+    content: "\e91a";
+  }
+  .icon-eye:before {
+    content: "\e91b";
+  }
+  .icon-user:before {
+    content: "\e91c";
+  }
+  .icon-male:before {
+    content: "\e916";
+  }
+  .icon-female:before {
+    content: "\e917";
+  }
+  .icon-iconmonstr-check-mark-circle-thin:before {
+    content: "\e915";
+  }
+  .icon-bascket:before {
+    content: "\e900";
+  }
+  .icon-book-open:before {
+    content: "\e901";
+  }
+  .icon-briefcase:before {
+    content: "\e902";
+  }
+  .icon-gem:before {
+    content: "\e903";
+  }
+  .icon-ghost:before {
+    content: "\e904";
+  }
+  .icon-globe:before {
+    content: "\e905";
+  }
+  .icon-graduation:before {
+    content: "\e906";
+  }
+  .icon-hourglass:before {
+    content: "\e907";
+  }
+  .icon-info:before {
+    content: "\e908";
+  }
+  .icon-letter:before {
+    content: "\e909";
+  }
+  .icon-list:before {
+    content: "\e90a";
+  }
+  .icon-location:before {
+    content: "\e90b";
+  }
+  .icon-logout:before {
+    content: "\e90c";
+  }
+  .icon-pen:before {
+    content: "\e90d";
+  }
+  .icon-people:before {
+    content: "\e90e";
+  }
+  .icon-person:before {
+    content: "\e90f";
+  }
+  .icon-reply:before {
+    content: "\e910";
+  }
+  .icon-settings:before {
+    content: "\e911";
+  }
+  .icon-sidebar:before {
+    content: "\e912";
+  }
+  .icon-speedmeter:before {
+    content: "\e913";
+  }
+  .icon-statistics:before {
+    content: "\e914";
+  }
+  
+  
+///// my styles 
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.dir_rtl {
+  direction: rtl;
+}
+
+.farsi_lorem_after:after,
+.farsi_lorem:after {
+  content: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.";
+}
+
+.farsi_lorem_before:before {
+  content: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.";
+}
+
+.farsi_lorem_p:after,
+.farsi_lorem_p_after:after {
+  content: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.";
+}
+
+.farsi_lorem_p_before:before {
+  content: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.";
+}
+
+.xxxmini_font {
+  font-size: .55rem;
+}
+
+.xxmini_font {
+  font-size: .65rem;
+}
+
+.xmini_font {
+  font-size: .75rem;
+}
+
+.mini_font {
+  font-size: .85rem;
+}
+
+.normal_font {
+  font-size: 1rem;
+}
+
+.lg_font {
+  font-size: 1.2rem;
+}
+
+.xlg_font {
+  font-size: 1.35rem;
+}
+
+.xxlg_font {
+  font-size: 1.5rem;
+}
+
+.xxxlg_font {
+  font-size: 1.75rem;
+}
+
+:root {
+  --red: #b1000099;
+  --red_dark: #b10000;
+}
+
+.myBtn {
+  border: none;
+  background-color: #dddddd80;
+  transition: .4s;
+  padding: .5em 1.5em;
+  cursor: pointer;
+  outline-color: #aaaaaa99;
+  border-radius: .25rem;
+}
+
+.myBtn:hover {
+  background-color: #ddd;
+}
+
+.myBtn_red {
+  background-color: var(--red);
+}
+
+.myBtn_red:hover {
+  background-color: var(--red_dark);
+}
+
+
+// ???????????? innerHtml of server
+.img-responsive{
+  width: 100%;
+}
+
+
+
+// //////////
+.routeContainer{
+  position: relative;
+}
+.routeContainer > * {
+  display: block;
+}

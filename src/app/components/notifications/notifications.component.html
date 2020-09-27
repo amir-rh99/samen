@@ -1,0 +1,52 @@
+<li class="nav-item main-menu__item position-relative" id="notif-button" role="button" id="dropdownMenuLink"
+  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link main-menu__link " data-toggle="tooltip" data-placement="bottom" title="اعلانات">
+    <img class="main-menu__icon" src="../../../assets/images/svg-icons/globe.svg" alt="logout icon">
+    <span class="main-menu__badge rounded-circle" style="background-color: #14b9d6">
+      {{unreadNotif}}
+    </span>
+  </a>
+
+  <div class="notification dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <div *ngIf="userNotifs && userNotifs.count == 0">
+      <!-- <div class="notification__header">
+        هیچ خبر تازه‌ای نیست
+      </div> -->
+
+      <div class="notification__list">
+        <img src="../../../assets/images/svg-icons/globe.svg" alt="earth icon">
+      </div>
+      <div class="notification__header" style="position: fixed; bottom: 0; right: 0; left: 0">
+        هیچ خبر تازه‌ای نیست
+      </div>
+    </div>
+    <div *ngIf="userNotifs" style="max-height: 175px; overflow-y: scroll; overflow-x: hidden;margin-bottom: 60px;">
+      <div *ngFor="let notif of myNotifs" style="border-bottom: 1px solid #ddd;">
+        <div class="row px-3 py-1">
+          <div class="col-2">
+            <img width="40px" class="rounded-circle" src="{{base_url}}/users/{{notif.source_id}}/avatar">
+          </div>
+          <div class="col-10 text-right">
+            <div class="row">
+              <div class="col-6 text-info">
+                {{notif.source_name}}
+              </div>
+              <div class="col-6 xmini_font bg-light p-1 text-center">
+                {{notif.nowTime}}
+              </div>
+            </div>
+            <div class="row pt-2">
+              <div class="col-12 xmini_font text-secondary">
+                {{notif.description}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="notification__header" style="position: fixed; bottom: 0; right: 0; left: 0">
+            مشاهده همه
+          </div>
+      </div>
+
+    </div>
+  </div>
+</li>

@@ -1,0 +1,50 @@
+.enroll {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 #ddd;
+    padding: 16px 0 0 0;
+    margin-bottom: 32px;
+}
+.beforeLoad{
+    padding: 150px 0;
+}
+.enroll-check{
+    list-style: none;
+}
+.enroll-check li{
+    font-size: 14px;
+}
+.enroll-check-icon {
+font-size: 25px;
+}
+
+.continue-btn {
+    background-color: #ffb013;
+}
+
+.more-btn {
+    background-color: #14b9d6;
+}
+
+
+.more-description {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+
+
+.likeBtn{
+    cursor: pointer;
+    transition: .5s;
+}
+
+.likeBtn:hover{
+ 
+    color: rgb(209, 31, 31) !important;    
+}
+
+.isLike{
+    color: rgb(209, 31, 31) !important;    
+
+}

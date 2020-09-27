@@ -1,0 +1,116 @@
+<section class="comments text-right no-print">
+  <h1 class="comments__title">
+    نظرات و دیدگاه ها
+  </h1>
+
+  <!--                         
+    <div>
+        <div class="comment__wrapper">
+            <div class="row">
+                <div class="col-auto comment__image-wrapper">
+                    <img class="comment__comment-image rounded-circle"
+                      src="./images/prof_1.png" alt="">
+                </div>
+                
+                <div class="comment__main-section col">
+                    <div class="comment__content-wrapper">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="comment__owner-name">مجید حق بین</h5>
+                            
+                            <img src="./images/svg-icons/reply.svg"
+                              alt="reply icon" class="comment__reply-icon">
+                        </div>
+    
+                        <h5 class="comment__date">۱۳۹۹-۰۴-۱۸</h5>
+    
+                        <p class="comment__content">خوبه باریکلا!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+
+  <form class="comment__wrapper leave-comment" (submit)="postComment($event)">
+    <div class="row">
+      <div class="col-auto comment__image-wrapper d-none d-md-block">
+        <img src="{{base_url}}/users/{{userId}}/avatar" class="comment__comment-image rounded-circle" alt="">
+      </div>
+
+      <div id="myText" class="comment__main-section col" >
+        <div class="form-group">
+          <textarea id="commentArea" class="form-control" rows="4" placeholder="نظر شما..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-buttons text-left">
+      <button class="btn cancel-btn">انصراف</button>
+      <button type="submit" class="btn send-btn" >ارسال</button>
+    </div>
+
+
+  </form>
+  <hr>
+
+
+  <div class="comments" *ngIf="pendingComments.length !=0">
+    <!-- <div class="col-12 text-center  py-2 mb-4">
+      <strong>
+        کامنت های در انتظار تایید
+      </strong>
+    </div> -->
+    <div *ngFor="let comment of pendingComments">
+      <div class="row py-1" >
+        <div class="col-auto comment__image-wrapper d-none d-md-block">
+          <img src="{{base_url}}/users/{{comment.user_id}}/avatar" class="comment__comment-image rounded-circle" alt="">
+        </div>
+
+        <div class="comment__main-section col bg-white py-3 px-4 mx-4" style="border-radius: 5px;border-right: 5px solid rgb(236, 202, 9);">
+          <div class="text-info mb-2">
+            <strong>
+              {{comment.user_nickname}}
+            </strong>
+          </div>
+          <div class="form-group text-secondary xmini_font py-0">
+            {{comment.nowTime}}
+          </div>
+          <div class="form-group text-secondary">
+            {{comment.comment}}
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <hr> -->
+  </div>
+
+  <div class="comments" *ngIf="sucComments">
+
+      <div *ngFor="let comment of sucComments">
+        <div class="row py-1">
+          <div class="col-auto comment__image-wrapper d-none d-md-block">
+            <img src="{{base_url}}/users/{{comment.user_id}}/avatar" class="comment__comment-image rounded-circle" alt="">
+          </div>
+  
+          <div class="comment__main-section col bg-white py-3 px-4 mx-4" style="border-radius: 5px;">
+            <div class="text-info mb-2">
+              <strong>
+                {{comment.user_nickname}}
+              </strong>
+            </div>
+            <div class="form-group text-secondary xmini_font py-0">
+              {{comment.nowTime}}
+            </div>
+            <div class="form-group text-secondary">
+              {{comment.comment}}
+  
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+</section>

@@ -1,0 +1,29 @@
+<app-breadcrumb></app-breadcrumb>
+<app-dialog [content]="dialog"></app-dialog>
+<div class="wrapper" [ngClass]="{beforeLoad: !result}">
+  <app-loading [content]="result"></app-loading>
+
+  <section *ngIf="result">
+    <div *ngFor="let result of result.text.answer" class="row">
+      <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' ">
+        <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
+      </div>
+
+      <div style="width:100%" class="col text-container text-right text-secondary" innerHtml="{{result.text}}"
+        *ngIf="result.title !== 'CHART' ">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' ">
+        <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
+      </div>
+      <div class="col text-container">
+        <canvas id="canvas">{{ chart }}</canvas>
+      </div>
+    </div>
+    <div class="dashboard-btn no-print">
+      <a href="#">میزکار</a>
+    </div>
+  </section>
+</div>

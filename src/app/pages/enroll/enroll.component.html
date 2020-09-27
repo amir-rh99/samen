@@ -1,0 +1,106 @@
+<app-breadcrumb></app-breadcrumb>
+<app-dialog [content]="dialog"></app-dialog>
+<div class="enroll" [ngClass]="{beforeLoad: !userEnroll}">
+  <app-loading [content]="enroll && userEnroll"></app-loading>
+  <div class=" container mb-2" style="padding: 0 30px" *ngIf="enroll && userEnroll">
+
+    <div class="row align-items-center">
+      <div class="col-12 col-md-9">
+        <div class="row align-items-center">
+          <div class="col-4 text-center">
+            <img style="width:100px" src="{{base_url + enroll.icon}}">
+          </div>
+          <div class="col-8 text-right">
+            <h5 class="text-info">
+              {{enroll.title}}
+            </h5>
+            <p class="text-secondary"><b>
+                {{enroll.slogan}}
+              </b></p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="userEnroll" class="col-12 col-md-3 mt-md-0 mt-3" style="transition: .5s;">
+        <button (click) = "enrollToService()" *ngIf = "userEnroll.enrolls.length === 0" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+          <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
+          انجامش میدم
+        </button>
+        <button routerLink="step" *ngIf = "userEnroll.enrolls.length !== 0 && userEnroll.enrolls[userEnroll.enrolls.length - 1].status == 1" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+          <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
+          ادامه میدم
+        </button>
+        <button routerLink="result" *ngIf = "userEnroll.enrolls.length !==0 && userEnroll.enrolls[userEnroll.enrolls.length - 1].status == 2" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+          <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
+          مشاهده نتایج
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 d-flex text-secondary mt-3 col-md-3 flex-md-column pr-md-4" style="transition: .5s;">
+
+        <div class="d-flex align-items-center w-100 flex-md-row flex-column mb-md-3">
+          <span class="icon-gem h4 mb-0"></span>
+          <span class="mt-2 mt-md-0 mr-md-3 font-weight-bolder xmini_font">
+            {{enroll.point}} امتیاز
+          </span>
+        </div>
+        <div class="d-flex align-items-center w-100 flex-md-row flex-column mb-md-3">
+          <span class="icon-bascket h4 mb-0 "></span>
+          <span class="mt-2 mt-md-0 mr-md-3 font-weight-bolder xmini_font">
+            {{enroll.price}} تومان
+          </span>
+        </div>
+        <div class="d-flex align-items-center w-100 flex-md-row flex-column mb-md-3">
+          <span class="icon-list h4 mb-0"></span>
+          <span class="mt-2 mt-md-0 mr-md-3 font-weight-bolder xmini_font">
+            {{enroll.total}} سوال
+          </span>
+
+        </div>
+        <div class="d-flex align-items-center w-100 flex-md-row flex-column mb-md-3">
+          <span class="icon-speedmeter h4 mb-0"></span>
+          <span class="mt-2 mt-md-0 mr-md-3 font-weight-bolder xmini_font">
+            {{enroll.duration}} دقیقه
+          </span>
+        </div>
+        <div class="d-flex align-items-center w-100 flex-md-row flex-column mb-md-3">
+          <span class="icon-people h4 mb-0"></span>
+          <span class="mt-2 mt-md-0 mr-md-3 font-weight-bolder xmini_font">
+            {{enroll.registered}}+ نفر
+          </span>
+        </div>
+
+
+      </div>
+      <div class="col-12 col-md-9 mt-5 mt-md-3 text-right ">
+        <h6 class="text-muted">به چه دردی میخوره؟</h6>
+        <ul class="enroll-check mt-4 p-0">
+          <li class="mt-3 d-flex align-items-center" *ngFor="let use of uses">
+            <span class="icon-iconmonstr-check-mark-circle-thin enroll-check-icon pl-3"></span>
+            {{use}}
+          </li>
+        </ul>
+        <div *ngIf="enroll.resources" class="mt-3">
+          <button class="btn btn-info w-500 py-2" type="button" data-toggle="collapse" data-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            میخوام بیشتر بدونم
+          </button>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body more_content" innerHtml={{this.enroll.resources}}></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div  class="bg-light mt-4 py-3 text-right px-5 row m-0" style="border-radius: 0 0 5px 5px;" *ngIf="enroll && userEnroll">
+    <span class="icon-gem xlg_font text-info col-auto px-0 likeBtn" (click)="sayHi()" [ngClass]="{isLike: isLike}"></span>
+    <span class="col-auto px-2 text-info">
+      {{likesNumber}}
+    </span>
+  </div>
+</div>
+<div *ngIf="moduleId">
+  <app-comments [content]="moduleId"></app-comments>
+</div>

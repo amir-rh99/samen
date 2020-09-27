@@ -13,6 +13,7 @@ export class ServicesComponent implements OnInit {
   services;
   userId;
   base_url;
+  dialog = "اینجا می‌تونی لیست همه‌ی خدمات سامانه رو ببینی و هر کدوم رو که خواستی انجام بدی...|";
 
   constructor(
     private getservices: GetServicesService,
@@ -31,7 +32,7 @@ export class ServicesComponent implements OnInit {
       })
       this.services.forEach(service=>{
         if(service.slogan){
-          service.slogan = service.slogan.substr(0, 20)
+          service.slogan = service.slogan.substr(0, 14)
         }
       })
       console.log(this.services);

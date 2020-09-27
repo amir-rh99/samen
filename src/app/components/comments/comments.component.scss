@@ -1,0 +1,164 @@
+.comments {
+    background-color: #dfe2e6;
+    border-radius: 5px;
+    padding: 24px 40px;
+    margin-bottom: 16px;
+}
+
+.comments__title {
+    font-size: 14px;
+    color: #5f5f5f;
+    margin-bottom: 16px;
+}
+
+/* // .comment__wrapper {
+
+// } */
+
+.comment__image-wrapper {
+    padding-left: 0;
+}
+
+.comment__comment-image {
+    width: 65px;
+}
+
+.comment__content-wrapper {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    padding: 16px;
+}
+
+.comment__content-wrapper:hover .comment__reply-icon {
+    display: block;
+}
+
+
+.comment__content-wrapper--waiting-status {
+    border-right: 5px solid #ffb013;
+}
+
+.comment__content {
+    font-size: 14px;
+    line-height: 30px;
+    margin: 0;
+}
+
+.comment__owner-name {
+    color: #14b9d6;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.comment__date {
+    color: #9292a2;
+    font-size: 12px;
+}
+
+.more-comments {
+    margin-bottom: 16px;
+}
+
+.more-comments-btn {
+    text-decoration: none;
+    color: #6a6a7a;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.more-comments-btn:hover {
+    text-decoration: none;
+    color: #6a6a7a;
+}
+
+.comment__main-section textarea.form-control {
+    resize: none;
+    border: none;
+    line-height: 24px;
+    padding: 16px;
+}
+
+.comment__main-section textarea.form-control::placeholder {
+    color: #aaa9a9;
+}
+
+.send-btn {
+    color: white;
+    background-color: #14b9d6;
+    padding: 1rem 3rem;
+    margin-right: 8px;
+}
+
+.send-btn:hover {
+    color: white;
+    background-color: #14b9d6;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 1rem 3rem;
+}
+
+.cancel-btn:hover {
+    color: #fff;
+    background-color: #6c757d;
+}
+
+.comment__reply-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.leave-comment {
+    margin-bottom: 16px;
+}
+
+@media (max-width: 992px) {
+    .comments {
+        padding: 12px 16px;
+    }
+
+    .comment__comment-image {
+        width: 55px;
+    }
+
+    .send-btn {
+        width: 135px;
+        height: 55px;
+    }
+
+    .cancel-btn {
+        width: 135px;
+        height: 55px;
+    }
+}
+
+.wrapper {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 24px 0 0 0;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 0 #ddd;
+}
+
+.text-container {
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 16px;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.wrapper .row {
+    margin: 0 8px 32px 8px;
+}
+
+.wrapper .row:nth-child(even) .text-container {
+    order: -50;
+}
+
+.wrapper .row:nth-child(odd) .text-container {
+    order: 100;
+}
