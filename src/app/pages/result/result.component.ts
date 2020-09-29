@@ -4,6 +4,7 @@ import { param } from 'jquery';
 import { GetServicesService } from 'src/app/services/get-services.service';
 
 import { Chart } from 'chart.js'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-result',
@@ -14,16 +15,17 @@ export class ResultComponent implements OnInit {
   moduleName;
   userId;
   result;
-  myData= []
+  myData= [];
+  finishTime;
 
   myChart;
   chart=[];
+  dialog ;
   constructor(
     private activatedRoute: ActivatedRoute,
     private getServices: GetServicesService
   ) { 
   }
-  dialog = "آخرین بار این آزمون رو چند روز پیش انجام دادی که نتایجش در ادامه اومده ..."
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('id');
@@ -40,8 +42,8 @@ export class ResultComponent implements OnInit {
         this.result = result;
       }
       console.log(typeof(this.myData), " type");
-      
-
+      this.finishTime = moment(this.result.finish_date).startOf('seconds').fromNow();
+      this.dialog = `آخرین بار این آزمون رو ${this.finishTime} انجام دادی که نتایجش در ادامه اومده ...`
       this.result.text.answer.forEach(answer=>{
         if(answer.title === "CHART"){
           this.myChart = answer;
@@ -112,7 +114,7 @@ if(this.result.service_title==="تیپ شخصیتی من"){
   });
 }
 
-      },3000)
+      },2000)
 
 
       console.log(this.result, " its result");

@@ -31,6 +31,10 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
+import {MatIconModule} from '@angular/material/icon';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +65,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     FormsModule,
      ReactiveFormsModule,
      NgbModule,
-     BrowserAnimationsModule
+     BrowserAnimationsModule,
+     MatIconModule
   ],
   providers: [
     {

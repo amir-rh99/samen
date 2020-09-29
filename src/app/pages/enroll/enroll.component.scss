@@ -48,3 +48,13 @@ font-size: 25px;
     color: rgb(209, 31, 31) !important;    
 
 }
+
+.more_content{
+    color: #666;
+    border: none !important;
+    font-weight: 500;
+}
+
+.more_content > p > img{
+    width: 100%;
+}

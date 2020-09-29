@@ -5,23 +5,27 @@
 
   <section *ngIf="result">
     <div *ngFor="let result of result.text.answer" class="row">
-      <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' ">
+      <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' else ChartDiv ">
         <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
       </div>
 
-      <div style="width:100%" class="col text-container text-right text-secondary" innerHtml="{{result.text}}"
+      <div class="col text-container text-right text-secondary" innerHtml="{{result.text}}"
         *ngIf="result.title !== 'CHART' ">
 
       </div>
     </div>
-    <div class="row">
-      <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' ">
-        <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
-      </div>
-      <div class="col text-container">
-        <canvas id="canvas">{{ chart }}</canvas>
-      </div>
-    </div>
+
+    <ng-template #ChartDiv  class="row">
+      <!-- <div> -->
+        <div class="image__container col-auto d-none d-md-block">
+          <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
+        </div>
+        <div class="col text-container">
+          <canvas id="canvas">{{ chart }}</canvas>
+        </div>
+      <!-- </div> -->
+    </ng-template>
+
     <div class="dashboard-btn no-print">
       <a href="#">میزکار</a>
     </div>

@@ -87,16 +87,18 @@
             میخوام بیشتر بدونم
           </button>
           <div class="collapse" id="collapseExample">
-            <div class="card card-body more_content" innerHtml={{this.enroll.resources}}></div>
+            <div class="card card-body more_content" innerHtml={{this.enroll.resources}} #moreContent></div>
           </div>
         </div>
       </div>
     </div>
 
   </div>
-  <div  class="bg-light mt-4 py-3 text-right px-5 row m-0" style="border-radius: 0 0 5px 5px;" *ngIf="enroll && userEnroll">
-    <span class="icon-gem xlg_font text-info col-auto px-0 likeBtn" (click)="sayHi()" [ngClass]="{isLike: isLike}"></span>
-    <span class="col-auto px-2 text-info">
+  <div  class="bg-light mt-4 py-3 text-right px-5 row m-0 " style="border-radius: 0 0 5px 5px;" *ngIf="enroll && userEnroll">
+    <mat-icon class="xxxlg_font text-info col-auto px-0 likeBtn" (click)="likeIt()" [ngClass]="{isLike: isLike}" aria-hidden="false" aria-label="Example home icon">favorite</mat-icon>
+
+    <!-- <span class="icon-gem xlg_font text-info col-auto px-0 likeBtn" (click)="likeIt()" [ngClass]="{isLike: isLike}"></span> -->
+    <span class="col-auto px-2 text-info d-flex pt-1 normal_font">
       {{likesNumber}}
     </span>
   </div>

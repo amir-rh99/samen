@@ -1,0 +1,9 @@
+.landingImage{
+    width: 400px;
+}
+
+@media screen and (max-width: 576px){
+    .landingImage{
+        width: 210px;
+    }
+}

@@ -20,7 +20,7 @@
       <ul class="nav d-flex align-items-center justify-content-end">
 
         <li class="nav-item main-menu__item">
-          <a class="nav-link main-menu__link" data-toggle="tooltip" data-placement="bottom" title="میز کار">
+          <a class="nav-link main-menu__link" placement="bottom" ngbTooltip="میز کار">
             <img class="main-menu__icon" src="../../../assets/images/svg-icons/briefcase.svg" alt="logout icon">
 
           </a>
@@ -77,14 +77,12 @@
 
 
         <li class="nav-item main-menu__item">
-          <a href="#" class="nav-link main-menu__link main-menu__link--avatar" data-toggle="tooltip"
-            data-placement="bottom" title="پروفایل">
+          <a href="#" class="nav-link main-menu__link main-menu__link--avatar" placement="bottom" ngbTooltip="پروفایل">
             <img class="main-menu__avatar rounded-circle" src="../../../assets/images/avatar.png" alt="your avatar">
           </a>
         </li>
 
-        <li (click)="logOut()" class="nav-item main-menu__item" data-toggle="tooltip" data-placement="bottom"
-          title="خروج">
+        <li (click)="logOut()" class="nav-item main-menu__item" placement="bottom" ngbTooltip="خروج">
           <a class="nav-link main-menu__link main-menu__link--logout">
             <img class="main-menu__icon main-menu__icon--logout" src="../../../assets/images/svg-icons/logout.svg"
               alt="logout icon">
@@ -94,7 +92,7 @@
       </ul>
     </nav>
 
-    <div  class="main-menu d-lg-none">
+    <div class="main-menu d-lg-none">
       <a class=" open_btn" (click)="open_sidebar()">
         <img src="../../../assets/images/svg-icons/sidebar.svg"
           style="filter: invert(82%) sepia(70%) saturate(2107%) hue-rotate(157deg) brightness(100%) contrast(86%);"
@@ -105,13 +103,41 @@
       <app-mobile-sidebar></app-mobile-sidebar>
       <div class="mobile_menu row justify-content-end align-items-end pr-3">
         <div class="col-12 text-right mobile_menu_item">
-          <a href="/home" class="text-decoration-none d-block  py-2">میز کار</a>
+
+          <a href="/home" class="text-decoration-none d-flex align-items-center text-secondary  py-2">
+            <span class="d-flex align-items-center">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            </span>
+            <span class="pr-2">
+              میز کار
+            </span>
+          </a>
         </div>
         <div class="col-12 text-right mobile_menu_item">
-          <a href="#" class="text-decoration-none d-block py-2">اعلانات</a>
+          <a href="#" class="text-decoration-none d-flex align-items-center text-secondary py-2">
+            <span class="d-flex align-items-center">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">notification_important</mat-icon>
+            </span>
+            <span class="pr-2">
+              اعلانات
+            </span>
+            <!-- <span>
+              <mat-icon style="position: absolute;top: 5px;" aria-hidden="false" aria-label="Example home icon">notification_important</mat-icon>
+            </span>
+            <span style="padding-right: 30px;">
+              اعلانات
+            </span> -->
+          </a>
         </div>
         <div class="col-12 text-right mobile_menu_item">
-          <a (click)="logOut()" href="#" class="text-decoration-none d-block py-2">خروج</a>
+          <a (click)="logOut()" href="#" class="text-decoration-none text-secondary py-2 d-flex align-items-center">
+            <span class="d-flex align-items-center">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">exit_to_app</mat-icon>
+            </span>
+            <span class="pr-2">
+              خروج
+            </span>
+          </a>
         </div>
       </div>
     </div>

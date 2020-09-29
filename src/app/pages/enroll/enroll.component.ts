@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { param } from 'jquery';
 import { GetServicesService } from 'src/app/services/get-services.service';
@@ -23,6 +23,7 @@ export class EnrollComponent implements OnInit {
   userId;
   likesNumber;
   isLike;
+  @ViewChild('moreContent') moreContent: ElementRef;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -62,11 +63,15 @@ export class EnrollComponent implements OnInit {
         this.userEnroll = userEnroll;
 
         // console.log(userEnroll, " user aeneroll");
+        // setTimeout(()=>{
+        //   this.moreContent.nativeElement.
+        // },1000)
+        
       })
     })
 
   }
-sayHi(){
+  likeIt(){
   this.getLikes.postLike(this.moduleId).subscribe((Res:any)=>{
     if(Res.success === "like"){
       this.likesNumber++;

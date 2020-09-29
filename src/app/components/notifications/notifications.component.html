@@ -1,6 +1,6 @@
 <li class="nav-item main-menu__item position-relative" id="notif-button" role="button" id="dropdownMenuLink"
   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <a class="nav-link main-menu__link " data-toggle="tooltip" data-placement="bottom" title="اعلانات">
+  <a class="nav-link main-menu__link " placement="bottom" ngbTooltip="اعلانات">
     <img class="main-menu__icon" src="../../../assets/images/svg-icons/globe.svg" alt="logout icon">
     <span class="main-menu__badge rounded-circle" style="background-color: #14b9d6">
       {{unreadNotif}}
@@ -28,11 +28,14 @@
           </div>
           <div class="col-10 text-right">
             <div class="row">
-              <div class="col-6 text-info">
+              <div class="col-6 text-info mini_font">
                 {{notif.source_name}}
               </div>
-              <div class="col-6 xmini_font bg-light p-1 text-center">
-                {{notif.nowTime}}
+              <div class="col-6 xxmini_font bg-light p-1 text-center text-secondary">
+                <strong>
+                  {{notif.nowTime}}
+
+                </strong>
               </div>
             </div>
             <div class="row pt-2">

@@ -1,9 +1,13 @@
 <app-navbar></app-navbar>
 
 <div class="main-section">
-  <div class="container routeContainer" [@routeAnimation]="getDepth(myOutlet)">
-    <router-outlet #myOutlet="outlet"></router-outlet>
+  <div class="container routeContainer">
+    <router-outlet></router-outlet>
   </div>
 </div>
 
 <app-footer></app-footer>
+<!-- 
+<div class="container routeContainer" [@routeAnimation]="getDepth(myOutlet)">
+  <router-outlet #myOutlet="outlet"></router-outlet>
+</div> -->

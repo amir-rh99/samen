@@ -3,6 +3,9 @@ import { CommentsService } from 'src/app/services/comments.service';
 import { CRUDService } from 'src/app/services/crud.service';
 import Swal from 'sweetalert2';
 import * as moment from 'moment'; // add this 1 of 4
+import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+import 'moment/min/locales'
+
 moment.locale('fa'); 
 
 @Component({
@@ -57,17 +60,21 @@ console.log(this.sucComments);
     event.preventDefault();
     const target = event.target;
     const comment = target.querySelector('#commentArea');
-    console.log(comment);
+
+    if(comment.value !== ''){
+      
+      console.log(comment.value, " this comment");
+      
     this.commentService.postComment(this.content, comment.value).subscribe((Res:any)=>{
       // location.reload()
-      let thisComment = {
-        user_id: localStorage.getItem('id'),
-        user_nickname: localStorage.getItem('nickname'),
-        comment: comment.value,
-        date: moment().format(),
-        nowTime : moment().startOf('seconds').fromNow()
-      }
-      this.pendingComments.unshift(thisComment)
+      // let thisComment = {
+      //   user_id: localStorage.getItem('id'),
+      //   user_nickname: localStorage.getItem('nickname'),
+      //   comment: comment.value,
+      //   date: moment().format(),
+      //   nowTime : moment().startOf('seconds').fromNow()
+      // }
+      // this.pendingComments.unshift(thisComment)
  
       console.log(this.pendingComments);
 
@@ -90,8 +97,34 @@ console.log(this.sucComments);
         title: 'کامنت شما دریافت شد و در لیست کامنت های در انتظار تایید قرار گرفت'
       })
 
+    }, err=>{
+      this.pendingComments.shift();
+      comment.placeholder = err.error.error[0].message;
+      setTimeout(()=>{
+        comment.placeholder = "نظر شما..."
+  
+      },5000)
     })
- 
+
+    let thisComment = {
+      user_id: localStorage.getItem('id'),
+      user_nickname: localStorage.getItem('nickname'),
+      comment: comment.value,
+      date: moment().format(),
+      nowTime : moment().startOf('seconds').fromNow()
+    }
+
+    this.pendingComments.unshift(thisComment)
+    comment.value = "";
+
+  } else {    
+    comment.placeholder = "نظر خالی رو نمیتونی ارسال کنی :)"
+
+    setTimeout(()=>{
+      comment.placeholder = "نظر شما..."
+
+    },5000)
+  }
   }
 
 }

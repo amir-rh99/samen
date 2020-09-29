@@ -4,15 +4,13 @@
 }
 
 body {
-    font-family: iranSans;
+    font-family: iranSans !important;
     direction: rtl;
 }
 .overFlow{
     overflow: hidden;
 }
-*{
-    box-sizing: border-box;
-}
+
 
 .main-section {
     padding-top: 82px;
@@ -269,3 +267,8 @@ body {
 .routeContainer > * {
   display: block;
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
