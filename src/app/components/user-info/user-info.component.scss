@@ -1,0 +1,145 @@
+.service-card__image--disable {
+    filter: grayscale(100%);
+}
+
+.user-info {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 #ddd;
+}
+.beforeLoad{
+    padding: 100px 0;
+    margin-bottom: 15px;
+}
+.avatar-container {
+    padding: 8px;
+}
+
+.user-info__name {
+    color: #5a7391;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.user-info__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #5a7391;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+}
+
+@media (max-width: 767px) {
+    .user-info__list {
+        align-items: center;
+        font-size: 13px;
+    }
+}
+
+.user-info__list li {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.user-info__list li span {
+    padding: 0 6px;
+    font-size: 1.2rem;
+}
+
+.user-info__slogan {
+    border: none;
+    outline: none;
+    color: rgb(59, 59, 59);
+    font-size: 16px;
+    font-weight: 700;
+    resize: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    width: 80%;
+}
+
+.user-info__slogan:focus {
+    border: 1px solid #ddd;
+}
+
+.user-info__navigation {
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.user-info__navigation li {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+}
+
+.user-info__navigation li:hover {
+    background-color: #00bff3;
+    color: #fff;
+}
+.user-info__footer {
+    background: #f5f8fa;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 16px;
+    color: #5a7391;
+    border-top: 1px solid #ebebeb;
+}
+
+.user-info__footer span {
+    font-size: 22px;
+    font-weight: 700;
+}
+@media screen and (max-width: 992px) {
+    .user-info__navigation {
+        top: 0;
+    }
+
+    .user-info__navigation li:first-child {
+        border-radius: 5px 0 0 0;
+    }
+
+    .user-info__navigation li {
+        padding: 1rem;
+    }
+}
+.modal-submit {
+    background-color: #14b9d6;
+    color: #fff;
+    padding: 1rem 3rem;
+}
+.modal-submit:hover {
+    color: #fff;
+}
+
+.modal-cancel {
+    background-color: #f0f0f0;
+    color: #909090;
+    padding: 1rem 3rem;
+}
+.modal-cancel:hover {
+    background-color: #f0f0f0;
+}
+@media screen and (max-width: 768px) {
+    .user-info__slogan {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 576px) {
+    .img-responsive{
+        width: 150px;
+    }
+}
+
+textarea:disabled{
+    background-color: #fff !important;
+}

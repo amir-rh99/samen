@@ -1,0 +1,37 @@
+<div *ngIf="showState" class="services col-12">
+  <h3 class="services__title">
+    <i class="fa fa-map-o" aria-hidden="true"></i>
+    سرویس‌ها
+  </h3>
+  <app-loading [content]="services"></app-loading>
+
+<section *ngIf="services">
+  <div class="row">
+    <div class="col-6 col-md-3 text-center" *ngFor="let service of services">
+
+      <div class="service-card">
+        <div class="text-center service-card__title">
+          <a routerLink="/{{service.route}}">
+            {{service.title}}
+          </a>
+        </div>
+
+        <div class="image-wrapper text-center">
+          <a routerLink="/{{service.route}}">
+            <img *ngIf="service.serviceStatus.length === 0 || service.serviceStatus[service.serviceStatus.length - 1].status == 1; else otherImage" src="{{base_url + service.icon}}"
+              class="service-card__image rounded-circle  rounded-circle service-card__image--disable" alt="service-icon">
+            <ng-template #otherImage>
+              <img src="{{base_url + service.icon}}"
+                class="service-card__image" alt="service-icon">
+            </ng-template>
+          </a>
+        </div>
+
+        <p class="service-card__description">
+          {{service.slogan}} ...
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>

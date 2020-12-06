@@ -1,0 +1,136 @@
+
+<div class="user-info " [ngClass]="{beforeLoad: !userInfo}">
+
+  <app-loading [content]="profileInfo && userInfo"></app-loading>
+  <div class="col-12 mb-3" *ngIf="profileInfo && userInfo">
+
+    <section class="row pt-2">
+      <div class="col-12 col-md-3 text-center">
+        <div class="avatar-container">
+          <img src="{{base_url}}/users/{{userId}}/avatar" alt="user-avatar"
+            class="img-responsive d-inline-block rounded-circle">
+        </div>
+
+        <span class="user-info__name pt-3 lg_font">
+          {{profileInfo.first_name}}
+        </span>
+      </div>
+
+      <div class="col-12 col-md-9 py-3">
+        <ul class="user-info__list">
+          <li *ngIf="profileInfo.country === null"><span class="icon-location"></span>انتخاب نشده</li>
+          <li *ngIf="profileInfo.country !== null"><span class="icon-location"></span>
+            <span class="mini_font pr-0" *ngIf="userCountry[0]">{{userCountry[0].country}}</span>
+            <span class="mini_font pr-0" *ngIf="userProvince[0]">, {{userProvince[0].province}}</span>
+            <span class="mini_font pr-0" *ngIf="userCity[0]">, {{userCity[0].city}}</span>
+          </li>
+
+          <li>
+            <span class="icon-ghost"></span>تیر ماهی
+            <span *ngIf="profileInfo.sex == 1" class="icon-female"></span>
+            <span *ngIf="profileInfo.sex == 2" class="icon-male"></span>
+          </li>
+          <li><span class="icon-statistics"></span>در ۷ روز گذشته ۰ امتیاز</li>
+        </ul>
+
+        <textarea [disabled]="!editState" class="d-block user-info__slogan text-secondary" name="" rows="3"
+          placeholder="هنوز جمله ای برای این بخش در نظر نگرفته اید" data-change="modal" data-target="#exampleModal"
+          (change)="openLg(content)" #userQuote>{{profileInfo.quote}}</textarea>
+      </div>
+
+      <ul *ngIf="editState" class="user-info__navigation">
+        <li routerLink="/users/{{userId}}/edit"><span class="icon-settings"></span></li>
+
+        <li (click)="editQuote(userQuote)"><span class="icon-pen"></span></li>
+      </ul>
+
+      <div class="col-12">
+        <footer class="user-info__footer row p-4">
+          <div class="col col-lg-3 py-2 text-center d-flex align-items-center
+                 justify-content-center" placement="bottom" ngbTooltip="امتیاز">
+            {{userInfo.point}}
+            <span class="icon-gem mr-2"></span>
+          </div>
+          <div class="d-none d-lg-flex col-lg-3 py-2 text-center
+                 align-items-center justify-content-center" placement="bottom" ngbTooltip="مدال‌ها">
+            0
+            <span class="icon-cup mr-2"></span>
+          </div>
+          <div class="d-none d-lg-flex col-lg-3 py-2 text-center
+                 align-items-center justify-content-center" placement="bottom" ngbTooltip="دوستان">
+            0 <span class="icon-user mr-2"></span>
+          </div>
+          <div class="d-none d-lg-flex col-lg-3 py-2 text-center
+                 align-items-center justify-content-center" placement="bottom" ngbTooltip="بازدید از پروفایل">
+            {{profileInfo.view}}
+            <span class="icon-eye mr-2"></span>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <div #modal class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> -->
+        <div class="modal-body text-center lg_font text-secondary">
+          <div class="row">
+            <div class="col-12">
+              <img src="../../../assets/images/prof_1.png" alt="">
+            </div>
+            <div class="col-12 p-5">
+            </div>
+
+            <div class="col-12 text-info lg_font mb-2">
+            </div>
+            <div class="col-12">
+              <div class="input-group mb-3 p-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary " type="button" id="button-addon1"
+                    style="border-radius: 0;">ثبت کوپن</button>
+                </div>
+                <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
+                  aria-describedby="button-addon1" style="border-radius: 0;">
+              </div>
+
+              <div class="input-group mb-2 justify-content-center">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-info p-3" type="button" id="button-addon1"
+                    style="border-radius: 0;">پرداخت از طریق درگاه بانکی</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ولش کن</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">باشه</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal class="fade in show">
+  <div class="modal-body row align-items-center p-4">
+    <div class="professor-image-container col-md-3 text-center">
+      <img src="../../../assets/images/prof_1.png" class="img-fluid" width="200px" alt="professor image">
+    </div>
+
+    <p class="description col-12 col-md-9 text-justify lg_font text-info">
+      می خوای تغییراتی که توی پروفایلت دادی ذخیره بشه؟
+    </p>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button class="btn modal-submit position-relative" (click)="saveQuote(content)" [disabled]="disabledState">بله
+        <app-btn-loading [content]="!disabledState"></app-btn-loading>
+    </button>
+    <button class="btn btn-light btn-light modal-cancel" (click)="cancel()">نه</button>
+  </div>
+</ng-template>

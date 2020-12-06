@@ -1,0 +1,56 @@
+
+<div class="col-12 avatar light-card text-right py-3 px-3 py-lg-3 px-lg-5">
+  <h3 class="title">آواتار</h3>
+    <div class="text-center mb-2">
+      <img [class]="classes.cropResult" *ngIf="croppedImage" [src]="croppedImage">
+    </div>
+    <div class="">
+    <ly-img-cropper [ngClass]="[classes.cropper]"
+      [config]="myConfig"
+      [(scale)]="scale"
+      (minScale)="minScale = $event"
+      (ready)="ready = true"
+      (cleaned)="ready = false"
+      (cropped)="onCropped($event)"
+      (loaded)="onLoaded($event)"
+      (error)="onError($event)"
+    >
+      <!-- <span>Drag and drop image</span> -->
+      <img src="{{base_url}}/users/{{userId}}/avatar" alt="your avatar" class="rounded-circle">
+    </ly-img-cropper>
+  </div>
+    <!-- <div *ngIf="ready" [className]="classes.sliderContainer">
+      <ly-slider
+        [thumbVisible]="false"
+        [min]="minScale"
+        [max]="1"
+        [(ngModel)]="scale"
+        (input)="scale = $event.value"
+        step="0.000001"></ly-slider>
+    </div> -->
+        
+    <div *ngIf="ready" class="d-flex justify-content-center my-3">
+      <button class="d-flex justify-content-center btn btn-info mx-1 px-2" (click)="cropper.zoomIn()">
+        <mat-icon>zoom_in</mat-icon>
+      </button>
+      <button class="d-flex justify-content-center btn btn-success mx-1 px-2" (click)="cropper.crop()">
+        <mat-icon>crop</mat-icon>
+      </button>
+      <button class="d-flex justify-content-center btn btn-info mx-1 px-2" (click)="cropper.zoomOut()">
+        <mat-icon>zoom_out</mat-icon>
+      </button>
+
+    </div>
+
+    <div class="custom-file mb-4 col-12" style="direction: ltr;">
+      <input type="file" class="custom-file-input" id="validatedCustomFile" (change)="cropper.selectInputEvent($event)" accept="image/*">
+      <label class="custom-file-label text-left" for="validatedCustomFile" id="file-label">انتخاب فایل</label>
+    </div>
+
+    <div [ngClass]="{disabledBtn: disabledBtn}" class="form-group text-center col-12">
+      <button class="btn save-button py-3 px-5" (click)="changeAvatar()" [disabled]="disabledState">ذخیره
+        <app-btn-loading [content]="!disabledState"></app-btn-loading>
+      </button>
+    </div>
+
+</div>

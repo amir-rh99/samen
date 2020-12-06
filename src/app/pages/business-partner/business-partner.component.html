@@ -1,0 +1,169 @@
+<div class="d-none d-lg-block">
+
+  <p-table #dt class="table" [value]="usersList" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5,10,25,50,100]" styleClass="p-datatable-customers p-datatable-striped" [paginator]="true"
+    pageLinkSize="3" currentPageReportTemplate="کاربران {first} تا {last} از {totalRecords}  کاربر" [filterDelay]="0"
+    [globalFilterFields]="['first_name','last_name','mobile','passedServices']">
+
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        <span class="searchTable float-right">کاربران من</span>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input class="searchTable" pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="جستجوی کاربران" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="headerTable" pSortableColumn="first_name">نام <p-sortIcon field="first_name"></p-sortIcon>
+        </th>
+        <th class="headerTable" pSortableColumn="last_name">نام خانوادگی <p-sortIcon field="last_name"></p-sortIcon>
+        </th>
+        <th class="headerTable" pSortableColumn="mobile">موبایل <p-sortIcon field="mobile"></p-sortIcon>
+        </th>
+        <th class="headerTable" pSortableColumn="register_date">تاریخ ثبت نام <p-sortIcon field="register_date">
+          </p-sortIcon>
+        </th>
+        <th class="headerTable" pSortableColumn="usedCoupon">کوپن مصرفی<p-sortIcon field="register_date"></p-sortIcon>
+        </th>
+        <th colspan="2" pSortableColumn="avatar">وضعیت سرویس ها <p-sortIcon field="avatar"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-person>
+
+      <tr>
+        <td class="dataTable">{{person.first_name}}</td>
+        <td class="dataTable">{{person.last_name}}</td>
+        <td class="dataTable">{{person.mobile}}</td>
+        <td class="dataTable">{{person.jalali_register_date}}</td>
+        <td class="dataTable" title="{{person.usedCoupon}}">{{person.usedCouponShort}}
+          {{person.usedCoupon === person.usedCouponShort ? "" : "..."}}</td>
+        <td colspan="2">
+          <a *ngFor="let service of services" style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}" pTooltip="{{service.title}}"
+            tooltipPosition="top" [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
+            <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
+              [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
+          </a>
+        </td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
+
+<div class="d-lg-none">
+  <p-table [value]="usersList" #dt2 class="table" [value]="usersList" dataKey="id" [rows]="5"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]"
+    styleClass="p-datatable-customers p-datatable-striped" [paginator]="true"
+    currentPageReportTemplate="کاربران {first} تا {last} از {totalRecords}  کاربر" [filterDelay]="0"
+    [globalFilterFields]="['first_name','last_name','mobile','status']">
+
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        <span class="searchTable float-right">کاربران من</span>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input class="searchTable" pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')"
+            placeholder="جستجوی کاربران" />
+        </span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 2rem"></th>
+        <th class="headerTableRes" pSortableColumn="first_name">نام <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th class="headerTableRes" pSortableColumn="last_name">نام خانوادگی <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th class="headerTableRes" pSortableColumn="avatar">وضعیت سرویس ها <p-sortIcon field="avatar"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-person let-expanded="expanded">
+      <tr>
+        <td>
+          <button type="button" pButton pRipple [pRowToggler]="person"
+            class="p-button-text p-button-rounded p-button-plain"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-left'"></button>
+        </td>
+        <td class="dateTableRes">{{person.first_name}}</td>
+        <td class="dateTableRes">{{person.last_name}}</td>
+        <td>
+          <div class="d-flex align-items-center">
+
+
+            <span *ngFor="let service of services; let i = index">
+              <a class="d-sm-none" *ngIf="i<1" style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}" pTooltip="{{service.title}}"
+                tooltipPosition="top" [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
+                <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
+                  [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
+              </a>
+              <a class="d-none d-sm-inline d-md-none" *ngIf="i<2" style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}" pTooltip="{{service.title}}"
+                tooltipPosition="top" [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
+                <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
+                  [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
+              </a>
+              <a class="d-none d-md-inline" *ngIf="i<5" style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}"
+                pTooltip="{{service.title}}" tooltipPosition="top"
+                [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
+                <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
+                  [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
+              </a>
+            </span>
+            <!-- <span class="d-none d-md-inline" *ngFor="let service of services; let i = index">
+            <a *ngIf="i<5" style="padding: 0 1px;" routerLink="#" pTooltip="{{service.title}}" tooltipPosition="top"
+              [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
+              <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
+                [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
+            </a>
+          </span> -->
+            <mat-icon class="fourXlg_font text-info" style="cursor: pointer; margin: 0 8px 5px 0;"
+              [matMenuTriggerFor]="menu">add_circle
+            </mat-icon>
+          </div>
+
+          <!-- </button> -->
+          <mat-menu #menu="matMenu">
+            <p class="xmini_font text-center">
+              <strong>
+                {{person.first_name}} {{person.last_name}}
+              </strong>
+            </p>
+
+            <div *ngFor="let service of services" class="text-right py-1 px-3">
+              <a style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}" class="text-decoration-none text-info"
+                [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
+                <span class="xmini_font pr-2">
+                  {{service.title}}
+                </span>
+                <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
+                  [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
+              </a>
+            </div>
+
+          </mat-menu>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-person>
+      <tr>
+        <td class="pr-3" colspan="4">
+          <div class="py-2">
+            <strong>موبایل:</strong> {{person.mobile}}
+          </div>
+          <div class="py-2">
+            <strong>تاریخ ثبت نام:</strong> {{person.jalali_register_date}}
+          </div>
+          <div class="py-2">
+            <strong>کوپن مصرفی:</strong> {{person.usedCoupon}}
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

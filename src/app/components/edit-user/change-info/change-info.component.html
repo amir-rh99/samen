@@ -1,0 +1,155 @@
+<div class="col-12 light-card text-right py-3 px-3 py-lg-3 px-lg-5">
+    <h3 class="title">مشخصات</h3>
+    <app-loading [content]="userProfile  && countries && userInfo"></app-loading>
+    <div *ngIf="userProfile && countries && userInfo">
+
+    <div class="form-group">
+        <div class="mb-2">جنسیت</div>
+        <label class="container1">
+            آقا
+            <input type="radio" name="gender" value="1" [(ngModel)]="userProfile.sex" (change)="getRadioValue($event.target.value)">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="container1 mr-3">
+            خانم
+            <input type="radio" name="gender" value="2" [(ngModel)]="userProfile.sex" (change)="getRadioValue($event.target.value)">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <div class="mb-2">نمایش در موتور های جستجو</div>
+        <label class="container1">
+            نمایش
+            <input type="radio" name="search-engine" value="1" [(ngModel)]="userInfo.private" (change)="getSearchValue($event.target.value)">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="container1 mr-3">
+            عدم نمایش
+            <input type="radio" name="search-engine" value="0" [(ngModel)]="userInfo.private" (change)="getSearchValue($event.target.value)">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="input-wrapper">
+        <input type="text" id="fname"
+          class="form-control text-input"
+          placeholder="نام" autocomplete="off" value="{{userProfile.first_name}}" #firstName>
+        <label for="fname" class="inline-label">نام</label>
+    </div>
+
+    <div class="input-wrapper">
+        <input type="text" id="lname"
+          class="form-control text-input"
+          placeholder="نام خانوادگی" autocomplete="off" value="{{userProfile.last_name}}" #lastName>
+
+        <label for="lname" class="inline-label">نام خانوادگی</label>
+    </div>
+
+    <!-- <div class="input-wrapper">
+        <input type="text" id="nickname"
+          class="form-control text-input"
+          placeholder="اسم مستعار" autocomplete="off" value="">
+
+        <label for="nickname" class="inline-label">اسم مستعار</label>
+    </div> -->
+    
+    <div class="input-wrapper">
+        <input type="text" id="slogan"
+          class="form-control text-input" value="{{userProfile.quote}}" placeholder="جمله ای بنویسید" #quote>
+
+        <label for="slogan" class="inline-label">جمله</label>
+    </div>
+
+    <!-- <div class="input-wrapper">
+        <input type="text" id="phone"
+          class="form-control text-input text-left placeholder-right"
+          placeholder="موبایل" autocomplete="off">
+
+        <label for="phone" class="inline-label">موبایل</label>
+    </div> -->
+    <div *ngIf="countries && userProfile.country" class="form-group select-input-wrapper">
+        <select name="country" id="country" class="my-custom-select col-12" (change)="onChangeCountry($event.target.value)" [(ngModel)]="userCountry" #country>
+            <option *ngFor="let country of countries" value="{{country.id}}~{{country.country}}">
+                {{country.country}}
+            </option>
+        </select>
+        <label for="country" class="inline-label">کشور</label>
+    </div>
+
+    <div *ngIf="countries && !userProfile.country" class="form-group select-input-wrapper">
+        <select name="country" id="country" class="my-custom-select col-12" (change)="onChangeCountry($event.target.value)"  #country>
+            <option value="default" disabled selected>کشور خود را انتخاب کنید</option>
+            <option *ngFor="let country of countries" value="{{country.id}}~{{country.country}}">
+                {{country.country}}
+            </option>
+        </select>
+        <label for="country" class="inline-label">کشور</label>
+    </div>
+
+    <div *ngIf="provinceAndCityState && userProfile.province" class="form-group select-input-wrapper">
+        <select [disabled]="!countrySelected" name="province" id="province" class="my-custom-select col-12" (change)="onChangeProvince($event.target.value)" [(ngModel)]="userProvince" #province>
+            <option *ngFor="let province of provinces" value="{{province.id}}~{{province.code}}">
+                {{province.province}}
+            </option>
+        </select>
+        <label for="province" class="inline-label">استان</label>
+    </div>
+
+    <div *ngIf="provinceAndCityState && !userProfile.province" class="form-group select-input-wrapper">
+        <select [disabled]="!countrySelected" name="province" id="province" class="my-custom-select col-12" (change)="onChangeProvince($event.target.value)" #province>
+            <option value="default" disabled selected>استان خود را انتخاب کنید</option>
+            <option *ngFor="let province of provinces" value="{{province.id}}~{{province.code}}">
+                {{province.province}}
+            </option>
+        </select>
+        <label for="province" class="inline-label">استان</label>
+    </div>
+
+    <div *ngIf="provinceAndCityState && userProfile.city" class="form-group select-input-wrapper">
+        <select [disabled]="!provinceSelected" name="city" id="city" class="my-custom-select col-12" [(ngModel)]="userCity" #city>
+            <option *ngFor="let city of cities" value="{{city.id}}">
+                {{city.city}}
+            </option>
+        </select>
+        <label for="city" class="inline-label">شهر</label>
+    </div>
+
+    
+    <div *ngIf="provinceAndCityState && !userProfile.city" class="form-group select-input-wrapper">
+        <select [disabled]="!provinceSelected" name="city" id="city" class="my-custom-select col-12"  #city>
+            <option value="default"  disabled selected>شهر خود را انتخاب کنید</option>
+            <option *ngFor="let city of cities" value="{{city.id}}">
+                {{city.city}}
+            </option>
+        </select>
+        <label for="city" class="inline-label">شهر</label>
+    </div>
+
+    <div class="form-group select-input-wrapper">
+        <select *ngIf="userProfile.blood_type" name="blood" id="blood" class="my-custom-select col-12" [(ngModel)]="userProfile.blood_type" #bloodType>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+            <option value="O">O</option>
+        </select>
+
+        <select *ngIf="!userProfile.blood_type" name="blood" id="blood" class="my-custom-select col-12"  #bloodType>
+            <option value="">گروه خونی خود را انتخاب کنید</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+            <option value="O">O</option>
+        </select>
+        <label for="blood" class="inline-label">گروه خونی</label>
+    </div>
+    <div class="form-group text-center">
+        <button style="position: relative;" class="btn save-button py-3 px-5" (click)="saveChanges()" [disabled]="disabledState">
+            ذخیره
+            <app-btn-loading [content]="!disabledState"></app-btn-loading>
+        </button>
+    </div>
+</div>
+</div>

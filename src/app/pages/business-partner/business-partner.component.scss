@@ -1,0 +1,37 @@
+.table{
+    direction: rtl;
+}
+
+.headerTable{
+    font-size: 12px !important;
+    width: 125px !important;
+}
+.headerTable:nth-child(1){
+    width: 100px !important;
+}
+.headerTableRes{
+    font-size: 11px !important;
+
+}
+.dataTable{
+    font-size: 12px !important;
+    font-weight: 600;
+}
+.serviceIcon{
+    width: 30px;
+    filter: grayscale(1);
+}
+.offGrayScale{
+    filter: unset;
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: #333333 !important;
+  }
+.dateTableRes{
+    font-size: 12px !important;
+    font-weight: 600;
+}
