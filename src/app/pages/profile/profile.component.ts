@@ -66,26 +66,26 @@ export class ProfileComponent implements OnInit {
     // }
     this.userId = localStorage.getItem('id');
 
-    // const getServices = ()=>{
-    //   this.services = GetServicesService.services.filter(service=>{
-    //     return service.type === '1'
-    //   })
+    const getServices = ()=>{
+      this.services = this.getServices.services.filter(service=>{
+        return service.type === '1'
+      })
             
-    //   this.services.forEach(service=>{
-    //     if(service.slogan){
-    //       service.slogan = service.slogan.substr(0, 14)
-    //     }
-    //   })
-    //   console.log(this.services, " serviiiices");
+      this.services.forEach(service=>{
+        if(service.slogan){
+          service.slogan = service.slogan.substr(0, 14)
+        }
+      })
+      console.log(this.services, " serviiiices");
       
-    // }
-    // if(GetServicesService.services == null ){
-    //   this.getServices.getServices(this.userId, ()=>{
-    //     getServices();
-    //   })
-    // } else {
-    //   getServices();
-    // }
+    }
+    if(this.getServices.services == null ){
+      this.getServices.getServices(this.userId, ()=>{
+        getServices();
+      })
+    } else {
+      getServices();
+    }
 
   }
 }

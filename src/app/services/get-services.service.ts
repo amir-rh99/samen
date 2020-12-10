@@ -8,18 +8,25 @@ import { CRUDService } from './crud.service';
   providedIn: 'root'
 })
 export class GetServicesService {
-
+  public services;
   constructor(
     private auth: AuthService,
     private http: HttpClient,
     private crud: CRUDService
   ) { }
-
-  getServices(userId){
-    return this.http.get(`${this.auth.base_url}/services/status/${userId}`,{
+  getServices(userId, callback){
+    this.http.get(`${this.auth.base_url}/services/status/${userId}`,{
       headers: this.crud.headers.set('x-auth',localStorage.getItem('hash'))
+    }).subscribe(result=>{
+      this.services = result;
+      callback();
     })
   }
+  // getServices(userId){
+  //   return this.http.get(`${this.auth.base_url}/services/status/${userId}`,{
+  //     headers: this.crud.headers.set('x-auth',localStorage.getItem('hash'))
+  //   })
+  // }
 
   getSpecificService(moduleName){
     return this.http.get(`${this.auth.base_url}/services/module/${moduleName}`,
