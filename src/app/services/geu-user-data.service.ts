@@ -39,4 +39,10 @@ export class GeuUserDataService {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
   }
+  getBusinessPartner(bp, dontNow){
+    return this.http.get(`${this.crud.base_url}/bp/summary/${bp}`,
+    {
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
 }

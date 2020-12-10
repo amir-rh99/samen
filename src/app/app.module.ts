@@ -14,7 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   UsersComponent,
   EditUserComponent,
-  // BusinessPartnerComponent,
+  BusinessPartnerComponent,
   AuthComponent,
   EnrollComponent,
   HomeComponent,
@@ -47,6 +47,7 @@ import {
 } from './components'
 
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 // lyTheme fo cropper image
 import { LyImageCropperModule } from '@alyle/ui/image-cropper';
@@ -63,13 +64,19 @@ import {
 } from '@alyle/ui';
 import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
 
+
+//////// prime ng
+import {TableModule} from 'primeng/table';
+import {TooltipModule} from 'primeng/tooltip';
+
+
 @NgModule({
   declarations: [
     //pages
     AppComponent,
     UsersComponent,
     EditUserComponent,
-    // BusinessPartnerComponent,
+    BusinessPartnerComponent,
     AuthComponent,
     EnrollComponent,
     HomeComponent,
@@ -109,7 +116,10 @@ import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
     BrowserAnimationsModule,
     MatIconModule,
     HammerModule,
-    LyImageCropperModule
+    LyImageCropperModule,
+    TableModule,
+    MatMenuModule,
+    TooltipModule
   ],
   providers: [
     {

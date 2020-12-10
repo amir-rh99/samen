@@ -1,7 +1,7 @@
 
 export { UsersComponent } from './users/users.component'
 export { EditUserComponent } from './edit-user/edit-user.component'
-// export { BusinessPartnerComponent } from './business-partner/business-partner.component'
+export { BusinessPartnerComponent } from './business-partner/business-partner.component'
 export { AuthComponent } from './auth/auth.component'
 export { EnrollComponent } from './enroll/enroll.component'
 export { HomeComponent } from './home/home.component'
