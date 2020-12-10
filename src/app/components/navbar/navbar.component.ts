@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
   loggedIn;
   testState;
   base_url;
-
+  userId = localStorage.getItem('id')
 
   constructor(
     private activatedRoute: ActivatedRoute,

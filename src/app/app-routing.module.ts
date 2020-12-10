@@ -12,23 +12,22 @@ import { AfterLoginGuard } from './services/after-login-guard.service';
 import { EnrollComponent } from './pages/enroll/enroll.component';
 import { TestRunnerComponent } from './pages/test-runner/test-runner.component';
 import { ResultComponent } from './pages/result/result.component';
+import { UsersComponent } from './pages/users/users.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
     path: '' ,
     component: LandingComponent,
     canActivate:[AfterLoginGuard],
-    data:{
-      depth: 1
-    }
+
   },
   {
     path: 'auth',
     component: AuthComponent,
     canActivate:[AfterLoginGuard],
-    data:{
-      depth: 2
-    },
+
     children: [
       {
         path: 'login',
@@ -48,9 +47,7 @@ const routes: Routes = [
     path: '',
     component: AuthComponent,
     canActivate:[AuthGuard],
-    data:{
-      depth: 3
-    },
+
     children: [
       {
         path: 'home',
@@ -63,29 +60,27 @@ const routes: Routes = [
       {
         path: ':moduleName/result',
         component: ResultComponent
-      }
-      // {
-      //   path: 'page',
-      //   component: HomeComponent,
-      //   children: [
-      //     {
-      //       path: 'home',
-      //       component: ServicesComponent
-      //     },
-      //     {
-      //       path: ':moduleName',
-      //       component: EnrollComponent
-      //     }
-      //   ]
-      // }
+      },
+      {
+        path: 'users/:userId',
+        component: UsersComponent,
+        children: [
+          {
+            path: 'profile',
+            component: ProfileComponent
+          },
+          {
+            path: 'edit',
+            component: EditUserComponent
+          }
+        ]
+      },
+
     ]
   },
   {
     path: ':moduleName/step',
     component: TestRunnerComponent,
-    data:{
-      depth: 4
-    }
   }
 ]
 

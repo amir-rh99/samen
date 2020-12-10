@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common'
@@ -11,10 +10,11 @@ import { provideRoutes, RouterState } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 import {
   UsersComponent,
   EditUserComponent,
-  BusinessPartnerComponent,
+  // BusinessPartnerComponent,
   AuthComponent,
   EnrollComponent,
   HomeComponent,
@@ -48,14 +48,28 @@ import {
 
 import {MatIconModule} from '@angular/material/icon';
 
-
+// lyTheme fo cropper image
+import { LyImageCropperModule } from '@alyle/ui/image-cropper';
+import {
+  HAMMER_GESTURE_CONFIG,
+  HammerModule
+} from '@angular/platform-browser';
+import {
+  LyTheme2,
+  StyleRenderer,
+  LY_THEME,
+  LY_THEME_NAME,
+  LyHammerGestureConfig
+} from '@alyle/ui';
+import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
 
 @NgModule({
   declarations: [
     //pages
+    AppComponent,
     UsersComponent,
     EditUserComponent,
-    BusinessPartnerComponent,
+    // BusinessPartnerComponent,
     AuthComponent,
     EnrollComponent,
     HomeComponent,
@@ -90,10 +104,12 @@ import {MatIconModule} from '@angular/material/icon';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-     ReactiveFormsModule,
-     NgbModule,
-     BrowserAnimationsModule,
-     MatIconModule
+    ReactiveFormsModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    HammerModule,
+    LyImageCropperModule
   ],
   providers: [
     {
@@ -101,6 +117,15 @@ import {MatIconModule} from '@angular/material/icon';
       useClass: HashLocationStrategy
     },
     NavbarComponent,
+    [ LyTheme2 ],
+    [ StyleRenderer ],
+    // Theme that will be applied to this module
+    { provide: LY_THEME_NAME, useValue: 'minima-light' },
+    { provide: LY_THEME, useClass: MinimaLight, multi: true }, // name: `minima-light`
+    { provide: LY_THEME, useClass: MinimaDark, multi: true }, // name: `minima-dark`
+    // Gestures
+    { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig }
+  
   ],
   bootstrap: [AppComponent]
 })
