@@ -39,8 +39,8 @@ export class GeuUserDataService {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
   }
-  getBusinessPartner(bp, dontNow){
-    return this.http.get(`${this.crud.base_url}/bp/summary/${bp}`,
+  getBusinessPartner(bp, userId){
+    return this.http.get(userId ?  `${this.crud.base_url}/bp/summary/${bp}?filter[id]=${userId}` : `${this.crud.base_url}/bp/summary/${bp}`,
     {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
@@ -60,7 +60,7 @@ export class GeuUserDataService {
   }
 
   getUserBirthdates(){
-    return this.http.get(`${this.crud.base_url}/users/birthdays?limit=15`,{
+    return this.http.get(`${this.crud.base_url}/users/birthdays?limit=10`,{
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
   }

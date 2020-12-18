@@ -3,6 +3,7 @@ import { GetServicesService } from 'src/app/services/get-services.service';
 import { CRUDService } from 'src/app/services/crud.service';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component'
+import { UserDataService } from 'src/app/services/userData.service';
 
 @Component({
   selector: 'app-services',
@@ -18,14 +19,13 @@ export class ServicesComponent implements OnInit {
   constructor(
     private getServices: GetServicesService,
     private crud: CRUDService,
-    private logOut: NavbarComponent
+    private logOut: NavbarComponent,
   ) {
    }
   ngOnInit(): void {
-
     this.userId = localStorage.getItem('id');
     this.base_url = this.crud.base_url;
-
+    
     const getServices = ()=>{
       this.services = this.getServices.services.filter(service=>{
         return service.type === '1'

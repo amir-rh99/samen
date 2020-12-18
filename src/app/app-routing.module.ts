@@ -63,8 +63,18 @@ const routes: Routes = [
         component: EnrollComponent
       },
       {
-        path: ':moduleName/result',
-        component: ResultComponent
+        path: ':moduleName',
+        // component: ResultComponent,
+        children: [
+          {
+            path: 'result',
+            component: ResultComponent
+          },
+          {
+            path: 'result/:userId',
+            component: ResultComponent
+          }
+        ]
       },
       {
         path: 'users/:userId',
@@ -91,7 +101,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

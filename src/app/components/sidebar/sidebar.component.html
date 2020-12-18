@@ -1,9 +1,9 @@
 <aside class="sidebar d-none d-lg-block" id="sidebar" [ngClass]="{beforeLoad: !userInfo}">
-  <app-loading *ngIf="loggedIn" [content]="userInfo && medals"></app-loading>
+  <app-loading *ngIf="loggedIn && !userInfo" [content]="userInfo && medals"></app-loading>
   <section *ngIf="loggedIn && userInfo">
     <div class="col-12 d-flex justify-content-center">
-      <a [routerLink]=" '/users/' + userId + '/profile' ">
-        <img [src]="getUserData.getUserPic(null)" alt="your avatar" class="about-me__avatar rounded-circle">
+      <a [routerLink]=" '/users/' + userInfo.id + '/profile' ">
+        <img [src]="getUserData.getUserPic(userInfo.id)" alt="your avatar" class="about-me__avatar rounded-circle">
       </a>
     </div>
 
@@ -19,7 +19,7 @@
       </span>
     </div>
 
-    <div class="medals_container">
+    <div class="medals_container" *ngIf="(userSelectedId === userId) || !userSelectedId">
       <div class="medal_header text-right p-2">
         <img class="sidebar_icons" src="../../../assets/images/medals.png">
         <span class="text-secondary lg_font">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="birthdays_container pt-5">
+    <div class="birthdays_container pt-5" *ngIf="(userSelectedId === userId) || !userSelectedId">
       <div class="medal_header text-right p-2">
         <img class="sidebar_icons" src="../../../assets/images/movafaghiat.png">
         <span class="text-secondary lg_font">
@@ -49,6 +49,27 @@
           <img [src]="base_url +'/users/' + bd.id + '/avatar' " class="py-2 rounded-circle" style="max-width: 100%;" pTooltip="Click to proceed" tooltipPosition="bottom">
         </a>
       </div>
+    </div>
+
+    <div *ngIf="userSelectedId && otherResultsOfUSer">
+      <div class="medal_header text-right p-2">
+        <img class="sidebar_icons" src="../../../assets/images/movafaghiat.png">
+        <span class="text-secondary lg_font">
+          <strong>
+            نتایج دیگر
+          </strong>
+        </span>
+      </div>
+      <a [routerLink]="service.route + '/result/' + userSelectedId " *ngFor="let service of services">
+        <div class="col-12 my-1 p-2 text-right d-flex align-items-center" style="background-color: #f9f9f9; border-radius: 10px;" *ngIf="checkService(service.id,otherResultsOfUSer.users[0].passedArray)">
+          <img style="width:40px" [src]="base_url + service.icon" alt="">
+          <h6 class="text-secondary px-2 mini_font">
+            <strong>
+              {{service.title}}
+            </strong>
+          </h6>
+        </div>
+      </a>
     </div>
   </section>
 

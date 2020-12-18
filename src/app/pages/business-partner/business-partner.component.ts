@@ -57,6 +57,8 @@ export class BusinessPartnerComponent implements OnInit {
     this.getUserData.getUserInfo(this.userId).subscribe((userInfo:any)=>{
       let bp = userInfo.businessPartner;
       this.userData.getBusinessPartner(bp, null).subscribe((Res:any)=>{
+        console.log(Res, " *****list");
+        
         this.usersList = Res.users;
         this.services = Res.services;
         this.usersList.forEach(user=>{
