@@ -43,7 +43,7 @@ export class UserInfoComponent implements OnInit {
     private crud: CRUDService,
     private getUserData: GeuUserDataService,
     private editUser: EditUserService,
-    private userData: GeuUserDataService,
+    protected userData: GeuUserDataService,
 
     private modalService: NgbModal,
     private router: Router,

@@ -45,4 +45,23 @@ export class GeuUserDataService {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
   }
+
+  getUserPic(userId){
+    if(userId === null){
+      userId = localStorage.getItem('id')
+    }
+    return `${this.crud.base_url}/users/${userId}/avatar`
+  }
+
+  getUserMedals(userId){
+    return this.http.get(`${this.crud.base_url}/medals/user/${userId}?order=medalStatus`,{
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
+
+  getUserBirthdates(){
+    return this.http.get(`${this.crud.base_url}/users/birthdays?limit=15`,{
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
 }

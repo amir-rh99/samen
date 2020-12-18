@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, group, query, style, animate} from '@angular/animations'
-
+import { Router, NavigationEnd } from '@angular/router'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -45,9 +45,19 @@ import { trigger, transition, group, query, style, animate} from '@angular/anima
 //       ])
 //     ])
 //   ])
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Samen';
+  constructor(private router: Router){
 
+  }
+  ngOnInit(){
+    this.router.events.subscribe(event=>{
+      if(!(event instanceof NavigationEnd)){
+        return;
+      }
+      window.scrollTo(0,0)
+    })
+  }
   // getDepth(outlet){
   //     return outlet.activatedRouteData['depth']
   // }

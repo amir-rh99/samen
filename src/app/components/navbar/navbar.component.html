@@ -77,7 +77,7 @@
 
         <li class="nav-item main-menu__item">
           <a routerLink="users/{{userId}}/profile" class="nav-link main-menu__link main-menu__link--avatar" placement="bottom" ngbTooltip="پروفایل">
-            <img class="main-menu__avatar rounded-circle" src="../../../assets/images/avatar.png" alt="your avatar">
+            <img class="main-menu__avatar rounded-circle" [src]="getUserData.getUserPic(null)" alt="your avatar">
           </a>
         </li>
 

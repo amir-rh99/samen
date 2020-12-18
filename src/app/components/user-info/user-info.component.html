@@ -7,7 +7,7 @@
     <section class="row pt-2">
       <div class="col-12 col-md-3 text-center">
         <div class="avatar-container">
-          <img src="{{base_url}}/users/{{userId}}/avatar" alt="user-avatar"
+          <img [src]="base_url + '/users/' + profileInfo.user_id + '/avatar'  " alt="user-avatar"
             class="img-responsive d-inline-block rounded-circle">
         </div>
 

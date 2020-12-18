@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
 
 import { GetServicesService } from 'src/app/services/get-services.service';
 import { CRUDService } from 'src/app/services/crud.service';
+import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-
+    protected getUserData: GeuUserDataService,
     private navbarService: NavbarServiceService,
     private route: Router,
     private crud: CRUDService
