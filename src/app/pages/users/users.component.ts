@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 @Component({
   selector: 'app-users',
@@ -12,7 +13,6 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
 }

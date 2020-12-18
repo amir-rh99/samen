@@ -52,6 +52,13 @@ export class ProfileComponent implements OnInit {
         this.showState = false
       }
     })
+    let bread = [
+      {
+        title: 'پروفایل من',
+        route: null
+      }
+    ]
+    this.breadcrumbService.updateRoute(bread)
     // if(this.userId === localStorage.getItem('id')){
 
     //   let bread = {

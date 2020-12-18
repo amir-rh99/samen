@@ -1,7 +1,13 @@
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" *ngIf="routePath && routePath.length">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a>داشبورد</a></li>
-        <li class="breadcrumb-item active" aria-current="page">سرویس‌ها</li>
-        <li class="breadcrumb__to-dashboard-button"><a >میز کار</a></li>
+        <!-- <li class="breadcrumb-item"><a>داشبورد</a></li> -->
+        <li class="breadcrumb-item active" aria-current="page" *ngFor="let route of routePath; let i = index">
+            <a [ngClass]="{'text-secondary': i === routePath.length - 1}" [routerLink]="route.route">
+                {{
+                    route.title
+                }}
+            </a>
+        </li>
+        <li class="breadcrumb__to-dashboard-button"><a routerLink="/">میز کار</a></li>
     </ol>
 </nav>

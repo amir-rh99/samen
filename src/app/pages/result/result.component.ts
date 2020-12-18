@@ -6,6 +6,8 @@ import { GetServicesService } from 'src/app/services/get-services.service';
 import { Chart } from 'chart.js'
 import * as moment from 'moment';
 import { UserDataService } from 'src/app/services/userData.service';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
 
 @Component({
   selector: 'app-result',
@@ -22,10 +24,13 @@ export class ResultComponent implements OnInit,OnDestroy {
   myChart;
   chart=[];
   dialog ;
+  selectedUserInfo;
   constructor(
     private activatedRoute: ActivatedRoute,
     private getServices: GetServicesService,
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    private breadcrumbService: BreadcrumbService,
+    private getUserdata: GeuUserDataService
   ) { 
   }
   ngOnDestroy(): void {
@@ -33,13 +38,22 @@ export class ResultComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    
+    let bread = [
+      {
+        title: 'سرویس ها' ,
+        route: ''
+      },
+    ];
+    this.breadcrumbService.updateRoute(bread)
     this.activatedRoute.paramMap.subscribe(param=>{
       this.moduleName = param.get('moduleName');
       console.log(param.get('userId'));
       if(param.get('userId')){
         this.userId = param.get('userId')
-        this.userDataService.changeUserSelected(this.userId)
+        this.userDataService.changeUserSelected(this.userId);
+        this.getUserdata.getUserInfo(this.userId).subscribe(user=>{
+          this.selectedUserInfo = user;          
+        })
       } else {
         this.userId = localStorage.getItem('id');
       }
@@ -50,7 +64,40 @@ export class ResultComponent implements OnInit,OnDestroy {
   loadResult(){
     this.result = null;
     this.getServices.getResultOfAssessements(this.moduleName, this.userId).subscribe((result:any)=>{
-      console.log(result, " itttt");
+      let bread
+      if(this.userId === localStorage.getItem('id')){
+        bread = [
+          {
+            title: 'سرویس ها' ,
+            route: ''
+          },
+          {
+            title: `آزمون ${result.service_title}`,
+            route: this.moduleName
+          },
+          {
+            title: 'نتیجه آزمون' ,
+            route: `${this.moduleName}/result`
+          }
+        ];
+      } else {
+        bread = [
+          {
+            title: 'سرویس ها' ,
+            route: ''
+          },
+          {
+            title: `آزمون ${result.service_title}`,
+            route: this.moduleName
+          },
+          {
+            title: `نتیجه آزمون ${this.selectedUserInfo.nickname}` ,
+            route: `${this.moduleName}/result/${this.userId}`
+          }
+        ];
+      }
+
+      this.breadcrumbService.updateRoute(bread);
 
       if(Array.isArray(result)){
         this.result = result[result.length - 1]
@@ -62,7 +109,7 @@ export class ResultComponent implements OnInit,OnDestroy {
       if(this.userId === localStorage.getItem('id')){
         this.dialog = `آخرین بار این آزمون رو ${this.finishTime} انجام دادی که نتایجش در ادامه اومده ...`
       } else {
-        this.dialog = `این کاربر آخرین بار این آزمون رو ${this.finishTime} انجام داده که نتایجش در ادامه اومده ...`
+        this.dialog = ` ${this.selectedUserInfo.nickname} آخرین بار این آزمون رو ${this.finishTime}  داده که نتایجش در ادامه اومده ...`
       }
       this.result.text.answer.forEach(answer=>{
         if(answer.title === "CHART"){

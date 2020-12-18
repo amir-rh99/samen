@@ -6,6 +6,7 @@ import { CRUDService } from 'src/app/services/crud.service';
 import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
 import { CommentsComponent } from 'src/app/components/comments/comments.component';
 import { CommentsService } from 'src/app/services/comments.service';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 @Component({
   selector: 'app-enroll',
@@ -31,7 +32,8 @@ export class EnrollComponent implements OnInit {
     private crud: CRUDService,
     private getUserData: GeuUserDataService,
     private route: Router,
-    private getLikes: CommentsService
+    private getLikes: CommentsService,
+    private breadcrumbService: BreadcrumbService
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +47,17 @@ export class EnrollComponent implements OnInit {
       this.enroll = enroll;
       this.moduleId = +enroll.id;
       // console.log(this.moduleId, " moodole id");
-
+      let bread = [
+        {
+          title: 'سرویس ها',
+          route: '/'
+        },
+        {
+          title: `آزمون ${enroll.title}`,
+          route: enroll.route
+        }
+      ]
+      this.breadcrumbService.updateRoute(bread)
       this.getLikes.getLikes(this.moduleId).subscribe((likes:any)=>{
         this.likesNumber = likes.count;
         likes.data.forEach(item=>{

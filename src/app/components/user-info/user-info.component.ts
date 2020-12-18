@@ -84,21 +84,21 @@ loadUserDetail(userId){
       console.log(this.profileInfo, " this is profile ingo");
 
       if(this.localUserId !== this.userId){
-      let bread = {
-        0: {
-          name: `کاربر ${this.profileInfo.first_name}`,
-          link: null
+      let bread = [
+        {
+          title: `کاربر ${this.profileInfo.first_name}`,
+          route: null
         }
-      }
+      ]
       this.breadcrumbService.updateRoute(bread)
       this.breadcrumbService.updateProfileState(false)
     } else {
-      let bread = {
-        0: {
-          name: 'پروفایل من',
-          link: null
+      let bread = [
+        {
+          title: 'پروفایل من',
+          route: null
         }
-      }
+      ]
       this.breadcrumbService.updateRoute(bread)
       this.breadcrumbService.updateProfileState(true)
     }

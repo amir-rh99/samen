@@ -8,7 +8,7 @@ export class BreadcrumbService {
   public showServiceStateInProfile = new EventEmitter<boolean>();
 constructor() { }
 
-updateRoute(path){
+updateRoute(path: {}[]){
   console.log(path, " *****path");
   this.route.emit(path);
 }

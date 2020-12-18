@@ -16,17 +16,20 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     let id = localStorage.getItem('id')
-    let bread = {
-      0:{
-        name: 'پروفایل من',
-        link: `users/${id}/profile`
-      },
-      1:{
-        name: 'تنظیمات',
-        link: `users/${id}/edit`
-      }
-    }
-    this.breadcrumbService.updateRoute(bread)
+    setTimeout(()=>{
+
+      let bread = [
+        {
+          title: 'پروفایل من',
+          route: `users/${id}/profile`
+        },
+        {
+          title: 'تنظیمات',
+          route: `users/${id}/edit`
+        }
+      ]
+      this.breadcrumbService.updateRoute(bread)
+    },1000)
   }
 
 }

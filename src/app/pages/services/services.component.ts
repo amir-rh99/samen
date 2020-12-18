@@ -4,6 +4,7 @@ import { CRUDService } from 'src/app/services/crud.service';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component'
 import { UserDataService } from 'src/app/services/userData.service';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 @Component({
   selector: 'app-services',
@@ -20,9 +21,18 @@ export class ServicesComponent implements OnInit {
     private getServices: GetServicesService,
     private crud: CRUDService,
     private logOut: NavbarComponent,
+    private breadcrumbService: BreadcrumbService
   ) {
    }
   ngOnInit(): void {
+    let bread = [
+      {
+        route: '/',
+        title: 'سرویس ها'
+      }
+    ];
+    this.breadcrumbService.updateRoute(bread);
+    
     this.userId = localStorage.getItem('id');
     this.base_url = this.crud.base_url;
     
