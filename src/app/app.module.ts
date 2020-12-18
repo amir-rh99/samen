@@ -1,7 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { ErrorHandler, NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,6 +68,7 @@ import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
 //////// prime ng
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
+import { GlobalHttpInterceptorService } from './services/GlobalHttpInterceptorService';
 
 
 @NgModule({
@@ -122,6 +123,8 @@ import {TooltipModule} from 'primeng/tooltip';
     TooltipModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS,    useClass: GlobalHttpInterceptorService,    multi: true  },
+    // { provide: ErrorHandler, useClass:GlobalErrorHandlerService}
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

@@ -15,7 +15,7 @@ import { ResultComponent } from './pages/result/result.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
-import { BusinessPartnerComponent } from './pages';
+import { BusinessPartnerComponent, NotFoundComponent } from './pages';
 
 const routes: Routes = [
   {
@@ -54,6 +54,10 @@ const routes: Routes = [
     canActivate:[AuthGuard],
 
     children: [
+      {
+        path: 'not-found',
+        component: NotFoundComponent
+      },
       {
         path: 'home',
         component: ServicesComponent
@@ -97,6 +101,10 @@ const routes: Routes = [
   {
     path: ':moduleName/step',
     component: TestRunnerComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found'
   }
 ]
 

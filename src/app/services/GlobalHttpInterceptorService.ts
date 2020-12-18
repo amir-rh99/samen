@@ -53,6 +53,8 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
                 this.UnauthorizedLogOut();
                 this.router.navigateByUrl("/auth/login");
                 break;
+                case 404: 
+                this.router.navigateByUrl("/not-found")
             }
           }
         } else {
