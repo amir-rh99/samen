@@ -67,8 +67,9 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-warning mb-3 mb-md-0" [disabled]="Register.invalid">
+      <button type="submit" class="btn btn-warning mb-3 mb-md-0 position-relative" [disabled]="Register.invalid || disabledRegister">
         ثبت نام
+        <app-btn-loading [content]="!disabledRegister"></app-btn-loading>
       </button>
 
     </div>

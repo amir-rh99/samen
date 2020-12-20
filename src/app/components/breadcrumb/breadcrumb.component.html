@@ -1,4 +1,4 @@
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" *ngIf="!noBread">
     <ol class="breadcrumb">
         <!-- <li class="breadcrumb-item"><a>داشبورد</a></li> -->
         <li class="breadcrumb-item active" aria-current="page" *ngFor="let route of routePath; let i = index">

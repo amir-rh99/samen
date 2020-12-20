@@ -7,17 +7,17 @@
     <hr>
   </div>
 
-  <form class="text-right" (submit)="login($event)">
+  <form class="text-right" [formGroup]="loginForm" (submit)="login($event)">
 
     <div class="form-group">
-      <input type="text" id="email" class="form-control login-form__text-input email" placeholder="نام کاربری یا ایمیل"
+      <input type="text" id="email" formControlName="email" class="form-control login-form__text-input email" placeholder="نام کاربری یا ایمیل"
         [ngClass]="{invalid: errorMessage}" data-lpignore="true" autocomplete="off">
 
       <label for="email" class="inline-label">نام کاربری</label>
     </div>
 
     <div class="form-group">
-      <input type="password" id="password" class="form-control login-form__text-input"
+      <input type="password" id="password" formControlName="password" class="form-control login-form__text-input"
         [ngClass]="{invalid: errorMessage}" data-lpignore="true">
 
       <label for="password" class="inline-label">رمز عبور</label>
@@ -38,8 +38,9 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-warning login-form__submit-btn">
+      <button [disabled]="disabledState || loginForm.invalid" type="submit" class="btn btn-warning login-form__submit-btn position-relative">
         ورود
+        <app-btn-loading [content]="!disabledState"></app-btn-loading>
       </button>
     </div>
 

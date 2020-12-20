@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  constructor() { }
+  constructor(
+    private router: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.router.data.subscribe(url=>{
+      // console.log(url);      
+    })
   }
 
 }

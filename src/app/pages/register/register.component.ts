@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormControl, EmailValidator, AbstractControl }
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { NavbarServiceService } from 'src/app/services/navbar-service.service';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { NavbarServiceService } from 'src/app/services/navbar-service.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  disabledRegister: boolean = false;
   error = {
     fname: false,
     username: false,
@@ -24,11 +26,18 @@ export class RegisterComponent implements OnInit {
     private registerService: LoginService,
     private route: Router,
     private formBuilder: FormBuilder,
-    private navbarService: NavbarServiceService
+    private navbarService: NavbarServiceService,
+    private breadcrumbService: BreadcrumbService
   ) { }
 
 
   ngOnInit(): void {
+    let bread = [
+      {
+        title: 'noBread'
+      }
+    ]
+    this.breadcrumbService.updateRoute(bread)
   }
 emailCheck = false;
 userCheck = false;
@@ -40,6 +49,8 @@ userCheck = false;
   })
 
   register(event){
+    this.disabledRegister = true;
+
     event.preventDefault();
     const target = event.target;
     const firtname = target.querySelector('#fname').value;
@@ -48,6 +59,7 @@ userCheck = false;
     const password = target.querySelector('#password').value;
 
     this.registerService.registerUser(firtname, username, email, password).subscribe((register:any)=>{
+      this.disabledRegister = true;
       if(register){
         for(let data in register){
           localStorage.setItem(data,register[data])
@@ -55,6 +67,8 @@ userCheck = false;
         this.navbarService.setNavbarState(true);
         this.route.navigateByUrl('/home');
       }
+    }, err=>{
+      this.disabledRegister = false;
     })
     
   }

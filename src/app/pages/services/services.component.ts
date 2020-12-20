@@ -15,7 +15,7 @@ export class ServicesComponent implements OnInit {
   services;
   userId;
   base_url;
-  dialog = "اینجا می‌تونی لیست همه‌ی خدمات سامانه رو ببینی و هر کدوم رو که خواستی انجام بدی...|";
+  dialog = "اینجا می‌تونی لیست همه‌ی خدمات سامانه رو ببینی و هر کدوم رو که خواستی انجام بدی...";
 
   constructor(
     private getServices: GetServicesService,

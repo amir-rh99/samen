@@ -9,10 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DialogComponent implements OnInit {
 test;
   @Input() content;
-  constructor() { }
+  strings;
+  constructor() { 
+  }
 
   ngOnInit(): void {
- 
+  
   }
 
 }

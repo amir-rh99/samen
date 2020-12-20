@@ -10,6 +10,8 @@ import { provideRoutes, RouterState } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import {NgxTypedJsModule} from 'ngx-typed-js';
+
 
 import {
   UsersComponent,
@@ -44,6 +46,7 @@ import {
   SidebarComponent,
   NavbarComponent,
   NotificationsComponent,
+
 } from './components'
 
 import {MatIconModule} from '@angular/material/icon';
@@ -120,7 +123,8 @@ import { GlobalHttpInterceptorService } from './services/GlobalHttpInterceptorSe
     LyImageCropperModule,
     TableModule,
     MatMenuModule,
-    TooltipModule
+    TooltipModule,
+    NgxTypedJsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,    useClass: GlobalHttpInterceptorService,    multi: true  },

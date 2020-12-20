@@ -8,6 +8,7 @@ import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 })
 export class BreadcrumbComponent implements OnInit {
   routePath;
+  noBread: boolean = false;
   constructor(
     private breadcrumbService: BreadcrumbService
   ) { }
@@ -15,7 +16,12 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit(): void {
     this.breadcrumbService.route.subscribe((route:any)=>{
       console.log();
-      this.routePath = route;
+      if(route[0].title === 'noBread') {
+        this.noBread = true;
+      } else {
+        this.noBread = false;
+        this.routePath = route;
+      }
     })
   }
 

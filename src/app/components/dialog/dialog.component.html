@@ -1,13 +1,17 @@
 <div class="dialog">
 
-    
+
     <div class=" d-flex">
-        <div class="row">
+        <div class="row align-items-center">
             <img src="../../../assets/images/prof_1.png" alt="prof-avatar">
-            <h5  *ngIf="content" class="text-right col element">
-         <!-- <app-loading [content]="content"></app-loading> -->
-         {{content === 'onLoad' ? '' : content}}
-     </h5>
+            <div class="col element text-justify">
+                <ngx-typed-js *ngIf="content !== 'onLoad' " [strings]="[content]" [typeSpeed]="20">
+                    <h5 class='typing'></h5>
+                </ngx-typed-js>
+                <ngx-typed-js *ngIf="content === 'onLoad' " [strings]="['در حال دریافت اطلاعات ...']" [typeSpeed]="20">
+                    <h5 class='typing'></h5>
+                </ngx-typed-js>
+            </div>
     </div>
 </div>
 
