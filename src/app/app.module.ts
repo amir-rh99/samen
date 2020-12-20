@@ -72,6 +72,7 @@ import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import { GlobalHttpInterceptorService } from './services/GlobalHttpInterceptorService';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -124,7 +125,8 @@ import { GlobalHttpInterceptorService } from './services/GlobalHttpInterceptorSe
     TableModule,
     MatMenuModule,
     TooltipModule,
-    NgxTypedJsModule
+    NgxTypedJsModule,
+    InputTextModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,    useClass: GlobalHttpInterceptorService,    multi: true  },
