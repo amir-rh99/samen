@@ -30,7 +30,7 @@
       </div>
       <div class="row px-4">
         <a class="col-4" *ngFor="let medal of medals?.data">
-          <img [src]="base_url + medal.icon" class="py-2" style="max-width: 100%;">
+          <img [src]="base_url + medal.icon" class="py-2" style="max-width: 100%;" [pTooltip]="medal.title" tooltipPosition="bottom">
         </a>
       </div>
     </div>
@@ -46,7 +46,7 @@
       </div>
       <div class="row px-4">
         <a [routerLink]=" '/users/' + bd.id + '/profile' " class="col-4" *ngFor="let bd of birthdates?.data">
-          <img [src]="base_url +'/users/' + bd.id + '/avatar' " class="py-2 rounded-circle" style="max-width: 100%;" pTooltip="Click to proceed" tooltipPosition="bottom">
+          <img [src]="base_url +'/users/' + bd.id + '/avatar' " class="py-2 rounded-circle" style="max-width: 100%;" [pTooltip]="bd.nickname" tooltipPosition="bottom">
         </a>
       </div>
     </div>

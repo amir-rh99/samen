@@ -20,7 +20,7 @@
       <ul class="nav d-flex align-items-center justify-content-end">
 
         <li class="nav-item main-menu__item">
-          <a routerLink="/business-partner" class="nav-link main-menu__link" placement="bottom" ngbTooltip="کاربران من">
+          <a routerLink="/business-partner" class="nav-link main-menu__link"  pTooltip="کاربران من" tooltipPosition="bottom">
             <span class="main-menu__icon fas fa-desktop xxlg_font"></span>
           </a>
         </li>
@@ -76,12 +76,12 @@
 
 
         <li class="nav-item main-menu__item">
-          <a routerLink="users/{{userId}}/profile" class="nav-link main-menu__link main-menu__link--avatar" placement="bottom" ngbTooltip="پروفایل">
+          <a routerLink="users/{{userId}}/profile" class="nav-link main-menu__link main-menu__link--avatar" pTooltip="پروفایل" tooltipPosition="bottom">
             <img class="main-menu__avatar rounded-circle" [src]="getUserData.getUserPic(null)" alt="your avatar">
           </a>
         </li>
 
-        <li (click)="logOut()" class="nav-item main-menu__item" placement="bottom" ngbTooltip="خروج">
+        <li (click)="logOut()" class="nav-item main-menu__item" pTooltip="خروج" tooltipPosition="bottom">
           <a class="nav-link main-menu__link main-menu__link--logout">
             <img class="main-menu__icon main-menu__icon--logout" src="../../../assets/images/svg-icons/logout.svg"
               alt="logout icon">
