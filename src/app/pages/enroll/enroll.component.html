@@ -24,7 +24,7 @@
           در حال به روز رسانی ...
           <app-btn-loading [content]="userEnroll"></app-btn-loading>
         </button>
-        <button (click) = "enrollToService()" *ngIf = "userEnroll?.enrolls?.length === 0" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+        <button (click) = "openEnrollToServiceModal(content)" *ngIf = "userEnroll?.enrolls?.length === 0" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
           <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
           انجامش میدم
         </button>
@@ -109,3 +109,75 @@
 <div *ngIf="moduleId">
   <app-comments [content]="moduleId"></app-comments>
 </div>
+
+<ng-template #content let-modal>
+
+  <div class="modal-body pt-2 pt-md-4">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-12 col-md-3 px-2 text-center pt-4 pt-md-0">
+        <img src="../../../assets/images/prof_1.png" style="max-width: 100%;">
+      </div>
+      <div class="col-12 col-md-9 px-4">
+        <p class="text-secondary pt-4 pt-md-0 normal_font lg_lg_font text-justify">
+خوشحالم که در آزمون {{enroll.title}} شرکت کردی! با مشارکت در آزمون {{enroll.title}} ، {{enroll.point}} امتیاز کسب می کنی و مدالش به مجموعه مدال‌هات اضافه میشه.
+        </p>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-12">
+        <h6 class="text-center price_color">
+          <strong>
+            هزینه سرویس : {{enroll.price}} تومان
+          </strong>
+        </h6>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center pt-3">
+      <div class="col-9 col-lg-6">
+        <div class="input-wrapper ">
+          <input type="text" id="lname"
+            class="form-control text-input"
+            autocomplete="off" [formControl]="coupon">
+  
+          <label for="lname" class="inline-label">کوپن</label>
+      </div>
+      </div>
+
+    <div class="col-3">
+      <button (click)="checkCoupon()" class="btn submit_btn_color w-100 h-100 text-secondary py-3">
+        ثبت کوپن
+      </button>
+    </div>
+    <div class="col-12 pt-2">
+      <p *ngIf="couponError" class="text-center alert-danger py-3">
+        <strong>
+          {{couponError}}
+        </strong>
+      </p>
+    </div>
+    </div>
+    <div class="row justify-content-center align-items-center pt-3">
+      <div class="col-9 col-lg-6">
+        <div class="form-group select-input-wrapper mb-0">
+          <select name="country" id="country" class="my-custom-select col-12" #country>
+            <option>
+              درگاه بانکی
+            </option>
+              <option>
+                paypal
+              </option>
+          </select>
+          <label for="country" class="inline-label">روش پرداخت</label>
+      </div>
+      </div>
+      <div class="col-3">
+        <button class="btn pay_btn_color w-100 h-100 text-white py-3">
+          پرداخت
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light px-4 py-2 text-secondary" (click)="modal.close('Close click')">بستن</button>
+  </div>
+</ng-template>

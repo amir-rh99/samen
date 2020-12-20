@@ -7,6 +7,9 @@ import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
 import { CommentsComponent } from 'src/app/components/comments/comments.component';
 import { CommentsService } from 'src/app/services/comments.service';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { FormControl } from '@angular/forms';
+import { CouponService } from 'src/app/services/coupon.service';
 
 @Component({
   selector: 'app-enroll',
@@ -24,6 +27,8 @@ export class EnrollComponent implements OnInit {
   userId;
   likesNumber;
   isLike;
+  coupon = new FormControl('');
+  public couponError: string = '';
   @ViewChild('moreContent') moreContent: ElementRef;
 
   constructor(
@@ -33,7 +38,9 @@ export class EnrollComponent implements OnInit {
     private getUserData: GeuUserDataService,
     private route: Router,
     private getLikes: CommentsService,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private modalService: NgbModal,
+    private couponService: CouponService
   ) { }
 
   ngOnInit(): void {
@@ -113,10 +120,26 @@ export class EnrollComponent implements OnInit {
     // console.log(Res, " like com");
   })
 }
+openEnrollToServiceModal(modal){
+  this.modalService.open(modal , { size: 'lg'})
+}
   enrollToService(){
     this.getServices.enrollToService(this.moduleName, this.userId).subscribe(Res=>{
       this.route.navigateByUrl(`${this.enroll.route}/step`)
     })
   }
-
+  checkCoupon(){
+    console.log(this.coupon.value, this.enroll.id);
+    let serial = this.coupon.value;
+    if (serial === '') {
+      this.couponError = "سریال کوپن را وارد کنید"
+    } else {
+      this.couponService.checkCoupon(serial, this.enroll.id).subscribe(res=>{
+        console.log(res);
+        
+      }, err=>{
+        this.couponError = err.error.error;
+      })
+    }
+  }
 }
