@@ -92,7 +92,11 @@ td > img{
 .share-links__icon:hover {
     color: #23527c;
 }
-
+:host ::ng-deep {
+    img{
+        max-width: 100%;
+    }
+}
 @media (max-width: 576px) {
     .medal-poster.col-12 {
         padding: 0;

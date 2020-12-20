@@ -47,7 +47,7 @@ export class TestRunnerComponent implements OnInit {
     this.userId = localStorage.getItem('id');
     this.activatedRoute.paramMap.subscribe(param=>{
       this.moduleName = param.get('moduleName');
-      this.getServices.getSpecificService(this.moduleName).subscribe((service:any)=>{
+      this.getServices.getSpecificServiceForTestRunner(this.moduleName).subscribe((service:any)=>{
         this.getUserData.getUserEnrollforService(this.userId, service.id).subscribe((Res:any)=>{
           this.enrollId = +Res.enrolls[Res.enrolls.length - 1].id;
           console.log(Res);

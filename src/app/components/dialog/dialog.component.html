@@ -1,12 +1,12 @@
 <div class="dialog">
 
-<app-loading [content]="content"></app-loading>
-
-<div class=" d-flex" *ngIf="content">
-    <div class="row">
-     <img src="../../../assets/images/prof_1.png" alt="prof-avatar">
-     <h5 class="text-right col element">
-         {{content}}
+    
+    <div class=" d-flex">
+        <div class="row">
+            <img src="../../../assets/images/prof_1.png" alt="prof-avatar">
+            <h5  *ngIf="content" class="text-right col element">
+         <!-- <app-loading [content]="content"></app-loading> -->
+         {{content === 'onLoad' ? '' : content}}
      </h5>
     </div>
 </div>

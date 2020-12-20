@@ -1,7 +1,7 @@
 <app-dialog [content]="dialog"></app-dialog>
-<div class="enroll" [ngClass]="{beforeLoad: !userEnroll}">
-  <app-loading [content]="enroll && userEnroll"></app-loading>
-  <div class=" container mb-2" style="padding: 0 30px" *ngIf="enroll && userEnroll">
+<div class="enroll" [ngClass]="{beforeLoad: !enroll}">
+  <app-loading [content]="enroll"></app-loading>
+  <div class=" container mb-2" style="padding: 0 30px" *ngIf="enroll">
 
     <div class="row align-items-center">
       <div class="col-12 col-md-9">
@@ -19,16 +19,20 @@
           </div>
         </div>
       </div>
-      <div *ngIf="userEnroll" class="col-12 col-md-3 mt-md-0 mt-3" style="transition: .5s;">
-        <button (click) = "enrollToService()" *ngIf = "userEnroll.enrolls.length === 0" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+      <div class="col-12 col-md-3 mt-md-0 mt-3" style="transition: .5s;">
+        <button [disabled]="!userEnroll" *ngIf="!userEnroll" class="btn w-100 text-white font-weight-bolder continue-btn py-3 position-relative">
+          در حال به روز رسانی ...
+          <app-btn-loading [content]="userEnroll"></app-btn-loading>
+        </button>
+        <button (click) = "enrollToService()" *ngIf = "userEnroll?.enrolls?.length === 0" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
           <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
           انجامش میدم
         </button>
-        <button routerLink="step" *ngIf = "userEnroll.enrolls.length !== 0 && userEnroll.enrolls[userEnroll.enrolls.length - 1].status == 1" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+        <button routerLink="step" *ngIf = "userEnroll?.enrolls?.length !== 0 && userEnroll?.enrolls[userEnroll.enrolls.length - 1].status == 1" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
           <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
           ادامه میدم
         </button>
-        <button routerLink="result" *ngIf = "userEnroll.enrolls.length !==0 && userEnroll.enrolls[userEnroll.enrolls.length - 1].status == 2" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
+        <button routerLink="result" *ngIf = "userEnroll?.enrolls?.length !==0 && userEnroll?.enrolls[userEnroll.enrolls.length - 1].status == 2" class="btn w-100 text-white font-weight-bolder continue-btn py-3">
           <!-- <img src="../../../assets/images/whiteman.png" class="pl-1"> -->
           مشاهده نتایج
         </button>

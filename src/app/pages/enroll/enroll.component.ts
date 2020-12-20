@@ -37,16 +37,30 @@ export class EnrollComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.dialog = 'onLoad';
     this.base_url = this.crud.base_url;
     this.userId = localStorage.getItem('id');
     this.activeRoute.paramMap.subscribe(param=>{
       this.moduleName = param.get('moduleName')
     })
-    console.log(this.moduleName);
-    this.getServices.getSpecificService(this.moduleName).subscribe((enroll:any)=>{
+    let bread = [
+      {
+        title: 'سرویس ها',
+        route: '/'
+      },
+    ]
+    this.breadcrumbService.updateRoute(bread)
+    this.getEnrollService();
+
+  }
+
+  getEnrollService(){
+    const specificService = (enroll)=>{
+    
+      this.dialog = enroll.dialog;
+      console.log(enroll, " ***enroll services");
       this.enroll = enroll;
       this.moduleId = +enroll.id;
-      // console.log(this.moduleId, " moodole id");
       let bread = [
         {
           title: 'سرویس ها',
@@ -70,18 +84,22 @@ export class EnrollComponent implements OnInit {
       })
 
       this.uses = JSON.parse(enroll.uses);
-      this.dialog = enroll.dialog;
       this.getUserData.getUserEnrollforService(this.userId, enroll.id).subscribe((userEnroll:any)=>{
         this.userEnroll = userEnroll;
-
-        // console.log(userEnroll, " user aeneroll");
-        // setTimeout(()=>{
-        //   this.moreContent.nativeElement.
-        // },1000)
-        
       })
+    }
+    let result = false;
+    this.getServices?.specificService?.forEach((service:any)=>{
+      if(service.route === this.moduleName){
+        result = true;
+        specificService(service);
+      }
     })
-
+    if(!result){
+      this.getServices.getSpecificService(this.moduleName, ()=>{
+        specificService(this.getServices.specificService[this.getServices.specificService.length - 1])
+      })
+    }
   }
   likeIt(){
   this.getLikes.postLike(this.moduleId).subscribe((Res:any)=>{

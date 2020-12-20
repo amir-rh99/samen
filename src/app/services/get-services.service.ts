@@ -9,6 +9,7 @@ import { CRUDService } from './crud.service';
 })
 export class GetServicesService {
   public services;
+  public specificService: {}[] = [];
   constructor(
     private auth: AuthService,
     private http: HttpClient,
@@ -22,13 +23,23 @@ export class GetServicesService {
       callback();
     })
   }
+
+  getSpecificService(moduleName, callback){
+    this.http.get(`${this.auth.base_url}/services/module/${moduleName}`,
+    {
+      headers: this.crud.headers.set('x-auth',localStorage.getItem('hash'))
+    }).subscribe(result=>{
+      this.specificService.push(result);
+      callback();
+    })
+  }
   // getServices(userId){
   //   return this.http.get(`${this.auth.base_url}/services/status/${userId}`,{
   //     headers: this.crud.headers.set('x-auth',localStorage.getItem('hash'))
   //   })
   // }
 
-  getSpecificService(moduleName){
+  getSpecificServiceForTestRunner(moduleName){
     return this.http.get(`${this.auth.base_url}/services/module/${moduleName}`,
     {
       headers: this.crud.headers.set('x-auth',localStorage.getItem('hash'))
