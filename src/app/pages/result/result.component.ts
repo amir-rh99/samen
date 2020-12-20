@@ -38,6 +38,7 @@ export class ResultComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    this.dialog = "onLoad";
     let bread = [
       {
         title: 'سرویس ها' ,
@@ -53,11 +54,12 @@ export class ResultComponent implements OnInit,OnDestroy {
         this.userDataService.changeUserSelected(this.userId);
         this.getUserdata.getUserInfo(this.userId).subscribe(user=>{
           this.selectedUserInfo = user;          
+          this.loadResult()
         })
       } else {
         this.userId = localStorage.getItem('id');
+        this.loadResult()
       }
-      this.loadResult()
     })
   }
 
@@ -72,7 +74,7 @@ export class ResultComponent implements OnInit,OnDestroy {
             route: ''
           },
           {
-            title: `آزمون ${result.service_title}`,
+            title: `آزمون ${result?.service_title}`,
             route: this.moduleName
           },
           {
@@ -87,11 +89,11 @@ export class ResultComponent implements OnInit,OnDestroy {
             route: ''
           },
           {
-            title: `آزمون ${result.service_title}`,
+            title: `آزمون ${result?.service_title}`,
             route: this.moduleName
           },
           {
-            title: `نتیجه آزمون ${this.selectedUserInfo.nickname}` ,
+            title: `نتیجه آزمون ${this.selectedUserInfo?.nickname}` ,
             route: `${this.moduleName}/result/${this.userId}`
           }
         ];
