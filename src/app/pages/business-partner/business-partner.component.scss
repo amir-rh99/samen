@@ -2,9 +2,16 @@
     direction: rtl;
 }
 
+.p-datatable-header	{
+    text-align: right !important;
+}
+.p-sortable-column {
+ text-align: right !important;
+}
 .headerTable{
     font-size: 12px !important;
     width: 125px !important;
+    text-align: right !important;
 }
 .headerTable:nth-child(1){
     width: 100px !important;
@@ -13,9 +20,11 @@
     font-size: 11px !important;
 
 }
+
 .dataTable{
     font-size: 12px !important;
     font-weight: 600;
+    text-align: right !important;
 }
 .serviceIcon{
     width: 30px;
@@ -34,4 +43,5 @@
 .dateTableRes{
     font-size: 12px !important;
     font-weight: 600;
+    text-align: right !important;
 }

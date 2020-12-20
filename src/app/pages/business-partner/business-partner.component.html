@@ -6,6 +6,7 @@
     [globalFilterFields]="['first_name','last_name','mobile','passedServices']">
 
     <ng-template pTemplate="caption">
+
       <div class="table-header">
         <span class="searchTable float-right">کاربران من</span>
         <span class="p-input-icon-left">
@@ -41,7 +42,7 @@
         <td class="dataTable">{{person.jalali_register_date}}</td>
         <td class="dataTable" title="{{person.usedCoupon}}">{{person.usedCouponShort}}
           {{person.usedCoupon === person.usedCouponShort ? "" : "..."}}</td>
-        <td colspan="2">
+        <td colspan="2" class="text-right">
           <a *ngFor="let service of services" style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}" pTooltip="{{service.title}}"
             tooltipPosition="top" [ngClass]="{'not-active': !check(service.id, person.passedArray)}">
             <img src="{{base_url}}/{{service.icon}}" class="rounded-circle serviceIcon"
@@ -122,7 +123,7 @@
                 [ngClass]="{'offGrayScale': check(service.id, person.passedArray)}">
             </a>
           </span> -->
-            <mat-icon class="fourXlg_font text-info" style="cursor: pointer; margin: 0 8px 5px 0;"
+            <mat-icon class="fourXlg_font text-info" style="cursor: pointer; margin: 0 5px 0 0;"
               [matMenuTriggerFor]="menu">add_circle
             </mat-icon>
           </div>
@@ -152,7 +153,7 @@
     </ng-template>
     <ng-template pTemplate="rowexpansion" let-person>
       <tr>
-        <td class="pr-3" colspan="4">
+        <td class="pr-3 text-right" colspan="4">
           <div class="py-2">
             <strong>موبایل:</strong> {{person.mobile}}
           </div>

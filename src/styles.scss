@@ -7,6 +7,40 @@ body {
     font-family: iranSans !important;
     direction: rtl;
 }
+
+//// ng prime
+.p-datatable, .searchTable {
+  font-family: iranSans !important;
+}
+.p-datatable .p-datatable-thead > tr > th {
+  padding: .5rem !important;
+}
+.table-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.p-tooltip	{
+  font-family: iranSans !important;
+  font-size: 14px;
+}
+
+.pi-angle-double-right::before{
+  content: "\e92d";
+}
+.pi-angle-double-left::before{
+  content: "\e92e";
+}
+.pi-angle-right:before {
+  content: "\e931" ;
+}
+.pi-angle-left:before {
+  content: "\e932";
+}
+.p-paginator .p-dropdown .p-dropdown-label {
+  padding-right: 10px;
+}
+//////
 .overFlow{
     overflow: hidden;
 }
