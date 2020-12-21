@@ -73,6 +73,8 @@ import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import { GlobalHttpInterceptorService } from './services/GlobalHttpInterceptorService';
 import {InputTextModule} from 'primeng/inputtext';
+import { SendCommentComponent } from './components/comments/send-comment/send-comment.component';
+import { CommentBoxComponent } from './components/comments/comment-box/comment-box.component';
 
 
 @NgModule({
@@ -110,6 +112,8 @@ import {InputTextModule} from 'primeng/inputtext';
    SidebarComponent,
    NavbarComponent,
    NotificationsComponent,
+   SendCommentComponent,
+   CommentBoxComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,65 @@
+.userProfile{
+    width: 65px !important;
+    // max-width: 100%;
+}
+.comment-text{
+    color: #4d4d4d;
+    text-align: justify;
+}
+.comment_box{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(20, 20, 20, 0.5);
+    overflow: hidden;
+    transition: .4s;
+}
+
+.firstChild{
+    background-color: #f8f9fa !important;
+}
+
+.secondChild{
+    background-color: rgba(238, 238, 238, 0.712) !important;
+}
+
+.myComment_border{
+    border-right: 5px solid #007bff !important;
+}
+.pending_border{
+    border-right: 5px solid #ffb013 !important;
+}
+
+.btn_reply{
+    margin-left: -10px; cursor: pointer;
+    transform: translate(-50px,0);
+    transition: .4s;
+}
+
+.comment_container:hover .btn_reply {
+    transform: translate(0,0);
+}
+
+.sendBox{
+    display: none;
+}
+.showSendBox{
+    display: block;
+    animation: show .4s;
+}
+@keyframes show {
+    0% {
+        opacity: 0;
+        transform: translate(0,-35px);
+        // transform: scale(0);
+    }
+    75%{
+        opacity: 1;
+        // transform: scale(1.1);
+        transform: translate(0,20px);
+    }
+    100% {
+        opacity: 1;
+        // transform: scale(1);
+        transform: translate(0,0);
+    }
+}

@@ -1,0 +1,35 @@
+<div class="row comment_box px-2 pt-2 my-2" [ngClass]="{'firstChild': comment.parent_id && !secondChild, 'secondChild': secondChild, 'pending_border': comment.status == '1', 'myComment_border': comment.user_id === userId}">
+    <div class="col-12">
+        <div class="row comment_container">
+            <div class="d-none d-md-block col-md-1">
+                <img [routerLink]=" '/users/' + comment.user_id + '/profile' " style="cursor: pointer;" class="userProfile rounded-circle" [src]="base_url + '/users/' + comment.user_id + '/avatar' ">
+            </div>
+            <div class="col-12 col-md-11">
+                <div class="row pr-md-4 pr-md-3 pt-2">
+                    <div class="col-12">
+                        <span *ngIf="comment.status != '1' && !secondChild " (click)="showSendComment = true" class="icon-reply float-left text-secondary lg_font btn_reply"></span>
+                        <a [routerLink]=" '/users/' + comment.user_id + '/profile' " class="comment-username normal_font text-decoration-none">
+                            <strong>
+                                {{comment.user_nickname}}
+                            </strong>
+                        </a>
+                        <span class="text-secondary xmini_font d-block pt-1">
+                            {{getDate(comment.date)}}
+                        </span>
+                        <p class="comment-text mini_font pt-3">
+                            <strong>
+                                {{comment.comment}}
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 sendBox" [ngClass]="{'showSendBox': showSendComment}">
+        <app-send-comment (onCloseSendBox)="closeSendBox()" [comment]="comment" [parentId]="comment.id" [moduleId]="comment.module_id"></app-send-comment>
+    </div>
+    <div class="col-12" *ngIf="comment.child">
+        <app-comment-box *ngFor="let child of comment.child" [comment]="child" [secondChild]="firstChild"></app-comment-box>
+    </div>
+</div>

@@ -19,12 +19,12 @@ export class CommentsService {
     })
   }
 
-  postComment(moduleId, comment){
+  postComment(moduleId, comment, parentId){
     return this.http.post(`${this.crud.base_url}/comments/modules`,
     {
       "module_id" : moduleId,
       "comment" : comment,
-      "parent_id" : null
+      "parent_id" : parentId
     },
     {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
