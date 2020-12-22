@@ -20,7 +20,14 @@
 .beforeLoad{
     padding: 50px 0;
 }
+.custom_typing{
+    line-height: 30px !important;
+}
+
 @media screen and (max-width: 992px) {
+    .custom_typing{
+        line-height: 24px !important;
+}
     .dialog img {
         width: 120px;
         height: 120px;
@@ -29,4 +36,5 @@
     .dialog h5 {
         font-size: 16px;
     }
+
 }

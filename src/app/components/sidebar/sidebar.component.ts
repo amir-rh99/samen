@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CRUDService } from 'src/app/services/crud.service';
 import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 import { UserDataService } from 'src/app/services/userData.service';
 
 @Component({
@@ -20,18 +22,35 @@ export class SidebarComponent implements OnInit {
   public userSelectedId;
   public medals;
   public birthdates;
+  activeBP: boolean = false;
   constructor(
     public getUserData: GeuUserDataService,
     private crud: CRUDService,
     private userDataService: UserDataService,
+    private navbarService: NavbarServiceService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
+    this.navbarService.activeBP.subscribe(data=>{
+      data ? this.activeBP = true : this.activeBP = false
+
+      this.loggedIn = true;
+      this.getData()
+    })
+    if(!localStorage.getItem('id')){
+      this.loggedIn = false
+    }
+
+  }
+
+  getData(){
+
     this.base_url = this.crud.base_url;
     this.userId = localStorage.getItem('id')
-    if(localStorage.getItem('id')){
-      this.loggedIn = true;
-    }
+    // if(localStorage.getItem('id')){
+    //   this.loggedIn = true;
+    // }
     
     let flag = true;
     this.userDataService.currentUserSelectedData.subscribe(id=>{
@@ -78,7 +97,6 @@ export class SidebarComponent implements OnInit {
     this.getMedals();
     this.getUserBirthdates();
   }
-
   getMedals(){
     this.getUserData.getUserMedals(this.userId).subscribe((medals:any)=>{
       this.medals = medals;
@@ -96,4 +114,16 @@ export class SidebarComponent implements OnInit {
   checkService(service: string, passed:(string)[]){
     return passed.includes(service)
   }
+
+  logOut(){
+
+    let items = ['hash', 'id', 'lastLogin', 'role', 'newLogin', 'day', 'nickname'];
+    items.forEach(item=>{
+      localStorage.removeItem(item);
+    })
+    this.navbarService.setNavbarState(false);
+    this.loggedIn = false;
+    this.route.navigateByUrl('auth/login');
+
+}
 }

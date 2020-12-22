@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
   testState;
   base_url;
   userId = localStorage.getItem('id')
+  activeBP: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,13 +46,16 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.navbarService.activeBP.subscribe(data=>{
+      data ? this.activeBP = true : this.activeBP = false
 
+      this.loggedIn = true;
+    })
 
  this.base_url = this.crud.base_url;
-    if(localStorage.getItem('hash')){
-      this.loggedIn = true;
-    }
+    // if(localStorage.getItem('hash')){
+    //   this.loggedIn = true;
+    // }
   }
   logOut(){
 

@@ -19,7 +19,7 @@
     <nav *ngIf="loggedIn" class="main-menu align-self-stretch d-none d-lg-block">
       <ul class="nav d-flex align-items-center justify-content-end">
 
-        <li class="nav-item main-menu__item">
+        <li *ngIf="activeBP" class="nav-item main-menu__item">
           <a routerLink="/business-partner" class="nav-link main-menu__link"  pTooltip="کاربران من" tooltipPosition="bottom">
             <span class="main-menu__icon fas fa-desktop xxlg_font"></span>
           </a>
@@ -98,47 +98,9 @@
           alt="sidebar toggle icon">
       </a>
     </div>
-    <div class="d-lg-none mobile_sidebar bg-white" [ngClass]="{'open_sidebar': toggle}" style="z-index: 100;">
-      <app-mobile-sidebar></app-mobile-sidebar>
-      <div class="mobile_menu row justify-content-end align-items-end pr-3">
-        <div class="col-12 text-right mobile_menu_item">
-
-          <a href="/home" class="text-decoration-none d-flex align-items-center text-secondary  py-2">
-            <span class="d-flex align-items-center">
-              <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-            </span>
-            <span class="pr-2">
-              میز کار
-            </span>
-          </a>
-        </div>
-        <div class="col-12 text-right mobile_menu_item">
-          <a href="#" class="text-decoration-none d-flex align-items-center text-secondary py-2">
-            <span class="d-flex align-items-center">
-              <mat-icon aria-hidden="false" aria-label="Example home icon">notification_important</mat-icon>
-            </span>
-            <span class="pr-2">
-              اعلانات
-            </span>
-            <!-- <span>
-              <mat-icon style="position: absolute;top: 5px;" aria-hidden="false" aria-label="Example home icon">notification_important</mat-icon>
-            </span>
-            <span style="padding-right: 30px;">
-              اعلانات
-            </span> -->
-          </a>
-        </div>
-        <div class="col-12 text-right mobile_menu_item">
-          <a (click)="logOut()" href="#" class="text-decoration-none text-secondary py-2 d-flex align-items-center">
-            <span class="d-flex align-items-center">
-              <mat-icon aria-hidden="false" aria-label="Example home icon">exit_to_app</mat-icon>
-            </span>
-            <span class="pr-2">
-              خروج
-            </span>
-          </a>
-        </div>
-      </div>
+    <div class="d-lg-none mobile_sidebar bg-white" [ngClass]="{'open_sidebar': toggle}" style="z-index: 100; overflow-y: scroll;">
+      <!-- <app-mobile-sidebar></app-mobile-sidebar> -->
+      <app-sidebar></app-sidebar>
     </div>
     <div class="d-lg-none" [ngClass]="{sidebar_bg: toggle}" (click)="close_sidebar()"></div>
   </div>

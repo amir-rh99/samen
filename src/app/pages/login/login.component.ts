@@ -49,6 +49,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(data, login[data])
         }
         this.navbarService.setNavbarState(true);
+        if(login['role'] === 'businessPartner') {
+          this.navbarService.changeActiveBP(true)
+        } else {
+          this.navbarService.changeActiveBP(false)
+        }
         // this.loginService.loggedIn.next(true);
         this.route.navigateByUrl('/home');
       }

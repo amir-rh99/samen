@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs'
+import { BehaviorSubject, Subject } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { Subject } from 'rxjs'
 export class NavbarServiceService {
 
   constructor() { }
+   activeBP = new BehaviorSubject(null);
 
   private navState = new Subject<boolean>();
   navState$ = this.navState.asObservable();
@@ -20,5 +21,9 @@ export class NavbarServiceService {
 
   setTestRunnerState(state: boolean){
     this.testState.next(state)
+  }
+
+  changeActiveBP(data){
+    this.activeBP.next(data)
   }
 }
