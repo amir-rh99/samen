@@ -43,9 +43,10 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
           if (error.error instanceof ErrorEvent) {
             // console.error("Error Event");
           } else {
-            // console.log(`error status : ${error.status} ${error.statusText}`);
+            console.log(error);
+            if (error.url !== 'https://api.milogy.com/coupon/check') {
             switch (error.status) {
-              case 401: //login
+              case 401: //login 
                 this.UnauthorizedLogOut();
                 this.router.navigateByUrl("/auth/login");
                 break;
@@ -56,6 +57,7 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
                 case 404: 
                 this.router.navigateByUrl("/not-found")
             }
+          }
           }
         } else {
         //   console.error("some thing else happened");

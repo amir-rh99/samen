@@ -38,6 +38,9 @@ export class SidebarComponent implements OnInit {
       this.loggedIn = true;
       this.getData()
     })
+    if(localStorage.getItem('role') === 'businessPartner' || localStorage.getItem('role') === 'admin'){
+      this.activeBP = true;
+    }
     if(!localStorage.getItem('id')){
       this.loggedIn = false
     }

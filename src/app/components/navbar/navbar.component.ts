@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   loggedIn;
   testState;
   base_url;
-  userId = localStorage.getItem('id')
+  userId;
   activeBP: boolean = false;
 
   constructor(
@@ -49,9 +49,15 @@ export class NavbarComponent implements OnInit {
     this.navbarService.activeBP.subscribe(data=>{
       data ? this.activeBP = true : this.activeBP = false
 
+      this.userId = localStorage.getItem('id')
       this.loggedIn = true;
     })
-
+    if(localStorage.getItem('role') === 'businessPartner' || localStorage.getItem('role') === 'admin'){
+      this.activeBP = true;
+    }
+    if(!localStorage.getItem('id')){
+      this.loggedIn = false
+    }
  this.base_url = this.crud.base_url;
     // if(localStorage.getItem('hash')){
     //   this.loggedIn = true;

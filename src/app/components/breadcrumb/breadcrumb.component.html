@@ -2,7 +2,7 @@
     <ol class="breadcrumb">
         <!-- <li class="breadcrumb-item"><a>داشبورد</a></li> -->
         <li class="breadcrumb-item active" aria-current="page" *ngFor="let route of routePath; let i = index">
-            <a [ngClass]="{'text-secondary': i === routePath.length - 1}" [routerLink]="route.route">
+            <a class="mini_font md_normal_font" [ngClass]="{'text-secondary': i === routePath.length - 1}" [routerLink]="route.route">
                 {{
                     route.title
                 }}

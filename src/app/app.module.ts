@@ -75,6 +75,8 @@ import { GlobalHttpInterceptorService } from './services/GlobalHttpInterceptorSe
 import {InputTextModule} from 'primeng/inputtext';
 import { SendCommentComponent } from './components/comments/send-comment/send-comment.component';
 import { CommentBoxComponent } from './components/comments/comment-box/comment-box.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -130,7 +132,8 @@ import { CommentBoxComponent } from './components/comments/comment-box/comment-b
     MatMenuModule,
     TooltipModule,
     NgxTypedJsModule,
-    InputTextModule
+    InputTextModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,    useClass: GlobalHttpInterceptorService,    multi: true  },

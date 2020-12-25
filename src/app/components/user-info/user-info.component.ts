@@ -86,7 +86,7 @@ loadUserDetail(userId){
       if(this.localUserId !== this.userId){
       let bread = [
         {
-          title: `کاربر ${this.profileInfo.first_name}`,
+          title: `کاربر ${this.profileInfo.first_name ? this.profileInfo.first_name : 'بدون نام'}`,
           route: null
         }
       ]

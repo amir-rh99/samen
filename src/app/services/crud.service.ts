@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http'
 export class CRUDService {
 
   // base_url = 'http://api.hrplan.ir';
-  base_url = 'http://api.milogy.com';
+  base_url = 'https://api.milogy.com';
 
   constructor() { }
 

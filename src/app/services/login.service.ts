@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CRUDService } from './crud.service';
 import { HttpClient } from '@angular/common/http';
-
+import { businessPartner } from '../config'
 @Injectable({
   providedIn: 'root'
 })
@@ -22,13 +22,12 @@ export class LoginService {
   }
 
   
-  registerUser(nickname, username, email, password){
-    return this.http.post(`${this.crud.base_url}/users/register`,{
-      "email" : email,
-      "password" : password,
-      "username" : username,
-      "nickname" : nickname
-    },{
+  registerUser(userInfo){
+    let content = {
+      "bp": businessPartner,
+      "userInfo": userInfo
+    }
+    return this.http.post(`${this.crud.base_url}/bp/register`, content,{
       headers: this.crud.headers
     })
   }

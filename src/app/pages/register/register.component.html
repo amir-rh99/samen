@@ -5,11 +5,24 @@
   </div>
 
   <form class="text-right" (submit)="register($event)" [formGroup]="Register">
+    <div class="form-group">
+      <div class="mb-2">جنسیت</div>
+      <label class="container1">
+          آقا
+          <input type="radio" value="1" formControlName="sex" >
+          <span class="checkmark"></span>
+      </label>
 
+      <label class="container1 mr-3">
+          خانم
+          <input type="radio" value="2" formControlName="sex">
+          <span class="checkmark"></span>
+      </label>
+  </div>
     <div class="form-group">
       <input type="text" id="fname" class="form-control
                 register-form__text-input" placeholder="نام" (blur)="checkEmpty(fname.id, fname.value)" #fname
-        [ngClass]="{invalid: error.fname}" formControlName="fname">
+        [ngClass]="{invalid: error.fname}" formControlName="first_name">
 
       <label for="fname" class="inline-label">نام</label>
       <p class="register-form__warning-dialog" *ngIf="error.fname">نام اجباریست</p>
@@ -17,7 +30,7 @@
 
     <div class="form-group">
       <input type="text" id="lname" class="form-control
-                register-form__text-input" placeholder="نام خانوادگی">
+                register-form__text-input" formControlName="last_name" placeholder="نام خانوادگی">
 
       <label for="lname" class="inline-label">نام خانوادگی</label>
 
@@ -25,9 +38,11 @@
 
     <div class="form-group">
       <input type="tel" id="phone" class="form-control
-                register-form__text-input" placeholder="موبایل">
+                register-form__text-input" placeholder="موبایل" formControlName="mobile"
+                [ngClass]="{'invalid': Register.controls['mobile'].touched && Register.controls['mobile'].invalid}">
 
       <label for="phone" class="inline-label">موبایل</label>
+      <p class="register-form__warning-dialog" *ngIf="Register.controls['mobile'].touched && Register.controls['mobile'].invalid">موبایل اجباریست</p>
 
     </div>
 
@@ -65,6 +80,49 @@
 
 
     </div>
+
+    <!-- <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="form-group select-input-wrapper-birthDate">
+          <select name="birthYear" id="birthYear" class="my-custom-select col-12">
+              <option *ngFor="let i of [].constructor(100); let x = index" [value]=" x + 1301">
+                {{x + 1301}}
+              </option>
+          </select>
+          <label for="birthYear" class="inline-label">سال</label>
+      </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="form-group select-input-wrapper-birthDate">
+          <select name="birthMonth" id="birthMonth" class="my-custom-select col-12">
+              <option value="1">فروردین</option>
+              <option value="2">اردیبهشت</option>
+              <option value="3">خرداد</option>
+              <option value="4">تیر</option>
+              <option value="5">مرداد</option>
+              <option value="6">شهریور</option>
+              <option value="7">مهر</option>
+              <option value="8">آبان</option>
+              <option value="9">آذر</option>
+              <option value="10">دی</option>
+              <option value="11">بهمن</option>
+              <option value="12">اسفند</option>
+          </select>
+          <label for="birthMonth" class="inline-label">ماه</label>
+      </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="form-group select-input-wrapper-birthDate">
+          <select name="birthDay" id="birthDay" class="my-custom-select col-12">
+            <option *ngFor="let i of [].constructor(31); let x = index" [value]=" x + 1">
+              {{x + 1}}
+            </option>
+          </select>
+          <label for="birthDay" class="inline-label">روز</label>
+      </div>
+      </div>
+    </div> -->
+
 
     <div>
       <button type="submit" class="btn btn-warning mb-3 mb-md-0 position-relative" [disabled]="Register.invalid || disabledRegister">

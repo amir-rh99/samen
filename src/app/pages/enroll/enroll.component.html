@@ -144,8 +144,9 @@
       </div>
 
     <div class="col-3">
-      <button (click)="checkCoupon()" class="btn submit_btn_color w-100 h-100 text-secondary py-3">
+      <button [disabled]="disabledCoupon" (click)="checkCoupon()" class="btn position-relative submit_btn_color w-100 h-100 text-secondary py-3">
         ثبت کوپن
+        <app-btn-loading [content]="!disabledCoupon"></app-btn-loading>
       </button>
     </div>
     <div class="col-12 pt-2">
@@ -156,7 +157,7 @@
       </p>
     </div>
     </div>
-    <div class="row justify-content-center align-items-center pt-3">
+    <!-- <div class="row justify-content-center align-items-center pt-3">
       <div class="col-9 col-lg-6">
         <div class="form-group select-input-wrapper mb-0">
           <select name="country" id="country" class="my-custom-select col-12" #country>
@@ -175,7 +176,7 @@
           پرداخت
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light px-4 py-2 text-secondary" (click)="modal.close('Close click')">بستن</button>

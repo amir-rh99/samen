@@ -70,4 +70,9 @@ export class GetServicesService {
     })
   }
 
+  chackAvailibilityOfServiceForUser(moduleId){
+    return this.http.get(`${this.crud.base_url}/services/payed/${moduleId}`,{
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
 }

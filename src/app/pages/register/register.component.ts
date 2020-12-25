@@ -28,7 +28,9 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private navbarService: NavbarServiceService,
     private breadcrumbService: BreadcrumbService
-  ) { }
+  ) { 
+ 
+  }
 
 
   ngOnInit(): void {
@@ -37,28 +39,26 @@ export class RegisterComponent implements OnInit {
         title: 'noBread'
       }
     ]
-    this.breadcrumbService.updateRoute(bread)
+    this.breadcrumbService.updateRoute(bread);
   }
 emailCheck = false;
 userCheck = false;
   Register = this.formBuilder.group({
-    fname: ['',[Validators.required]],
+    first_name: ['',[Validators.required]],
+    last_name: [''],
     username: ['',[Validators.required]],
-    email: ['',[Validators.required, Validators.email],[this.emailCheck]],
-    password: ['',[Validators.required]]
+    email: ['',[Validators.required, Validators.email]],
+    password: ['',[Validators.required]],
+    sex: ['',Validators.required],
+    mobile: ['',Validators.required],
+    birth_date: ['1399-09-09 00:00:00', Validators.required]
   })
 
   register(event){
     this.disabledRegister = true;
-
-    event.preventDefault();
-    const target = event.target;
-    const firtname = target.querySelector('#fname').value;
-    const username = target.querySelector('#username').value;
-    const email = target.querySelector('#email').value;
-    const password = target.querySelector('#password').value;
-
-    this.registerService.registerUser(firtname, username, email, password).subscribe((register:any)=>{
+    // console.log(this.Register.value);
+    let info = this.Register.value;
+    this.registerService.registerUser(info).subscribe((register:any)=>{
       this.disabledRegister = true;
       if(register){
         for(let data in register){
@@ -66,6 +66,7 @@ userCheck = false;
         }
         this.navbarService.setNavbarState(true);
         this.route.navigateByUrl('/home');
+        location.reload()
       }
     }, err=>{
       this.disabledRegister = false;

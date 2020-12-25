@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~11.0.5",
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
+    "@angular/service-worker": "~11.0.5",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@types/bootstrap": "^4.5.0",
     "bootstrap": "^4.5.2",

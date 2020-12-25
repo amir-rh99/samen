@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { param } from 'jquery';
 import { GetServicesService } from 'src/app/services/get-services.service';
@@ -16,7 +16,7 @@ import { CouponService } from 'src/app/services/coupon.service';
   templateUrl: './enroll.component.html',
   styleUrls: ['./enroll.component.scss']
 })
-export class EnrollComponent implements OnInit {
+export class EnrollComponent implements OnInit, OnDestroy {
   moduleName;
   moduleId;
   enroll;
@@ -27,6 +27,7 @@ export class EnrollComponent implements OnInit {
   userId;
   likesNumber;
   isLike;
+  disabledCoupon : boolean = false;
   coupon = new FormControl('');
   public couponError: string = '';
   @ViewChild('moreContent') moreContent: ElementRef;
@@ -42,6 +43,9 @@ export class EnrollComponent implements OnInit {
     private modalService: NgbModal,
     private couponService: CouponService
   ) { }
+  ngOnDestroy(): void {
+    this.modalService.dismissAll()
+  }
 
   ngOnInit(): void {
     this.dialog = 'onLoad';
@@ -58,12 +62,17 @@ export class EnrollComponent implements OnInit {
     ]
     this.breadcrumbService.updateRoute(bread)
     this.getEnrollService();
-
   }
-
+  checkAvailibility(moduleId){
+    // this.getServices.chackAvailibilityOfServiceForUser(moduleId).subscribe(res=>{
+    //   console.log(res, " *availibility");
+      
+    // })
+  }
   getEnrollService(){
     const specificService = (enroll)=>{
-    
+      this.checkAvailibility(enroll.id);
+
       this.dialog = enroll.dialog;
       console.log(enroll, " ***enroll services");
       this.enroll = enroll;
@@ -129,17 +138,31 @@ openEnrollToServiceModal(modal){
     })
   }
   checkCoupon(){
+    this.disabledCoupon = true;
     console.log(this.coupon.value, this.enroll.id);
     let serial = this.coupon.value;
     if (serial === '') {
       this.couponError = "سریال کوپن را وارد کنید"
+      this.disabledCoupon = false;
+
     } else {
-      this.couponService.checkCoupon(serial, this.enroll.id).subscribe(res=>{
+      this.couponService.checkCoupon(serial, this.enroll.id).subscribe((res:any)=>{
+        this.disabledCoupon = false;
         console.log(res);
-        
+        if(!res.shouldPay){
+          this.useCoupon(serial,this.enroll.id)
+        }
       }, err=>{
+        this.disabledCoupon = false;
         this.couponError = err.error.error;
       })
     }
+  }
+  useCoupon(serial, moduleId){
+    this.couponService.useCoupon(serial,moduleId).subscribe(res=>{
+      console.log(res, " **res of use");
+      
+      this.enrollToService()
+    })
   }
 }
