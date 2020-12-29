@@ -29,6 +29,8 @@
         </th>
         <th class="headerTable" pSortableColumn="usedCoupon">کوپن مصرفی<p-sortIcon field="register_date"></p-sortIcon>
         </th>
+        <th class="headerTable" pSortableColumn="usedCoupon">پرونده کاربر<p-sortIcon field="register_date"></p-sortIcon>
+        </th>
         <th colspan="2" pSortableColumn="avatar">وضعیت سرویس ها <p-sortIcon field="avatar"></p-sortIcon>
         </th>
       </tr>
@@ -42,6 +44,9 @@
         <td class="dataTable">{{person.jalali_register_date}}</td>
         <td class="dataTable" title="{{person.usedCoupon}}">{{person.usedCouponShort}}
           {{person.usedCoupon === person.usedCouponShort ? "" : "..."}}</td>
+          <td class="dataTable" style="text-align: center !important;">
+            <a [routerLink]=" '/business-partner/record/' + person.id " class="far fa-folder-open xlg_font text-decoration-none"></a>
+          </td>
         <td colspan="2" class="text-right">
           <a *ngFor="let service of services" style="padding: 0 1px;" routerLink="/{{service.route}}/result/{{person.id}}" pTooltip="{{service.title}}"
             tooltipPosition="top" [ngClass]="{'not-active': !check(service.id, person.passedArray)}">

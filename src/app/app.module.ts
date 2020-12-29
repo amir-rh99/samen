@@ -77,6 +77,7 @@ import { SendCommentComponent } from './components/comments/send-comment/send-co
 import { CommentBoxComponent } from './components/comments/comment-box/comment-box.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { RecordComponent } from './pages/record/record.component';
 
 
 @NgModule({
@@ -116,6 +117,7 @@ import { environment } from '../environments/environment';
    NotificationsComponent,
    SendCommentComponent,
    CommentBoxComponent,
+   RecordComponent,
   ],
   imports: [
     BrowserModule,

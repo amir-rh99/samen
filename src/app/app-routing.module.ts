@@ -16,6 +16,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { BusinessPartnerComponent, NotFoundComponent } from './pages';
+import { RecordComponent } from './pages/record/record.component';
 
 const routes: Routes = [
   {
@@ -63,9 +64,14 @@ const routes: Routes = [
         component: ServicesComponent
       },
       {
+        path: 'business-partner/record/:userId',
+        component: RecordComponent
+      },
+      {
         path: ':moduleName',
         component: EnrollComponent
       },
+
       {
         path: ':moduleName',
         // component: ResultComponent,
