@@ -24,6 +24,12 @@ export class GetServicesService {
     })
   }
 
+  getServicesForBp(userId){
+    return this.http.get(`${this.auth.base_url}/services/status/${userId}`,{
+      headers: this.crud.headers.set('x-auth',localStorage.getItem('hash'))
+    })
+  }
+
   getSpecificService(moduleName, callback){
     this.http.get(`${this.auth.base_url}/services/module/${moduleName}`,
     {

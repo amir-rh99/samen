@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CRUDService } from './crud.service';
 import { HttpClient } from '@angular/common/http';
-
+import { businessPartner } from '../config'
 @Injectable({
   providedIn: 'root'
 })
@@ -45,7 +45,13 @@ export class GeuUserDataService {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
   }
-
+  // bp/assessments-summary/$userID
+  getBpSummary(userId){
+    return this.http.get(`${this.crud.base_url}/bp/assessments-summary/${userId}`,
+    {
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
   getUserPic(userId){
     if(userId === null){
       userId = localStorage.getItem('id')

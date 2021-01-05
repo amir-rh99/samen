@@ -1,1 +1,55 @@
-<p>record works!</p>
+<app-dialog [content]="dialog"></app-dialog>
+<div class="services col-12">
+    <h6 class="services__title">
+      <i class="fa fa-map-o" aria-hidden="true"></i>
+      وضعیت سرویس های: {{nickname}}
+    </h6>
+    <hr>
+    <app-loading [content]="services"></app-loading>
+  
+  <section *ngIf="services">
+    <div class="row">
+
+      <div class="col-6 col-md-3 text-center">
+        <div class="service-card">
+          <div class="text-center service-card__title">
+            <a routerLink="/business-partner/managerial/{{userId}}">
+              خلاصه مدیریتی
+            </a>
+          </div>
+  
+          <div class="image-wrapper text-center">
+            <a routerLink="/business-partner/managerial/{{userId}}">
+                <img src="../../../assets/images/prof_1.png"
+                  class="service-card__image " alt="service-icon">
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-6 col-md-3 text-center" *ngFor="let service of services">
+  
+        <div class="service-card">
+          <div class="text-center service-card__title">
+            <a routerLink="/{{service.route}}/result/{{userId}}">
+              {{service.title}}
+            </a>
+          </div>
+          <div class="image-wrapper text-center">
+            <a *ngIf="service.route" routerLink="/{{service.route}}/result/{{userId}}">
+              <img *ngIf=" service?.serviceStatus?.length === 0 || service.serviceStatus[service.serviceStatus.length - 1]?.status == 1; else otherImage" src="{{base_url + service.icon}}"
+                class="service-card__image rounded-circle  rounded-circle service-card__image--disable" alt="service-icon">
+              <ng-template #otherImage>
+                <img src="{{base_url + service.icon}}"
+                  class="service-card__image" alt="service-icon">
+              </ng-template>
+            </a>
+          </div>
+          <!-- <p class="service-card__description">
+            {{service.slogan}} ...
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>

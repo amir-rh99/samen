@@ -68,6 +68,10 @@ const routes: Routes = [
         component: RecordComponent
       },
       {
+        path: 'business-partner/managerial/:userId',
+        component: ResultComponent
+      },
+      {
         path: ':moduleName',
         component: EnrollComponent
       },
@@ -83,7 +87,8 @@ const routes: Routes = [
           {
             path: 'result/:userId',
             component: ResultComponent
-          }
+          }, 
+
         ]
       },
       {

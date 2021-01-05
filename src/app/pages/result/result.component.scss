@@ -28,7 +28,7 @@ td > img{
 }
 
 .wrapper .row:nth-child(even) .text-container {
-    order: -50;
+    order: -50 !important;
 }
 
 .wrapper .row:nth-child(odd) .text-container {
@@ -109,4 +109,8 @@ td > img{
     .share-links__icon {
         font-size: 20px;
     }
+}
+
+.header_color{
+    color: #5a7391 !important;
 }

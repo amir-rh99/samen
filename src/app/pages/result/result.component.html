@@ -3,13 +3,35 @@
   <app-loading [content]="result"></app-loading>
 
   <section *ngIf="result">
-    <div *ngFor="let result of result.text.answer" class="row">
-      <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' else ChartDiv ">
-        <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
+    <div *ngIf="!managerial">
+      <div *ngFor=" let result of result.text.answer" class="row">
+        <div class="image__container col-auto d-none d-md-block" *ngIf="result.title !== 'CHART' else ChartDiv ">
+          <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
+        </div>
+  
+        <div class="col text-container text-right text-secondary" innerHtml="{{result.text}}"
+          *ngIf="result.title !== 'CHART' ">
+  
+        </div>
       </div>
-
-      <div class="col text-container text-right text-secondary" innerHtml="{{result.text}}"
-        *ngIf="result.title !== 'CHART' ">
+    </div>
+    <div *ngIf="managerial" class="row">
+      <div *ngFor=" let module of result.data" class="col-12">
+        <h6 class="header_color row">
+          <strong>
+            نتایج مدیریتی آزمون : {{module.title}}
+          </strong>
+        </h6>
+        <div *ngFor="let result of module.results" class="row">
+          <div class="image__container col-auto d-none d-md-block" *ngIf="result?.title !== 'CHART' else ChartDiv ">
+            <img src="../../../assets/images/prof_1.png" alt="" style="width: 120px;">
+          </div>
+    
+          <div class="col text-container text-right text-secondary" innerHtml="{{result}}"
+            >
+    
+          </div>
+        </div>
 
       </div>
     </div>
