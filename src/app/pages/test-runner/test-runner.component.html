@@ -1,7 +1,7 @@
 <!-- <section class="main-section"> -->
 <!-- <div class="container"> -->
 <div class="progress " style="height: 3px; direction: ltr;border-radius: 50px 50px 0 0;">
-  <div class="progress-bar bg-secondary" role="progressbar" style="width: {{percent}}%;"
+  <div class="progress-bar bg-secondary" role="progressbar" [ngStyle]="{'width': percent + '%'}"
     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <div class="question" [ngClass]="{beforeLoad: !questions}">
@@ -12,7 +12,7 @@
     <header class="question__header">
       <img src="../../../assets/images/prof_1.png" class="professor__avatar" alt="professor avatar">
 
-      <h1 class="question__title text-right">
+      <h1 class="question__title text-right normal_font  lg_lg_font" style="line-height: 32px;">
         {{questions.questions[questionId].question.title}}
       </h1>
 
@@ -25,7 +25,7 @@
 
       <div class="col-12">
         <div *ngFor="let choice of choices; let i = index">
-          <label class="container1">
+          <label class="container1 mini_font md_normal_font" style="line-height: 25px;">
             {{questions.questions[questionId].choices[i].title}}
             <input type="radio" [value]="questions.questions[questionId].choices[i].id" formControlName="choice"
               id="radio{{choice.id}}">
@@ -36,7 +36,7 @@
     </div>
 
     <footer class="question__footer text-center">
-      <div class="col-3 question__counter">
+      <div class="col-3 question__counter mini_font md_normal_font">
         {{questionId}}
         از
         {{total}}
@@ -59,7 +59,7 @@
       </div>
 
       <div class="col-3 p-0">
-        <a routerLink="/{{moduleName}}" class="question__later-button text-decoration-none">
+        <a routerLink="/{{moduleName}}" class="question__later-button text-decoration-none mini_font md_normal_font">
           بعدا ادامه میدم
         </a>
       </div>

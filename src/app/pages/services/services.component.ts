@@ -45,7 +45,7 @@ export class ServicesComponent implements OnInit {
           service.slogan = service.slogan.substr(0, 14)
         }
       })
-      console.log(this.services, " serviiiices");
+      console.log(this.services, " serviiiices**");
     }
     if(this.getServices.services == null ){
       this.getServices.getServices(this.userId, ()=>{

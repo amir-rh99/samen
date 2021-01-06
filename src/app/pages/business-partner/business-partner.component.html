@@ -1,6 +1,6 @@
 <div class="d-none d-lg-block">
 
-  <p-table #dt class="table" [value]="usersList" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+  <p-table #dt class="table" [value]="usersList" dataKey="id" [rows]="20" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="[5,10,25,50,100]" styleClass="p-datatable-customers p-datatable-striped" [paginator]="true"
     pageLinkSize="3" currentPageReportTemplate="کاربران {first} تا {last} از {totalRecords}  کاربر" [filterDelay]="0"
     [globalFilterFields]="['first_name','last_name','mobile','passedServices']">
@@ -62,7 +62,7 @@
 </div>
 
 <div class="d-lg-none">
-  <p-table [value]="usersList" #dt2 class="table" [value]="usersList" dataKey="id" [rows]="5"
+  <p-table [value]="usersList" #dt2 class="table" [value]="usersList" dataKey="id" [rows]="20"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]"
     styleClass="p-datatable-customers p-datatable-striped" [paginator]="true"
     currentPageReportTemplate="کاربران {first} تا {last} از {totalRecords}  کاربر" [filterDelay]="0"
@@ -93,9 +93,11 @@
     <ng-template pTemplate="body" let-person let-expanded="expanded">
       <tr>
         <td>
-          <button type="button" pButton pRipple [pRowToggler]="person"
-            class="p-button-text p-button-rounded p-button-plain"
-            ></button>
+          <button type="button" pButton pRipple [pRowToggler]="person" style="border-radius: 50%; position: relative; left: 5px;"
+            class="p-button-text p-button-rounded p-button-plain btn p-0 toggle_btn"
+            >
+            <mat-icon class="normal_font d-flex justify-content-center align-items-center" style="cursor: pointer">keyboard_arrow_down</mat-icon>
+          </button>
         </td>
         <td class="dateTableRes">{{person.first_name}}</td>
         <td class="dateTableRes">{{person.last_name}}</td>

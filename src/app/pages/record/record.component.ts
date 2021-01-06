@@ -70,13 +70,6 @@ export class RecordComponent implements OnInit {
           service.slogan = service.slogan.substr(0, 14)
         }
       })
-      let service = {
-        title: 'خلاصه مدیریتی' ,
-        route: '',
-        icon: null
-      }
-      // this.services.unshift(service)
-      console.log(this.services, " serviiiices");
 
     })
   }

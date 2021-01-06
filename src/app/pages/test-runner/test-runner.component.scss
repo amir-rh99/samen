@@ -142,19 +142,39 @@ background-color: #777;
     label.container1 {
         margin-bottom: 0px;
     }
+
+    .question__next-button {
+        line-height: 70px;
+    }
+
+    .question__counter {
+        line-height: 70px;
+
+    }
+
+    .question__later-button {
+        line-height: 70px;
+
+    }
 }
 
 @media (max-width: 576px) {
     .question__next-button {
         font-size: 15px;
+        line-height: 60px;
+
     }
 
     .question__counter {
         font-size: 15px;
+        line-height: 60px;
+
     }
 
     .question__later-button {
         font-size: 13px;
+        line-height: 60px;
+
     }
 }
 
