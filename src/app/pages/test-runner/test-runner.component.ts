@@ -49,29 +49,43 @@ export class TestRunnerComponent implements OnInit {
       this.moduleName = param.get('moduleName');
       this.getServices.getSpecificServiceForTestRunner(this.moduleName).subscribe((service:any)=>{
         this.getUserData.getUserEnrollforService(this.userId, service.id).subscribe((Res:any)=>{
-          this.enrollId = +Res.enrolls[Res.enrolls.length - 1].id;
-          console.log(Res);
-          console.log(this.enrollId);
           
-          if(localStorage.getItem(this.enrollId)){
-            //////////
-            let exist = JSON.parse(localStorage.getItem(this.enrollId));
-            this.questionId = exist.length + 1;
-          } else {
-            localStorage.setItem(this.enrollId, '[]');
-            this.questionId = 1;
-            this.percent = 0.5;
+          const enrolls = (Res)=>{
+            console.log(Res);
+            this.enrollId = Res.enrolls ?  +Res.enrolls[Res.enrolls?.length - 1]?.id : +Res.id;
+            console.log(this.enrollId);
+            
+            if(localStorage.getItem(this.enrollId)){
+              //////////
+              let exist = JSON.parse(localStorage.getItem(this.enrollId));
+              this.questionId = exist.length + 1;
+            } else {
+              localStorage.setItem(this.enrollId, '[]');
+              this.questionId = 1;
+              this.percent = 0.5;
+            }
+            this.getServices.getFullStructure(this.moduleName).subscribe((questions:any)=>{
+              this.questions = questions;
+              this.choices = this.questions.questions[this.questionId].choices;
+              this.total = Object.keys(this.questions.questions).length;
+              console.log(this.choices);
+              this.percent = ((this.questionId)/(this.total)*100);
+              console.log(this.questions);
+  
+            })
+            
           }
-          this.getServices.getFullStructure(this.moduleName).subscribe((questions:any)=>{
-            this.questions = questions;
-            this.choices = this.questions.questions[this.questionId].choices;
-            this.total = Object.keys(this.questions.questions).length;
-            console.log(this.choices);
-            this.percent = ((this.questionId)/(this.total)*100);
-            console.log(this.questions);
+          // اینجا اینطوری نوشتم که اگه یارو یه جای دیگه کوپن زده و بود انرول نکرده بود روی سرویسه وقتی اومد توی تست رانر
+          // میبنیم که انرول نداره... پس براش انرول میکنیم همینجا... ما فقط یکجا انرول میکردیم و اونم توی انرول بود
+          if(Res.enrolls.length == 0){
+            this.getServices.enrollToService(this.moduleName, this.userId).subscribe(res=>{
+              console.log(res, " **res enroll");
+              enrolls(res);
+            })
+          } else {
+            enrolls(Res);
+          }
 
-          })
-          
         })
       })
     })

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CRUDService } from 'src/app/services/crud.service';
+import { GetServicesService } from 'src/app/services/get-services.service';
 import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
 import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 import { UserDataService } from 'src/app/services/userData.service';
@@ -23,15 +24,20 @@ export class SidebarComponent implements OnInit {
   public medals;
   public birthdates;
   activeBP: boolean = false;
+  public bpInfo: any;
   constructor(
     public getUserData: GeuUserDataService,
     private crud: CRUDService,
     private userDataService: UserDataService,
     private navbarService: NavbarServiceService,
-    private route: Router
+    private route: Router,
+    private getServices: GetServicesService
   ) { }
 
   ngOnInit(): void {
+    this.getServices.bpInfo.subscribe((bpInfo)=>{
+      this.bpInfo = bpInfo;
+    })
     this.navbarService.activeBP.subscribe(data=>{
       data ? this.activeBP = true : this.activeBP = false
 

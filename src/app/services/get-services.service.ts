@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { CRUDService } from './crud.service';
-
+import { businessPartner } from '../config'
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { CRUDService } from './crud.service';
 export class GetServicesService {
   public services;
   public specificService: {}[] = [];
+  bpInfo = new BehaviorSubject(null);
   constructor(
     private auth: AuthService,
     private http: HttpClient,
@@ -79,6 +81,14 @@ export class GetServicesService {
   chackAvailibilityOfServiceForUser(moduleId){
     return this.http.get(`${this.crud.base_url}/services/payed/${moduleId}`,{
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
+
+  getBpInfo(){
+    this.http.get(`${this.crud.base_url}/bp/${businessPartner}/name`,{
+      headers: this.crud.headers
+    }).subscribe(res=>{
+      this.bpInfo.next(res);
     })
   }
 }

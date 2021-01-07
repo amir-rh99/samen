@@ -30,6 +30,9 @@
 
 .service-card__title {
     margin-bottom: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .service-card__title a {
@@ -75,4 +78,245 @@
         padding: 13px 20px;
         font-size: 0.85rem;
     }
+}
+
+.copoun_header h5 {
+    color:#5a7391;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: 100;
+    align-self: center;
+}
+
+//@at-root/* برای چک‌باکس */
+.container1 {
+    display: block;
+    position: relative;
+    padding-right: 3rem;
+    padding-top: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #5f5f5f;
+    display: inline-block;
+    font-weight: 500;
+}
+  
+/* Hide the browser's default radio button */
+.container1 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+  
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+
+    margin: 3px;
+}
+  
+/* On mouse-over, add a grey background color */
+.container1:hover input ~ .checkmark {
+    background-color: #00bff3;
+}
+
+/* When the radio button is checked, add a blue background */
+.container1 input:checked ~ .checkmark {
+    background-color: #00bff3;
+}
+  
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container1 input:checked ~ .checkmark:after {
+    display: block;
+}
+  
+/* Style the indicator (dot/circle) */
+.container1 .checkmark:after {
+    left: 11px;
+    top: 6px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* for text-inputs */
+
+.input-wrapper {
+    // margin-bottom: 24px;
+    position: relative;
+}
+
+input.text-input {
+    text-align: right;
+    padding-right: 150px;
+    padding-left: 16px;
+    font-weight: 500;
+}
+
+input.text-input::placeholder {
+    color: rgb(155, 152, 152);
+}
+
+.form-control {
+    padding: 22px;
+    background-color: #f5f8fa;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.login-form__warning-dialog {
+    color: #a94442;
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.inline-label {
+    text-align: center;
+    color: #5f5f5f;
+    
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 140px;
+    height: 100%;
+    padding: 10px;
+
+    font-size: 16px;
+    font-weight: 300;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.text-input:focus + .inline-label,
+.my-custom-select:focus + .inline-label {
+    background-color: #00bff3;
+    color: #fff;;
+}
+
+.text-input.invalid:focus + .inline-label {
+    background-color: #a94442;
+    color: #fff;;
+}
+
+.text-input.invalid {
+    border: 1px solid #a94442;
+}
+
+.text-input.invalid:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+
+.placeholder-right.text-input::placeholder {
+    text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+    .inline-label {
+        width: 100px;
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    input.text-input {
+        padding-right: 80px;
+    }
+}
+
+input.email::placeholder {
+    text-align: right;
+}
+
+.save-button,
+.save-button:hover {
+    color: #fff;
+    background-color: #14b9d6;
+}
+
+.text-input[disabled] {
+    cursor: not-allowed;
+}
+
+.select-input-wrapper {
+    position: relative;
+}
+
+.select-input-wrapper::after {
+    content: "\e919";
+    font-size: 31px;
+    font-family: "icomoon";
+    color: #aaa;
+    left: 16px;
+    top: 1px;
+    padding: 0 20px;
+    border-right: 1px solid #ddd;
+    position: absolute;
+    pointer-events: none;
+}
+
+.my-custom-select {
+    line-height: 46px;
+    font-size: 16px;
+    direction: rtl;
+    height: 46px;
+    background-color: #f5f8fa;
+    padding: 0;
+    padding-right: 140px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+}
+
+.my-custom-select:focus {
+    outline: none;
+}
+
+#file-label::after {
+    content: 'بارگذاری تصویر';
+    background-color: #00bff3;
+    color: #fff;
+}
+
+.custom-file-label::placeholder {
+    color: #aaa;
+}
+
+select:disabled{
+    background-color: #dddddd;
+    border: 1px solid #ebebeb;
+    cursor: not-allowed;;
+}
+.submit_btn_color {
+    background-color: #f0f0f0;
 }

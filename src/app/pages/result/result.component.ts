@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { param } from 'jquery';
 import { GetServicesService } from 'src/app/services/get-services.service';
-
 import { Chart } from 'chart.js'
-import * as moment from 'moment';
+// import * as moment from 'moment';
 import { UserDataService } from 'src/app/services/userData.service';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
+import moment from 'moment';
+import data from '../../../assets/translate.json'
 
 @Component({
   selector: 'app-result',
@@ -39,6 +40,7 @@ export class ResultComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    
     this.managerial = false;
     this.dialog = "onLoad";
     let bread = [
@@ -153,6 +155,13 @@ export class ResultComponent implements OnInit,OnDestroy {
       if(answer.title === "CHART"){
         this.myChart = answer;
         // console.log(this.myChart, " my chart");
+
+        for(let [index,label] of this.myChart.labels.entries()){
+          // console.log(label, " ***label"); 
+          // console.log(data.data[label], " ***label"); 
+          this.myChart.labels[index] = data.data[label]
+        }
+        
         for (let key in this.myChart.chart){
           this.myData.push(this.myChart.chart[key])
         }

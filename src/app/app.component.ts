@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, group, query, style, animate} from '@angular/animations'
 import { Router, NavigationEnd } from '@angular/router'
+import { GeuUserDataService } from './services/geu-user-data.service';
+import { GetServicesService } from './services/get-services.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -47,10 +49,14 @@ import { Router, NavigationEnd } from '@angular/router'
 //   ])
 export class AppComponent implements OnInit {
   title = 'Samen';
-  constructor(private router: Router){
+  constructor(
+    private router: Router,
+    private getServices: GetServicesService
+    ){
 
   }
   ngOnInit(){
+    this.getServices.getBpInfo();
     this.router.events.subscribe(event=>{
       if(!(event instanceof NavigationEnd)){
         return;

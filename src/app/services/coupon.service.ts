@@ -18,18 +18,40 @@ checkAvailibilityOfServiceForUser(serviceId){
   })
 }
 checkCoupon(serial, serviceId){
-  return this.http.put(`${this.crud.base_url}/coupon/check`,{
-    "serial" : serial,
-    "service_id" : serviceId
-  },{
+  let url;
+  let content;
+  if(serviceId){
+    url = `${this.crud.base_url}/coupon/check`;
+    content = {
+      "serial" : serial,
+      "service_id" : serviceId
+    }
+  } else {
+    url = `${this.crud.base_url}/coupon/check-info`;
+    content = {
+      "serial" : serial,
+    }
+  }
+  return this.http.put(url,content,{
     headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
   })
 }
 useCoupon(serial, serviceId){
-  return this.http.put(`${this.crud.base_url}/coupon/use`,{
-    "serial" : serial,
-    "service_id" : serviceId
-  },{
+  let url;
+  let content;
+  if(serviceId){
+    url = `${this.crud.base_url}/coupon/use`;
+    content = {
+      "serial" : serial,
+      "service_id" : serviceId
+    }
+  } else {
+    url = `${this.crud.base_url}/coupon/use-all`;
+    content = {
+      "serial" : serial,
+    }
+  }
+  return this.http.put(url,content,{
     headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
   })
 }

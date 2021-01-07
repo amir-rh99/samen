@@ -65,6 +65,8 @@ userCheck = false;
           localStorage.setItem(data,register[data])
         }
         this.navbarService.setNavbarState(true);
+        localStorage.getItem('showBpCoupon'+ register['id']) ? '' :  localStorage.setItem('showBpCoupon'+ register['id'], 'yes')
+
         this.route.navigateByUrl('/home');
         location.reload()
       }

@@ -1,5 +1,52 @@
 <app-dialog [content]="dialog"></app-dialog>
+<section class="services col-12" *ngIf="showBpCoupon === 'no'">
+    <!-- <h3 class="services__title">
+        <i class="fa fa-map-o" aria-hidden="true"></i>
+        سرویس‌ها
+    </h3> -->
+    <!-- <app-loading [content]="services"></app-loading> -->
 
+    <div class="row align-items-center">
+        <img class="col-3" src="../../../assets/images/prof_1.png" alt="prof-avatar">
+        <div class="col-9 element text-justify copoun_header">
+            <div class="row px-3">
+                <h5 class="py-3 mini_font md_normal_font">
+                    در صورتی که از سازمان یا موسسه‌ای به میلوژی معرفی شدید، یک کد برای استفاده از خدمات میلوژی به شما داده شده است. لطفا کد را در کادر زیر وارد کنید:
+                </h5>
+                <div class="col-12 px-0 py-3">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="input-wrapper ">
+                              <input type="text" id="lname"
+                                class="form-control text-input"
+                                autocomplete="off" [formControl]="coupon">
+                      
+                              <label for="lname" class="inline-label">کوپن</label>
+                          </div>
+                          </div>
+                    
+                        <div class="col-3">
+                          <button [disabled]="disabledCoupon" (click)="checkCoupon()" class="btn  bg_main_blue_color position-relative w-100 h-100 py-2 text-white">
+                            ثبت کوپن
+                            <app-btn-loading [content]="!disabledCoupon"></app-btn-loading>
+                          </button>
+                        </div>
+                        <div class="col-12 pt-2">
+                            <p *ngIf="couponError" class="text-center alert-danger py-3">
+                              <strong>
+                                {{couponError}}
+                              </strong>
+                            </p>
+                          </div>
+                    </div>
+         
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</section>
 <section class="services col-12">
 
     <h3 class="services__title">
@@ -13,7 +60,7 @@
         <div *ngFor = "let service of services" class="col-6 col-md-3 text-center">
 
             <div class="service-card">
-                <div class="text-center service-card__title ">
+                <div class="text-center service-card__title " [pTooltip]="service.title" tooltipPosition="top">
                     <a class="mini_font sm_lg_font" routerLink="/{{service.route}}">
                         {{service.title}}
                     </a>
@@ -29,16 +76,27 @@
                 <p class="service-card__description">
                     {{service.slogan}} ...
                 </p>
-    
-                <button routerLink="../{{service.route}}" *ngIf = "service.serviceStatus.length == 0" class="btn service-card__button">
+
+                <button routerLink="../{{service.route}}" *ngIf="service.price != 0 && serviceStatus(service.serviceStatus,service.serviceActivePayment) == 1" class="btn service-card__button">
                     انجامش میدم
                 </button>
-                <button routerLink="../{{service.route}}/step" *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 1)" class="btn service-card__button" >
-                    ادامه میدم
+                <button routerLink="../{{service.route}}/step" *ngIf="service.price == 0 || serviceStatus(service.serviceStatus,service.serviceActivePayment) == 2" class="btn bg_main_green_color service-card__button" >
+                    {{
+                        service.serviceStatus.length === 0 ? 'انجامش میدم' : 'ادامه میدم'
+                    }}
                 </button>
-                <button routerLink="../{{service.route}}/result" *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 2)" class="btn service-card__button">
+                <button routerLink="../{{service.route}}/result" *ngIf="serviceStatus(service.serviceStatus,service.serviceActivePayment) == 3" class="btn bg_main_yellow_color  service-card__button">
                     مشاهده نتایج
                 </button>
+                <!-- <button routerLink="../{{service.route}}" *ngIf = "service.serviceStatus.length == 0" class="btn service-card__button">
+                    انجامش میدم
+                </button>
+                <button routerLink="../{{service.route}}/step" *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 1)" class="btn bg_main_green_color service-card__button" >
+                    ادامه میدم
+                </button>
+                <button routerLink="../{{service.route}}/result" *ngIf = "(service.serviceStatus.length != 0 && +service.serviceStatus[service.serviceStatus.length - 1].status == 2)" class="btn bg_main_yellow_color  service-card__button">
+                    مشاهده نتایج
+                </button> -->
 
             </div>            
         </div>

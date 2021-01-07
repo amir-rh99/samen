@@ -75,7 +75,7 @@
 
   <section *ngIf="!loggedIn" class="px-3">
     <div class="col-12 d-flex justify-content-center">
-      <img src="../../../assets/images/prof_1.png" alt="your avatar" class="about-me__avatar rounded-circle">
+      <img [src]="base_url + bpInfo?.businessPartnerLogo" alt="your avatar" class="about-me__avatar rounded-circle">
     </div>
 
     <div class="text-justify">
@@ -211,7 +211,7 @@
   </section>
   <section *ngIf="!loggedIn" class="px-3">
     <div class="col-12 d-flex justify-content-center">
-      <img src="../../../assets/images/prof_1.png" alt="your avatar" class="about-me__avatar rounded-circle">
+      <img [src]="base_url + bpInfo?.businessPartnerLogo" alt="your avatar" class="about-me__avatar rounded-circle">
     </div>
 
     <div class="text-justify">

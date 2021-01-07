@@ -101,6 +101,8 @@ export class EnrollComponent implements OnInit, OnDestroy {
 
       this.uses = JSON.parse(enroll.uses);
       this.getUserData.getUserEnrollforService(this.userId, enroll.id).subscribe((userEnroll:any)=>{
+        console.log(userEnroll, " *user Enroll");
+        
         this.userEnroll = userEnroll;
       })
     }

@@ -1,7 +1,10 @@
 .landingImage{
     width: 400px;
 }
-
+.banner_image{
+    background-image: url('../../../assets/images/banner-1571858_1920.jpg');
+    height: 400px;
+}
 @media screen and (max-width: 576px){
     .landingImage{
         width: 210px;

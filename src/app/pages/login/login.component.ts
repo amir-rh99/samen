@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
           this.navbarService.changeActiveBP(false)
         }
         // this.loginService.loggedIn.next(true);
+        localStorage.getItem('showBpCoupon'+ login['id']) ? '' :  localStorage.setItem('showBpCoupon'+ login['id'], 'yes')
+
         this.route.navigateByUrl('/home');
         location.reload()
       }
