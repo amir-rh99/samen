@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CRUDService } from 'src/app/services/crud.service';
 
-import * as moment from 'moment';
+import  moment from 'moment';
 import 'moment/min/locales'
 moment.locale('fa'); 
 

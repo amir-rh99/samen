@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,6 +35,7 @@ export class RecordComponent implements OnInit {
 
     this.loadServices();
     this.loadUser();
+    this.getRecords();
   } 
   loadUser(){
     let bread = [
@@ -74,4 +76,15 @@ export class RecordComponent implements OnInit {
     })
   }
 
+  public recordsList: any;
+  getRecords(){
+    this.getUserService.getRecordBp(this.userId).subscribe((res:any)=>{
+      console.log(res, " ****user records")
+      this.recordsList = res.data;
+    })
+  }
+  textComment = new FormControl('');
+  sendComment(){
+
+  }
 }

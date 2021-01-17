@@ -70,4 +70,16 @@ export class GeuUserDataService {
       headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
     })
   }
+
+  getRecordBp(userId){
+    return this.http.get(`${this.crud.base_url}/bp/records?filter[userID]=${userId}`,{
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
+
+  sendAdminCommentToRecord(content){
+    return this.http.post(`${this.crud.base_url}/bp/records`,content,{
+      headers: this.crud.headers.set('x-auth', localStorage.getItem('hash'))
+    })
+  }
 }

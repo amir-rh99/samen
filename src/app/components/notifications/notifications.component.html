@@ -3,7 +3,7 @@
   <a class="nav-link main-menu__link " pTooltip="اعلانات" tooltipPosition="bottom">
     <img class="main-menu__icon" src="../../../assets/images/svg-icons/globe.svg" alt="logout icon">
     <span class="main-menu__badge rounded-circle" style="background-color: #14b9d6">
-      {{unreadNotif}}
+      {{myNotifs.length}}
     </span>
   </a>
 
@@ -20,11 +20,11 @@
         هیچ خبر تازه‌ای نیست
       </div>
     </div>
-    <div *ngIf="userNotifs" style="max-height: 175px; overflow-y: scroll; overflow-x: hidden;margin-bottom: 60px;">
-      <div *ngFor="let notif of myNotifs" style="border-bottom: 1px solid #ddd;">
+    <div *ngIf="myNotifs.length !== 0" style="max-height: 175px; overflow-y: scroll; overflow-x: hidden;margin-bottom: 60px;">
+      <div *ngFor="let notif of myNotifs" [routerLink]="notif.type === 'Result' ? '/' + notif.data?.data?.module_name + '/result' : '' " style="border-bottom: 1px solid #ddd;">
         <div class="row px-3 py-1">
           <div class="col-2">
-            <img width="40px" class="rounded-circle" src="{{base_url}}/users/{{notif.source_id}}/avatar">
+            <img width="40px" class="rounded-circle" [src]=" notif.type === 'Result' ? base_url + notif.data?.data?.icon : base_url + '/users/ '+ notif.dest_id + '/avatar'">
           </div>
           <div class="col-10 text-right">
             <div class="row">

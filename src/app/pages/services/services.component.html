@@ -80,7 +80,7 @@
                 <button routerLink="../{{service.route}}" *ngIf="service.price != 0 && serviceStatus(service.serviceStatus,service.serviceActivePayment) == 1" class="btn service-card__button">
                     انجامش میدم
                 </button>
-                <button routerLink="../{{service.route}}/step" *ngIf="service.price == 0 || serviceStatus(service.serviceStatus,service.serviceActivePayment) == 2" class="btn bg_main_green_color service-card__button" >
+                <button routerLink="../{{service.route}}/step" *ngIf="(service.price == 0 && !(serviceStatus(service.serviceStatus,service.serviceActivePayment) == 3)) || serviceStatus(service.serviceStatus,service.serviceActivePayment) == 2" class="btn bg_main_green_color service-card__button" >
                     {{
                         service.serviceStatus.length === 0 ? 'انجامش میدم' : 'ادامه میدم'
                     }}

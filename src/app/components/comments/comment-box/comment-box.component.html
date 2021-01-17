@@ -2,23 +2,24 @@
     <div class="col-12">
         <div class="row comment_container">
             <div class="d-none d-md-block col-md-1">
-                <img [routerLink]=" comment.user_id !== '0' ? '/users/' + comment.user_id + '/profile' : '' " style="cursor: pointer;" class="userProfile rounded-circle" [src]=" comment.user_id !== '0' ? base_url + '/users/' + comment.user_id + '/avatar': '../../../assets/images/prof_1.png' ">
+                <img [routerLink]=" comment.user_id !== '0' ? '/users/' + comment.user_id + '/profile' : '' " style="cursor: pointer;" class="userProfile rounded-circle" [src]=" comment.user_id !== '0' ? base_url + '/users/' + (comment.user_id || comment.commenterID) + '/avatar': '../../../assets/images/prof_1.png' ">
             </div>
             <div class="col-12 col-md-11">
                 <div class="row pr-md-4 pr-md-3 pt-2">
                     <div class="col-12">
-                        <span *ngIf="comment.status != '1' && !secondChild " (click)="showSendComment = true" class="icon-reply float-left text-secondary lg_font btn_reply"></span>
+                        <span *ngIf="(comment.status != '1' && !secondChild) && !comment.title " (click)="showSendComment = true" class="icon-reply float-left text-secondary lg_font btn_reply"></span>
                         <a [routerLink]=" comment.user_id !== '0' ? '/users/' + comment.user_id + '/profile' : ''" class="comment-username normal_font text-decoration-none">
                             <strong>
-                                {{comment.user_id !== '0' ? comment.user_nickname :  'میلوژی'}}
+                                {{comment.user_id !== '0' ? comment.user_nickname || comment.cNickname :  'میلوژی'}}
                             </strong>
+                            <span *ngIf="comment.title">: {{comment.title}}</span>
                         </a>
                         <span class="text-secondary xmini_font d-block pt-1">
-                            {{getDate(comment.date)}}
+                            {{getDate(comment.date || comment.registerDate)}}
                         </span>
                         <p class="comment-text mini_font pt-3">
                             <strong>
-                                {{comment.comment}}
+                                {{comment.comment || comment.text}}
                             </strong>
                         </p>
                     </div>

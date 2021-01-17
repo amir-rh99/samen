@@ -1,7 +1,10 @@
 <header (window:resize)="onResize($event)" class="header">
   <div class="container d-flex justify-content-md-between justify-content-start align-items-center">
-    <a href="#">
-      <img src="../../../assets/images/samen-logo.png" class="main-header__school-logo" alt="samen noor school logo">
+    <a href="#" class="text-secondary text-decoration-none">
+      <img [src]="base_url + bpInfo?.businessPartnerLogo" class="main-header__school-logo" alt="samen noor school logo">
+      <span class="pr-2">
+        {{bpInfo?.businessPartnerNameTranslated}}
+      </span>
     </a>
 
     <nav *ngIf="!loggedIn" class="main-menu align-self-stretch d-none d-lg-block">

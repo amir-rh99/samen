@@ -27,13 +27,15 @@ export class NavbarComponent implements OnInit {
   base_url;
   userId;
   activeBP: boolean = false;
+  public bpInfo: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     protected getUserData: GeuUserDataService,
     private navbarService: NavbarServiceService,
     private route: Router,
-    private crud: CRUDService
+    private crud: CRUDService,
+    private getServices: GetServicesService
   ) {
     this.navbarService.navState$.subscribe((state)=>{
       this.loggedIn = state;
@@ -46,6 +48,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getServices.bpInfo.subscribe((bpInfo)=>{
+      this.bpInfo = bpInfo;
+      console.log(bpInfo);
+      
+    })
     this.navbarService.activeBP.subscribe(data=>{
       data ? this.activeBP = true : this.activeBP = false
 

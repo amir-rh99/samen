@@ -19,6 +19,26 @@
       </span>
     </div>
 
+    <div *ngIf="!(userSelectedId && otherResultsOfUSer)">
+    <div class="medal_header text-right p-2">
+      <img class="sidebar_icons" src="../../../assets/images/movafaghiat.png">
+      <span class="text-secondary lg_font">
+        <strong>
+          نتایج من
+        </strong>
+      </span>
+    </div>
+    <a [routerLink]="service.route + '/result'" *ngFor="let service of results">
+      <div class="col-12 my-1 p-2 text-right d-flex align-items-center" style="background-color: #f9f9f9; border-radius: 10px;">
+        <img style="width:40px" [src]="base_url + service.icon" alt="">
+        <h6 class="text-secondary px-2 mini_font">
+          <strong>
+            {{service.title}}
+          </strong>
+        </h6>
+      </div>
+    </a>
+  </div>
     <!-- <div class="medals_container" *ngIf="(userSelectedId === userId) || !userSelectedId">
       <div class="medal_header text-right p-2">
         <img class="sidebar_icons" src="../../../assets/images/medals.png">
@@ -80,7 +100,7 @@
 
     <div class="text-justify">
       <span class="mini_font text-secondary">
-        نور مسیری را به سوی آینده ای معلوم پیش پای فرزندان شما روشن می کند
+        {{bpInfo?.businessPartnerDescription}}
       </span>
     </div>
 
@@ -172,6 +192,27 @@
           <span class="pr-2">
             خروج
           </span>
+        </a>
+      </div>
+
+      <div class="col-12 text-right px-0" *ngIf="!(userSelectedId && otherResultsOfUSer)">
+        <div class="medal_header text-right py-2">
+          <img class="sidebar_icons" src="../../../assets/images/movafaghiat.png">
+          <span class="text-secondary lg_font">
+            <strong>
+              نتایج من
+            </strong>
+          </span>
+        </div>
+        <a [routerLink]="service.route + '/result'" *ngFor="let service of results">
+          <div class="col-12 my-1 py-2 px-0 text-right d-flex align-items-center" style="background-color: #f9f9f9; border-radius: 10px;">
+            <img style="width:40px" [src]="base_url + service.icon" alt="">
+            <h6 class="text-secondary px-2 mini_font">
+              <strong>
+                {{service.title}}
+              </strong>
+            </h6>
+          </div>
         </a>
       </div>
     </div>

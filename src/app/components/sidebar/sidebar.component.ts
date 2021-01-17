@@ -25,6 +25,7 @@ export class SidebarComponent implements OnInit {
   public birthdates;
   activeBP: boolean = false;
   public bpInfo: any;
+  public results: any;
   constructor(
     public getUserData: GeuUserDataService,
     private crud: CRUDService,
@@ -35,13 +36,16 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.getServices.bpInfo.subscribe((bpInfo)=>{
       this.bpInfo = bpInfo;
     })
     this.navbarService.activeBP.subscribe(data=>{
       data ? this.activeBP = true : this.activeBP = false
-
+      
+      this.userId = localStorage.getItem('id')
       this.loggedIn = true;
+      this.getResults();
       this.getData()
     })
     if(localStorage.getItem('role') === 'businessPartner' || localStorage.getItem('role') === 'admin'){
@@ -52,11 +56,24 @@ export class SidebarComponent implements OnInit {
     }
 
   }
-
+  getResults(){
+    this.getServices.getServicesForBp(this.userId).subscribe((services:any)=>{
+      services = services.filter(service=>{
+        return service.type === '1'
+      })
+      this.results = services.filter(service=>{
+        if(service.serviceStatus.length != 0){
+          for(let status of service.serviceStatus){
+            return status.status == 2;
+          }
+        }
+      })
+      console.log(services, " +++++serviiiices**");
+    })
+  }
   getData(){
 
     this.base_url = this.crud.base_url;
-    this.userId = localStorage.getItem('id')
     // if(localStorage.getItem('id')){
     //   this.loggedIn = true;
     // }

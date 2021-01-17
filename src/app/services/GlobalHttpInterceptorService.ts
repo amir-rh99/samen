@@ -44,7 +44,9 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
             // console.error("Error Event");
           } else {
             console.log(error);
-            if ( !(error.url === 'https://api.milogy.com/coupon/check' || 'https://api.milogy.com/coupon/check-info' ) ) {
+            if ( error.url === 'https://api.milogy.com/coupon/check' || error.url === 'https://api.milogy.com/coupon/check-info' ) {
+              // do nothing              
+          } else {
             switch (error.status) {
               case 401: //login 
                 this.UnauthorizedLogOut();
