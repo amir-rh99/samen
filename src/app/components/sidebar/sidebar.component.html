@@ -20,7 +20,7 @@
     </div>
 
     <div *ngIf="!(userSelectedId && otherResultsOfUSer)">
-    <div class="medal_header text-right p-2">
+    <div *ngIf="results && results.length !== 0" class="medal_header text-right p-2">
       <img class="sidebar_icons" src="../../../assets/images/movafaghiat.png">
       <span class="text-secondary lg_font">
         <strong>
@@ -196,7 +196,7 @@
       </div>
 
       <div class="col-12 text-right px-0" *ngIf="!(userSelectedId && otherResultsOfUSer)">
-        <div class="medal_header text-right py-2">
+        <div *ngIf="results && results.length !== 0" class="medal_header text-right py-2">
           <img class="sidebar_icons" src="../../../assets/images/movafaghiat.png">
           <span class="text-secondary lg_font">
             <strong>

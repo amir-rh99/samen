@@ -68,7 +68,7 @@ export class SidebarComponent implements OnInit {
           }
         }
       })
-      console.log(services, " +++++serviiiices**");
+      console.log(this.results, " +++++serviiiices**");
     })
   }
   getData(){

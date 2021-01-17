@@ -81,10 +81,10 @@
 
     </div>
 
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-12 col-md-4">
         <div class="form-group select-input-wrapper-birthDate">
-          <select name="birthYear" id="birthYear" class="my-custom-select col-12">
+          <select [formControl]="birthYear" name="birthYear" id="birthYear" class="my-custom-select col-12">
               <option *ngFor="let i of [].constructor(100); let x = index" [value]=" x + 1301">
                 {{x + 1301}}
               </option>
@@ -94,7 +94,7 @@
       </div>
       <div class="col-12 col-md-4">
         <div class="form-group select-input-wrapper-birthDate">
-          <select name="birthMonth" id="birthMonth" class="my-custom-select col-12">
+          <select [formControl]="birthMonth" name="birthMonth" id="birthMonth" class="my-custom-select col-12">
               <option value="1">فروردین</option>
               <option value="2">اردیبهشت</option>
               <option value="3">خرداد</option>
@@ -113,7 +113,7 @@
       </div>
       <div class="col-12 col-md-4">
         <div class="form-group select-input-wrapper-birthDate">
-          <select name="birthDay" id="birthDay" class="my-custom-select col-12">
+          <select [formControl]="birthDay" name="birthDay" id="birthDay" class="my-custom-select col-12">
             <option *ngFor="let i of [].constructor(31); let x = index" [value]=" x + 1">
               {{x + 1}}
             </option>
@@ -121,11 +121,11 @@
           <label for="birthDay" class="inline-label">روز</label>
       </div>
       </div>
-    </div> -->
+    </div>
 
 
     <div>
-      <button type="submit" class="btn btn-warning mb-3 mb-md-0 position-relative" [disabled]="Register.invalid || disabledRegister">
+      <button type="submit" class="btn btn-warning mb-3 mb-md-0 position-relative" [disabled]="Register.invalid || disabledRegister || disabledForBirth">
         ثبت نام
         <app-btn-loading [content]="!disabledRegister"></app-btn-loading>
       </button>

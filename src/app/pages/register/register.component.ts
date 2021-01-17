@@ -5,6 +5,9 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+import * as moment from 'moment-jalaali'; // add this 1 of 4
+import 'moment/min/locales'
+moment.locale('en'); 
 
 @Component({
   selector: 'app-register',
@@ -13,6 +16,8 @@ import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 })
 export class RegisterComponent implements OnInit {
   disabledRegister: boolean = false;
+  disabledForBirth: boolean = true;
+  birthDate = '';
   error = {
     fname: false,
     username: false,
@@ -40,6 +45,36 @@ export class RegisterComponent implements OnInit {
       }
     ]
     this.breadcrumbService.updateRoute(bread);
+    
+    this.birthYear.valueChanges.subscribe(res=>{
+      this.birthMonth.enable()
+    })
+    this.birthMonth.valueChanges.subscribe(res=>{
+      if(this.birthMonth.dirty){
+        this.birthDay.enable()
+      }
+    })
+
+    this.birthDay.valueChanges.subscribe(res=>{
+      if(this.birthDay.dirty){
+        let year = this.birthYear.value;
+        let month = this.birthMonth.value;
+        let day = this.birthDay.value;
+  
+        let birth = `${year}/${month}/${day} 00:00:00`
+        console.log(birth);
+        let m = moment(birth, 'jYYYY/jMM/jDD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+        this.birthDate = this.fixNumbers(m);
+        console.log(this.birthDate);
+        this.disabledForBirth = false;
+      }
+      
+    })
+  }
+  
+  birth_disabled = {
+    month: true,
+    day: true
   }
 emailCheck = false;
 userCheck = false;
@@ -51,13 +86,16 @@ userCheck = false;
     password: ['',[Validators.required]],
     sex: ['',Validators.required],
     mobile: ['',Validators.required],
-    birth_date: ['1399-09-09 00:00:00', Validators.required]
   })
-
+  birthYear = new FormControl({value: ''},Validators.required);
+  birthMonth = new FormControl({value: '',disabled: true},Validators.required);
+  birthDay = new FormControl({value: '',disabled: true},Validators.required);
   register(event){
     this.disabledRegister = true;
-    // console.log(this.Register.value);
     let info = this.Register.value;
+    info.birth_date = this.birthDate;
+    console.log(info, " ***info");
+    
     this.registerService.registerUser(info).subscribe((register:any)=>{
       this.disabledRegister = true;
       if(register){
@@ -106,4 +144,17 @@ userCheck = false;
     }
   }
 
+  persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g]
+  arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g]
+  fixNumbers = function (str)
+  {
+    if(typeof str === 'string')
+    {
+      for(var i=0; i<10; i++)
+      {
+        str = str.replace(this.persianNumbers[i], i).replace(this.arabicNumbers[i], i);
+      }
+    }
+    return str;
+  };
 }

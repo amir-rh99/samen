@@ -8,11 +8,11 @@ import { Table } from 'primeng/table';
 
 import * as moment from 'moment-jalaali'; // add this 1 of 4
 import 'moment/min/locales'
+moment.locale('fa'); 
 import { GetServicesService } from 'src/app/services/get-services.service';
 import { GeuUserDataService } from 'src/app/services/geu-user-data.service';
 import { CRUDService } from 'src/app/services/crud.service';
 import { ViewChild } from '@angular/core';
-moment.locale('fa'); 
 
 @Component({
   selector: 'app-business-partner',
