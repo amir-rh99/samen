@@ -1,12 +1,14 @@
-<app-navbar></app-navbar> 
-
-<div class="main-section">
-  <div class="container routeContainer">
-    <router-outlet></router-outlet>
+<div style="position: relative;min-height: 100vh;">
+  <app-navbar></app-navbar> 
+  <div class="main-section">
+    <div class="container routeContainer">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div style="position: absolute;bottom: 0;width: 100%;">
+    <app-footer></app-footer>
   </div>
 </div>
-
-<app-footer></app-footer>
 <!-- 
 <div class="container routeContainer" [@routeAnimation]="getDepth(myOutlet)">
   <router-outlet #myOutlet="outlet"></router-outlet>
