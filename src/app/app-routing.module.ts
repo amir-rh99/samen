@@ -23,17 +23,19 @@ const routes: Routes = [
     path: '' ,
     component: LandingComponent,
     canActivate:[AfterLoginGuard],
-
+    data: { fullWidth: true }
   },
   {
     path: 'auth',
     component: AuthComponent,
     canActivate:[AfterLoginGuard],
-
+    
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        // data: { showSidebar: false },
+
       },
       {
         path: 'register',
@@ -61,7 +63,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        component: ServicesComponent
+        component: ServicesComponent,
       },
       {
         path: 'business-partner/record/:userId',

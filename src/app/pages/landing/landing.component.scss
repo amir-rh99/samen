@@ -3,10 +3,50 @@
 }
 .banner_image{
     background-image: url('../../../assets/images/banner-1571858_1920.jpg');
-    height: 400px;
+    height: 450px;
 }
 @media screen and (max-width: 576px){
     .landingImage{
         width: 210px;
+    }
+}
+
+.banner_logo{
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 30%);
+    box-shadow: 3px 3px 5px 0 #555;
+}
+.banner_header{
+    position: absolute;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 996px){
+    .banner_logo{
+        width: 175px;
+        height: 175px;
+    }
+    .banner_image{
+        height: 325px;
+    }
+}
+@media screen and (max-width: 576px){
+    .banner_logo{
+        width: 140px;
+        height: 140px;
+    }
+    .banner_image{
+        height: 250px;
     }
 }

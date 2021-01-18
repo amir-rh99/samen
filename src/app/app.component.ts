@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, group, query, style, animate} from '@angular/animations'
-import { Router, NavigationEnd } from '@angular/router'
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
 import { GeuUserDataService } from './services/geu-user-data.service';
 import { GetServicesService } from './services/get-services.service';
+import { Observable } from 'rxjs';
+import { filter, map, mergeMap } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -51,11 +53,29 @@ export class AppComponent implements OnInit {
   title = 'Samen';
   constructor(
     private router: Router,
-    private getServices: GetServicesService
+    private getServices: GetServicesService,
+    private activeRoute: ActivatedRoute,
+    private route: Router
     ){
 
   }
+  fullWidth$: Observable<boolean>;
+  private defaultfullWidth = false;
   ngOnInit(){
+    
+    this.fullWidth$ = this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      map(() => this.activeRoute),
+      map(route => {
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+        return route;
+      }),
+      mergeMap(route => route.data),
+      map(data => data.hasOwnProperty('fullWidth') ? data.fullWidth : this.defaultfullWidth),
+    )
+
     this.getServices.getBpInfo();
     this.router.events.subscribe(event=>{
       if(!(event instanceof NavigationEnd)){

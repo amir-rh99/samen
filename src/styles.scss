@@ -59,9 +59,13 @@ body {
 .main-section {
   padding: 80px 0;
     background-color: #eeeff0;
-    min-height: 450px;
+    // min-height: 450px;
 }
-
+.main-section-landing {
+  padding: 60px 0 !important;
+    background-color: #eeeff0;
+    // min-height: 450px;
+}
 :root{
     --xxmini_font: 0.6em;
     --xmini_font: 0.7em;

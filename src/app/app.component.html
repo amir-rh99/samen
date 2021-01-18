@@ -1,7 +1,7 @@
 <div style="position: relative;min-height: 100vh;">
   <app-navbar></app-navbar> 
-  <div class="main-section">
-    <div class="container routeContainer">
+  <div class="main-section" [ngClass]="{'main-section-landing': fullWidth$ | async}">
+    <div class="container routeContainer" [ngClass]="{'mx-0 max-width': fullWidth$ | async}">
       <router-outlet></router-outlet>
     </div>
   </div>

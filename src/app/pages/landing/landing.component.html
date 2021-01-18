@@ -1,25 +1,29 @@
-<!-- 
-<div  class="main-section" style="margin-bottom: 250px;">
-    <img src="../../../assets/images/brain.png" alt="">
-    <div class="d-flex mx-5 my-5">
-        <a class="px-5" routerLink="auth/login">ورود</a>
-        <a class="px-5"  routerLink="auth/register">ثبت نام</a>
+
+    <div class="row banner_image position-relative">
+        <div class="banner_header">
+            <h2>
+                <strong>
+                    {{bpInfo?.businessPartnerNameTranslated}}
+                </strong>
+            </h2>
+            <h6>
+                <strong>
+                    {{bpInfo?.businessPartnerDescription}}
+                </strong>
+            </h6>
+        </div>
+        <img class="banner_logo" [src]="base_url + bpInfo?.businessPartnerLogo">
     </div>
-
-</div> -->
-
-<!-- <div class="row banner_image">
-
-</div> -->
 <div class="main-section">
+
     <div class="row">
         <div class="col-12 text-center">
             <div class="row">
                 <div class="col-12 py-2">
-                    <button class="btn btn-warning text-white px-5 lg_font" routerLink="auth/login">ورود</button>
+                    <button class="btn bg_main_yellow_color text-white px-5 lg_font" routerLink="auth/login">ورود</button>
                 </div>
                 <div class="col-12 py-2">
-                    <button class="btn btn-warning text-white px-5 lg_font" routerLink="auth/register">ثبت نام</button>
+                    <button class="btn bg_main_yellow_color text-white px-5 lg_font" routerLink="auth/register">ثبت نام</button>
                 </div>
             </div>
         </div>
